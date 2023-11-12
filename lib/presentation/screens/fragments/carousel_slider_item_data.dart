@@ -12,9 +12,6 @@ class CarouselSliderItemData extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 10,
-        ),
         Text(
           'Current Conditions',
           style: Theme.of(context).textTheme.headlineSmall,

@@ -11,6 +11,7 @@ class KeyValueTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
+      columnWidths: const {0: FixedColumnWidth(150)},
       children: keyValuePairs.entries
           .map<TableRow>(
             (e) => TableRow(

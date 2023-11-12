@@ -20,11 +20,11 @@ class CarouselSliderItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: constraints.maxWidth * 0.6,
+              width: constraints.maxWidth * 0.7,
               child: Image.network(url, fit: BoxFit.cover),
             ),
             SizedBox(
-              width: constraints.maxWidth * 0.4,
+              width: constraints.maxWidth * 0.3,
               child: const Padding(
                 padding: EdgeInsets.only(left: 20),
                 child: CarouselSliderItemData(),
