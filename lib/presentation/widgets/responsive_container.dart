@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weewx_pwa/util/responsive_utils.dart';
 
 class ResponsiveContainer extends StatelessWidget {
   const ResponsiveContainer({
@@ -16,12 +17,12 @@ class ResponsiveContainer extends StatelessWidget {
       child: LayoutBuilder(
         builder: (context, constraints) {
           return SizedBox(
-            width: contentAreaWidth(constraints.maxWidth),
+            width: ScreenSizeExt.contentWidthOf(context),
             child: Padding(
-              padding: noPaddingForLowestBreakpoint && constraints.maxWidth <= kLayoutBreakpointMD
+              padding: noPaddingForLowestBreakpoint && ScreenSizeExt.of(context) == ScreenSize.small
                   ? EdgeInsets.zero
-                  : EdgeInsets.symmetric(
-                      horizontal: contentAreaWidth(constraints.maxWidth)! * 0.02,
+                  : const EdgeInsets.symmetric(
+                      horizontal: 20,
                     ),
               child: Align(
                 alignment: Alignment.topLeft,
@@ -33,17 +34,4 @@ class ResponsiveContainer extends StatelessWidget {
       ),
     );
   }
-}
-
-// width in pixels when layout should show small-/large-screen version
-const double kLayoutBreakpointMD = 640;
-const double kLayoutBreakpointXL = 1200;
-
-double? contentAreaWidth(double screenWidth) {
-  if (screenWidth >= kLayoutBreakpointXL) {
-    return kLayoutBreakpointXL;
-  } else if (screenWidth >= kLayoutBreakpointMD) {
-    return kLayoutBreakpointMD;
-  }
-  return screenWidth;
 }

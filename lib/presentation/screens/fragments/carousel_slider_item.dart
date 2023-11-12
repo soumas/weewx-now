@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weewx_pwa/presentation/screens/fragments/carousel_slider_item_data.dart';
-import 'package:weewx_pwa/presentation/widgets/responsive_container.dart';
+import 'package:weewx_pwa/util/responsive_utils.dart';
 
 class CarouselSliderItem extends StatelessWidget {
   const CarouselSliderItem({
@@ -15,7 +15,7 @@ class CarouselSliderItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth > kLayoutBreakpointMD) {
+      if (ScreenSizeExt.of(context) == ScreenSize.large) {
         return Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -40,7 +40,7 @@ class CarouselSliderItem extends StatelessWidget {
               child: Image.network(url, fit: BoxFit.cover),
             ),
             Padding(
-              padding: MediaQuery.of(context).size.width < kLayoutBreakpointMD
+              padding: ScreenSizeExt.of(context) == ScreenSize.small
                   ? const EdgeInsets.symmetric(
                       horizontal: 20.0,
                     )
