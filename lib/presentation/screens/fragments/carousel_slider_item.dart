@@ -1,5 +1,6 @@
-import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:weewx_pwa/presentation/screens/fragments/carousel_slider_item_data.dart';
+import 'package:weewx_pwa/presentation/widgets/responsive_container.dart';
 
 class CarouselSliderItem extends StatelessWidget {
   const CarouselSliderItem({
@@ -13,50 +14,42 @@ class CarouselSliderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.network(url),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            color: Colors.black.withAlpha(100),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    '11.11.2023, 16:24 Uhr',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const Text(
-                        '0 km/h',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      Transform.rotate(
-                        angle: angel * math.pi / 180,
-                        child: const Icon(
-                          Icons.north,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth > kLayoutBreakpointMD) {
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: constraints.maxWidth * 0.6,
+              child: Image.network(url, fit: BoxFit.cover),
             ),
-          ),
-        ),
-      ],
-    );
+            SizedBox(
+              width: constraints.maxWidth * 0.4,
+              child: const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: CarouselSliderItemData(),
+              ),
+            ),
+          ],
+        );
+      } else {
+        return Column(
+          children: [
+            SizedBox(
+              width: constraints.maxWidth,
+              child: Image.network(url, fit: BoxFit.cover),
+            ),
+            Padding(
+              padding: MediaQuery.of(context).size.width < kLayoutBreakpointMD
+                  ? const EdgeInsets.symmetric(
+                      horizontal: 20.0,
+                    )
+                  : EdgeInsets.zero,
+              child: const CarouselSliderItemData(),
+            ),
+          ],
+        );
+      }
+    });
   }
 }
