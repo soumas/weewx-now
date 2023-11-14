@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'MSGU Flugplatz, Weer',
+                'MSGU Flugplatz, WeerX',
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ],
