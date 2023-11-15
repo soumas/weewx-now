@@ -35,6 +35,7 @@ class WebappInstaller(ExtensionInstaller):
                    ('skins/webapp', [
                 'skins/webapp/skin.conf', 
                 'skins/webapp/config.json.tmpl',
+                'skins/webapp/weather.json.tmpl',
                 'skins/webapp/lang/cn.conf',
                 'skins/webapp/lang/cz.conf',
                 'skins/webapp/lang/de.conf',

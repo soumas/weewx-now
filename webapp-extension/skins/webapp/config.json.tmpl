@@ -1,14 +1,15 @@
+#import json
 {
     "station":
     {
-        "location": "$station.location",
+        "location": $json.dumps($station.location),
         "latitude": $station.stn_info.latitude_f,
         "longitude": $station.stn_info.longitude_f,
         "altitude (meters)": $station.altitude.meter.raw,
-        "url": "$station.station_url",
-        "hardware": "$station.hardware",
-        "uptimeOS": "$station.os_uptime.long_form",
-        "uptimeWeeWX": "$station.uptime.long_form",
+        "url": $json.dumps($station.station_url),
+        "hardware": $json.dumps($station.hardware),
+        "uptimeOS": $json.dumps($station.os_uptime.long_form),
+        "uptimeWeeWX": $json.dumps($station.uptime.long_form),
         "versionWeeWX": "$station.version"
     }
 }
