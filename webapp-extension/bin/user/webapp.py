@@ -7,7 +7,7 @@ webcam in json format for usage in the weewx web app.
 '''
 
 import os
-import time
+import json
 import pathlib
 
 import weewx
@@ -42,16 +42,19 @@ class ImageIndexGenerator(weewx.reportengine.ReportGenerator):
             webcam_dir = os.path.join(root_dir, 'webcam')
             if not os.path.exists(webcam_dir):
                 os.makedirs(webcam_dir)
-
+            
             # compose json
             webcam_json_lst = []
             for file in os.scandir(webcam_dir):
                 if file.is_file() and pathlib.Path(file.name).suffix.lower() in supported_ext:
-                    webcam_json_lst.append('{"filename":"%s","date":"%s"}' % (file.name, datetime.fromtimestamp(os.path.getctime(file.path)).strftime('%Y-%m-%dT%H:%M:%S.%f')))
-            jsonContent = '{webcam:[%s]}' % ','.join(webcam_json_lst)
+                    webcam_json_lst.append('{"filename":%s,"date":%s}' % (json.dumps(file.name), json.dumps(datetime.fromtimestamp(os.path.getctime(file.path)).strftime('%Y-%m-%dT%H:%M:%S.%f'))))
+            if len(webcam_json_lst) > 0:
+                jsonContent = '{"webcam":[%s]}' % ','.join(webcam_json_lst)
+            else:
+                jsonContent = '{}'
 
             # write json to output file
-            open(os.path.join(root_dir, 'webcam.json'), 'w').write(jsonContent)
+            open(os.path.join(root_dir, 'images.json'), 'w').write(jsonContent)
 
         except () as e:
             log.error('%s' % e, 'webapp')
