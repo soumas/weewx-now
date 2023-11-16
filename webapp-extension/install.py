@@ -32,8 +32,9 @@ class WebappInstaller(ExtensionInstaller):
             files=[('bin/user', [
                 'bin/user/webapp.py'
                 ]),
-                   ('skins/webapp', [
+                   ('skins/webapp', [                
                 'skins/webapp/skin.conf', 
+                'skins/webapp/index.html.tmpl',
                 'skins/webapp/config.json.tmpl',
                 'skins/webapp/weather.json.tmpl',
                 'skins/webapp/lang/cn.conf',
