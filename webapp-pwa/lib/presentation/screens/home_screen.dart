@@ -6,9 +6,10 @@ import 'package:weewx_pwa/presentation/screens/fragments/carousel_slider_item.da
 import 'package:weewx_pwa/presentation/widgets/responsive_container.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.url});
 
   static const String routeName = "homeScreen";
+  final String? url;
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +80,7 @@ class HomeScreen extends StatelessWidget {
                   )
                 ],
               ),
+              Text(url ?? 'kein URL')
             ],
           ),
         ),
