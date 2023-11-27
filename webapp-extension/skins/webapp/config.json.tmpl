@@ -5,7 +5,7 @@
         "location": $json.dumps($station.location),
         "latitude": $station.stn_info.latitude_f,
         "longitude": $station.stn_info.longitude_f,
-        "altitude (meters)": $station.altitude.meter.raw,
+        "altitudeMeters": $station.altitude.meter.raw,
         "url": $json.dumps($station.station_url),
         "hardware": $json.dumps($station.hardware),
         "uptimeOS": $json.dumps($station.os_uptime.long_form),
