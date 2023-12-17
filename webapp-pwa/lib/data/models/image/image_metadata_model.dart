@@ -4,7 +4,7 @@ import 'package:weewx_pwa/domain/entities/image/image_meta_data_entity.dart';
 
 class ImageMetaDataModel {
   final String filename;
-  final DateTime date;
+  final String date;
 
   ImageMetaDataModel({
     required this.filename,
@@ -14,13 +14,13 @@ class ImageMetaDataModel {
   ImageMetaDataEntity toEntity() {
     return ImageMetaDataEntity(
       filename: filename,
-      date: date,
+      date: DateTime.parse(date),
     );
   }
 
   ImageMetaDataModel copyWith({
     String? filename,
-    DateTime? date,
+    String? date,
   }) {
     return ImageMetaDataModel(
       filename: filename ?? this.filename,
@@ -31,14 +31,14 @@ class ImageMetaDataModel {
   Map<String, dynamic> toMap() {
     return {
       'filename': filename,
-      'date': date.millisecondsSinceEpoch,
+      'date': date,
     };
   }
 
   factory ImageMetaDataModel.fromMap(Map<String, dynamic> map) {
     return ImageMetaDataModel(
       filename: map['filename'] ?? '',
-      date: DateTime.fromMillisecondsSinceEpoch(map['date']),
+      date: map['date'] ?? '',
     );
   }
 

@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:weewx_pwa/data/models/config/station_model.dart';
 import 'package:weewx_pwa/domain/entities/config/config_entity.dart';
 
-class ConfigModel {
+class ImagesModel {
   final StationModel station;
 
-  ConfigModel({
+  ImagesModel({
     required this.station,
   });
 
@@ -14,10 +14,10 @@ class ConfigModel {
     return ConfigEntity(station: station.toEntity());
   }
 
-  ConfigModel copyWith({
+  ImagesModel copyWith({
     StationModel? station,
   }) {
-    return ConfigModel(
+    return ImagesModel(
       station: station ?? this.station,
     );
   }
@@ -28,16 +28,16 @@ class ConfigModel {
     };
   }
 
-  factory ConfigModel.fromMap(Map<String, dynamic> map) {
-    return ConfigModel(
+  factory ImagesModel.fromMap(Map<String, dynamic> map) {
+    return ImagesModel(
       station: StationModel.fromMap(map['station']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory ConfigModel.fromJson(String source) =>
-      ConfigModel.fromMap(json.decode(source));
+  factory ImagesModel.fromJson(String source) =>
+      ImagesModel.fromMap(json.decode(source));
 
   @override
   String toString() => 'ConfigModel(station: $station)';
@@ -46,7 +46,7 @@ class ConfigModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ConfigModel && other.station == station;
+    return other is ImagesModel && other.station == station;
   }
 
   @override

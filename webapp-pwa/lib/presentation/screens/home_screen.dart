@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:expandable_page_view/expandable_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:weewx_pwa/domain/repositories/weather_repository.dart';
+import 'package:weewx_pwa/injection.dart';
 import 'package:weewx_pwa/presentation/screens/fragments/carousel_slider_item.dart';
 import 'package:weewx_pwa/presentation/widgets/responsive_container.dart';
 
@@ -72,7 +74,9 @@ class HomeScreen extends StatelessWidget {
                       child: MenuBar(
                         children: [
                           IconButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                await sl<WeatherRepository>().loadWeather();
+                              },
                               icon: const Icon(Icons.refresh)),
                           IconButton(
                               onPressed: () {},

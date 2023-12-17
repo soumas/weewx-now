@@ -4,7 +4,7 @@ import 'package:weewx_pwa/data/models/weather/value_data_model.dart';
 import 'package:weewx_pwa/domain/entities/weather/weather_current_entity.dart';
 
 class WeatherCurrentModel {
-  final DateTime generation;
+  final String generation;
   final ValueDataModel temperature;
   final ValueDataModel dewpoint;
   final ValueDataModel humidity;
@@ -36,7 +36,7 @@ class WeatherCurrentModel {
 
   WeatherCurrentEntity toEntity() {
     return WeatherCurrentEntity(
-      generation: generation,
+      generation: DateTime.parse(generation),
       temperature: temperature.toEntity(),
       dewpoint: dewpoint.toEntity(),
       humidity: humidity.toEntity(),
@@ -53,7 +53,7 @@ class WeatherCurrentModel {
   }
 
   WeatherCurrentModel copyWith({
-    DateTime? generation,
+    String? generation,
     ValueDataModel? temperature,
     ValueDataModel? dewpoint,
     ValueDataModel? humidity,
@@ -86,7 +86,7 @@ class WeatherCurrentModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'generation': generation.millisecondsSinceEpoch,
+      'generation': generation,
       'temperature': temperature.toMap(),
       'dewpoint': dewpoint.toMap(),
       'humidity': humidity.toMap(),
@@ -104,7 +104,7 @@ class WeatherCurrentModel {
 
   factory WeatherCurrentModel.fromMap(Map<String, dynamic> map) {
     return WeatherCurrentModel(
-      generation: DateTime.fromMillisecondsSinceEpoch(map['generation']),
+      generation: map['generation'] ?? '',
       temperature: ValueDataModel.fromMap(map['temperature']),
       dewpoint: ValueDataModel.fromMap(map['dewpoint']),
       humidity: ValueDataModel.fromMap(map['humidity']),
