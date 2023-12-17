@@ -19,7 +19,8 @@ class ResponsiveContainer extends StatelessWidget {
           return SizedBox(
             width: ScreenSizeExt.contentWidthOf(context),
             child: Padding(
-              padding: noPaddingForLowestBreakpoint && ScreenSizeExt.of(context) == ScreenSize.small
+              padding: noPaddingForLowestBreakpoint &&
+                      ScreenSizeExt.of(context) == ScreenSize.small
                   ? EdgeInsets.zero
                   : const EdgeInsets.symmetric(
                       horizontal: 20,

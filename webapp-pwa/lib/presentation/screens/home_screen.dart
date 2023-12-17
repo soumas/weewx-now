@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'MSGU Flugplatz, WeerX',
+                'MSGU Flugplatz, Weer',
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ],
@@ -49,15 +49,18 @@ class HomeScreen extends StatelessWidget {
                     ),
                     children: const [
                       CarouselSliderItem(
-                        url: 'https://wetter.msgu.at/Content/images/webcam/_old/webcam_0_23110413534300.jpg',
+                        url:
+                            'https://wetter.msgu.at/Content/images/webcam/_old/webcam_0_23110413534300.jpg',
                         angel: 107,
                       ),
                       CarouselSliderItem(
-                        url: 'https://wetter.msgu.at/Content/images/webcam/_old/webcam_0_23110413534300.jpg',
+                        url:
+                            'https://wetter.msgu.at/Content/images/webcam/_old/webcam_0_23110413534300.jpg',
                         angel: 107,
                       ),
                       CarouselSliderItem(
-                        url: 'https://wetter.msgu.at/Content/images/webcam/_old/webcam_0_23110413534300.jpg',
+                        url:
+                            'https://wetter.msgu.at/Content/images/webcam/_old/webcam_0_23110413534300.jpg',
                         angel: 107,
                       ),
                     ],
@@ -68,8 +71,12 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: MenuBar(
                         children: [
-                          IconButton(onPressed: () {}, icon: const Icon(Icons.refresh)),
-                          IconButton(onPressed: () {}, icon: const Icon(Icons.chevron_left_outlined)),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.refresh)),
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(Icons.chevron_left_outlined)),
                           const IconButton(
                             onPressed: null,
                             icon: Icon(Icons.chevron_right_outlined),

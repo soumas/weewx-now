@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_pwa/presentation/screens/fragments/carousel_slider_item_data.dart';
-import 'package:weewx_pwa/util/responsive_utils.dart';
 
 class CarouselSliderItem extends StatelessWidget {
   const CarouselSliderItem({
@@ -14,42 +12,10 @@ class CarouselSliderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (ScreenSizeExt.of(context) == ScreenSize.large) {
-        return Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: constraints.maxWidth * 0.7,
-              child: Image.network(url, fit: BoxFit.cover),
-            ),
-            SizedBox(
-              width: constraints.maxWidth * 0.3,
-              child: const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: CarouselSliderItemData(),
-              ),
-            ),
-          ],
-        );
-      } else {
-        return Column(
-          children: [
-            SizedBox(
-              width: constraints.maxWidth,
-              child: Image.network(url, fit: BoxFit.cover),
-            ),
-            Padding(
-              padding: ScreenSizeExt.of(context) == ScreenSize.small
-                  ? const EdgeInsets.symmetric(
-                      horizontal: 20.0,
-                    )
-                  : EdgeInsets.zero,
-              child: const CarouselSliderItemData(),
-            ),
-          ],
-        );
-      }
-    });
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Image.network(url, fit: BoxFit.cover);
+      },
+    );
   }
 }
