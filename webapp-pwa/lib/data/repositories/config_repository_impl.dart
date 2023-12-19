@@ -8,7 +8,7 @@ class ConfigRepositoryImpl extends ConfigRepository {
   ConfigRepositoryImpl({required this.dataSource});
 
   @override
-  Future<ConfigEntity> loadConfig() async {
-    return (await dataSource.getConfig()).toEntity();
+  Future<ConfigEntity> loadConfig(String endpoint) async {
+    return (await dataSource.getConfig(endpoint)).toEntity();
   }
 }

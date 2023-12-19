@@ -9,6 +9,8 @@ import 'package:weewx_pwa/data/repositories/weather_repository_impl.dart';
 import 'package:weewx_pwa/domain/repositories/config_repository.dart';
 import 'package:weewx_pwa/domain/repositories/images_repository.dart';
 import 'package:weewx_pwa/domain/repositories/weather_repository.dart';
+import 'package:weewx_pwa/domain/usecases/load_config_usecase.dart';
+import 'package:weewx_pwa/presentation/bloc/config_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -36,6 +38,14 @@ class Injection {
     );
     sl.registerLazySingleton<WeatherRepository>(
       () => WeatherRepositoryImpl(dataSource: sl()),
+    );
+
+    // Usecases
+    sl.registerLazySingleton(() => LoadConfigUsecase(repository: sl()));
+
+    // Blocs
+    sl.registerFactory<ConfigBloc>(
+      () => ConfigBloc(loadConfigUsecase: sl()),
     );
 
     // Misc

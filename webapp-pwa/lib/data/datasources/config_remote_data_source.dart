@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:weewx_pwa/data/models/config/config_model.dart';
 
 abstract class ConfigRemoteDataSource {
-  Future<ImagesModel> getConfig();
+  Future<ImagesModel> getConfig(String endpoint);
 }
 
 class ConfigRemoteDataSourceImpl implements ConfigRemoteDataSource {
@@ -11,9 +11,9 @@ class ConfigRemoteDataSourceImpl implements ConfigRemoteDataSource {
   ConfigRemoteDataSourceImpl({required this.http});
 
   @override
-  Future<ImagesModel> getConfig() async {
-    final response =
-        await http.get<String>('http://localhost/weewx/webapp/config.json');
+  Future<ImagesModel> getConfig(String endpoint) async {
+    // 'http://localhost/weewx/webapp/config.json'
+    final response = await http.get<String>('$endpoint/config.json');
     return ImagesModel.fromJson(response.data!);
   }
 }
