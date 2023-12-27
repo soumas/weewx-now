@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_pwa/presentation/widgets/kev_value_table.dart';
+import 'package:weewx_pwa/presentation/widgets/key_value_table.dart';
 
 class WeatherAggDataTable extends StatelessWidget {
   const WeatherAggDataTable({
@@ -34,9 +34,12 @@ class WeatherAggDataTable extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              'Current Conditions',
-              style: Theme.of(context).textTheme.headlineSmall,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 20),
+              child: Text(
+                'Conditions',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
             ),
             const KeyValueTable(
               keyValuePairs: <String, String>{

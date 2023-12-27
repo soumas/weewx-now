@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_pwa/presentation/screens/util/time_slider_thumb_shape.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({
@@ -35,25 +34,40 @@ class _ImageViewerState extends State<ImageViewer> {
             ),
             Container(
               color: Colors.black12,
-              child: SliderTheme(
-                data: SliderTheme.of(context).copyWith(
-                  activeTrackColor: Colors.orangeAccent,
-                  thumbColor: Colors.red,
-                  thumbShape: TimeSliderThumbShape(),
-                  overlayShape: RoundSliderOverlayShape(overlayRadius: 15.0),
-                ),
-                child: Slider(
-                  min: 0,
-                  max: 30,
-                  value: _selectedImage,
-                  divisions: 30,
-                  label: _selectedImage.round().toString(),
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedImage = value;
-                    });
-                  },
-                ),
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.arrow_back_ios_new),
+                  ),
+                  Expanded(
+                    child: SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: Colors.orangeAccent,
+                        thumbColor: Colors.red,
+                        //thumbShape: TimeSliderThumbShape(),
+                        overlayShape:
+                            const RoundSliderOverlayShape(overlayRadius: 15.0),
+                      ),
+                      child: Slider(
+                        min: 0,
+                        max: 30,
+                        value: _selectedImage,
+                        divisions: 30,
+                        label: _selectedImage.round().toString(),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedImage = value;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.arrow_forward_ios),
+                  ),
+                ],
               ),
             ),
           ],
@@ -74,6 +88,16 @@ class _ImageViewerState extends State<ImageViewer> {
               DropdownMenuEntry(value: 'Webcam2', label: 'Webcam 2'),
               DropdownMenuEntry(value: 'Radar', label: 'Radar')
             ],
+          ),
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: Container(
+            color: Colors.black12,
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text('16.03.2024 @ 15:35 Uhr'),
+            ),
           ),
         )
       ],
