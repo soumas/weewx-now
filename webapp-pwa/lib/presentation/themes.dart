@@ -6,8 +6,7 @@ const Color themeColor3 = Color.fromARGB(200, 117, 171, 188);
 const Color themeColor4 = Color.fromARGB(200, 162, 174, 187);
 const Color themeColor5 = Color.fromARGB(200, 223, 224, 226);
 
-final themeDataLight = ThemeData.light().copyWith(
-  useMaterial3: true,
+final themeDataLight = ThemeData.light(useMaterial3: true).copyWith(
   textTheme: const TextTheme(
     headlineLarge: TextStyle(fontSize: 36),
     headlineMedium: TextStyle(fontSize: 24),
@@ -15,8 +14,7 @@ final themeDataLight = ThemeData.light().copyWith(
   ),
 );
 
-final themeDataDark = ThemeData.dark().copyWith(
-  useMaterial3: true,
+final themeDataDark = ThemeData.dark(useMaterial3: true).copyWith(
   textTheme: const TextTheme(
     headlineLarge: TextStyle(fontSize: 36),
     headlineMedium: TextStyle(fontSize: 24),

@@ -5,6 +5,7 @@ import 'package:weewx_pwa/data/models/weather/weather_current_model.dart';
 import 'package:weewx_pwa/domain/entities/weather/weather_data_entity.dart';
 
 class WeatherModel {
+  final String generation;
   final WeatherCurrentModel current;
   final WeatherAggregationModel day;
   final WeatherAggregationModel week;
@@ -12,6 +13,7 @@ class WeatherModel {
   final WeatherAggregationModel year;
 
   WeatherModel({
+    required this.generation,
     required this.current,
     required this.day,
     required this.week,
@@ -30,6 +32,7 @@ class WeatherModel {
   }
 
   WeatherModel copyWith({
+    String? generation,
     WeatherCurrentModel? current,
     WeatherAggregationModel? day,
     WeatherAggregationModel? week,
@@ -37,6 +40,7 @@ class WeatherModel {
     WeatherAggregationModel? year,
   }) {
     return WeatherModel(
+      generation: generation ?? this.generation,
       current: current ?? this.current,
       day: day ?? this.day,
       week: week ?? this.week,
@@ -47,6 +51,7 @@ class WeatherModel {
 
   Map<String, dynamic> toMap() {
     return {
+      'generation': generation,
       'current': current.toMap(),
       'day': day.toMap(),
       'week': week.toMap(),
@@ -57,6 +62,7 @@ class WeatherModel {
 
   factory WeatherModel.fromMap(Map<String, dynamic> map) {
     return WeatherModel(
+      generation: map['generation'] ?? '',
       current: WeatherCurrentModel.fromMap(map['current']),
       day: WeatherAggregationModel.fromMap(map['day']),
       week: WeatherAggregationModel.fromMap(map['week']),
@@ -72,7 +78,7 @@ class WeatherModel {
 
   @override
   String toString() {
-    return 'WeatherModel(current: $current, day: $day, week: $week, month: $month, year: $year)';
+    return 'WeatherModel(generation: $generation, current: $current, day: $day, week: $week, month: $month, year: $year)';
   }
 
   @override
@@ -80,6 +86,7 @@ class WeatherModel {
     if (identical(this, other)) return true;
 
     return other is WeatherModel &&
+        other.generation == generation &&
         other.current == current &&
         other.day == day &&
         other.week == week &&
@@ -89,7 +96,8 @@ class WeatherModel {
 
   @override
   int get hashCode {
-    return current.hashCode ^
+    return generation.hashCode ^
+        current.hashCode ^
         day.hashCode ^
         week.hashCode ^
         month.hashCode ^

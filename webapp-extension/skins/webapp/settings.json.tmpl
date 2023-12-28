@@ -1,5 +1,7 @@
+#from datetime import datetime
 #import json
-{    
+{
+    "generation": "$datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')",
     "station":
     {
         "location": $json.dumps($station.location),

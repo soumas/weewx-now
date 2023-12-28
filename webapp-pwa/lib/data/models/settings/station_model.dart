@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:weewx_pwa/domain/entities/config/station_entity.dart';
+import 'package:weewx_pwa/domain/entities/settings/station_entity.dart';
 
 class StationModel {
   final String location;

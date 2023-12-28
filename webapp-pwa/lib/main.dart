@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weewx_pwa/injection.dart';
-import 'package:weewx_pwa/presentation/bloc/config_bloc.dart';
+import 'package:weewx_pwa/presentation/bloc/main_screen_bloc.dart';
 import 'package:weewx_pwa/presentation/routes.dart';
 import 'package:weewx_pwa/presentation/themes.dart';
 
@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
       routerConfig: router,
       theme: themeDataLight,
       builder: (context, child) => BlocProvider(
-        create: (context) => sl.get<ConfigBloc>(),
+        create: (context) => sl.get<MainScreenBloc>(),
         child: child,
       ),
     );

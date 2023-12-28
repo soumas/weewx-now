@@ -1,9 +1,9 @@
-import 'package:weewx_pwa/domain/entities/config/station_entity.dart';
+import 'package:weewx_pwa/domain/entities/settings/station_entity.dart';
 
-class ConfigEntity {
+class SettingsEntity {
   final StationEntity station;
 
-  ConfigEntity({
+  SettingsEntity({
     required this.station,
   });
 
@@ -11,7 +11,7 @@ class ConfigEntity {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ConfigEntity && other.station == station;
+    return other is SettingsEntity && other.station == station;
   }
 
   @override
