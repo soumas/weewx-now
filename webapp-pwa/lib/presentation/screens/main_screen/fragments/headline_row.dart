@@ -22,7 +22,7 @@ class HeadlineRow extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                cState.data.settings.station.location,
+                cState.data.settings.texts.barometerMax,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const Expanded(child: SizedBox()),

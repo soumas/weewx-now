@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/widgets.dart';
+import 'package:weewx_pwa/domain/entities/settings/webapp_entity.dart';
 
 class WebappModel {
   final String? password;
@@ -14,6 +15,10 @@ class WebappModel {
     return WebappModel(
       password: password?.call() ?? this.password,
     );
+  }
+
+  WebappEntity toEntity() {
+    return WebappEntity(password: password);
   }
 
   Map<String, dynamic> toMap() {
