@@ -8,10 +8,13 @@ class UpdateMainScreenDataUsecase {
     required this.repository,
   });
 
-  Future<MainScreenDataEntity> execute(String endpoint) async {
+  Future<MainScreenDataEntity> execute() async {
+    // TODO
+    String ep = 'http://localhost/weewx/webapp/';
     return MainScreenDataEntity(
-      weather: await repository.loadWeather(endpoint),
-      images: await repository.loadImages(endpoint),
+      settings: await repository.loadSettings(ep),
+      weather: await repository.loadWeather(ep),
+      images: await repository.loadImages(ep),
     );
   }
 }

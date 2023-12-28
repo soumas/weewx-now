@@ -20,5 +20,38 @@
         #if 'password' in $Extras
         "password": $json.dumps($Extras.password)
         #end if
+    },
+    "texts":
+    {
+        "outTemp": $json.dumps($gettext('outTemp')),
+        "dewpoint": $json.dumps($gettext('dewpoint')),
+        "outHumidity": $json.dumps($gettext('outHumidity')),
+        "heatindex": $json.dumps($gettext('heatindex')),
+        "barometer": $json.dumps($gettext('barometer')),
+        "windSpeed": $json.dumps($gettext('windSpeed')),
+        "windGust": $json.dumps($gettext('windGust')),
+        "windDir": $json.dumps($gettext('windDir')),
+        "windchill": $json.dumps($gettext('windchill')),
+        "rainRate": $json.dumps($gettext('rainRate')),
+        "inTemp": $json.dumps($gettext('inTemp')),
+        "inHumidity": $json.dumps($gettext('inHumidity')),
+        "outTempMax": $json.dumps($gettext('outTempMax')),
+        "outTempMin": $json.dumps($gettext('outTempMin')),
+        "dewpointMax": $json.dumps($gettext('dewpointMax')),
+        "dewpointMin": $json.dumps($gettext('dewpointMin')),
+        "outHumidityMax": $json.dumps($gettext('outHumidityMax')),
+        "outHumidityMin": $json.dumps($gettext('outHumidityMin')),
+        "barometerMax": $json.dumps($gettext('barometerMax')),
+        "barometerMin": $json.dumps($gettext('barometerMin')),
+        "windSpeedMax": $json.dumps($gettext('windSpeedMax')),
+        "windGustMax": $json.dumps($gettext('windGustMax')),
+        "rainRateMax": $json.dumps($gettext('rainRateMax')),
+        "rainTotal": $json.dumps($gettext('rainTotal')),
+        "inTempMax": $json.dumps($gettext('inTempMax')),
+        "inTempMin": $json.dumps($gettext('inTempMin')),
+        "inHumidityMax": $json.dumps($gettext('inHumidityMax')),
+        "inHumidityMin": $json.dumps($gettext('inHumidityMin')),
+        "currentConditions": $json.dumps($gettext('currentConditions')),
+        "at": $json.dumps($gettext('at'))
     }
 }
