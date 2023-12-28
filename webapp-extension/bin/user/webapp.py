@@ -69,12 +69,9 @@ class ImageIndexGenerator(weewx.reportengine.ReportGenerator):
                         self.warn('"%s" isn''t in any category-directory (subdirectory) and will be ignored' % category_dir.path)
             else:
                 self.debug('Subdirectory %s not found. No Images will be available in weewx web app' % images_dir)
+                        
+            jsonContent = '{"generation":"%s","list":[%s]}' % (datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f'), ','.join(images_json_lst))
             
-            #if len(images_json_lst) > 0:
-            jsonContent = '{"generation":"%s","images":[%s]}' % (datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f'), ','.join(images_json_lst))
-            #else:
-            #    jsonContent = '{}'
-
             # write json to output file
             targetfile = os.path.join(root_dir, 'images.json')
             open(targetfile, 'w').write(jsonContent)
