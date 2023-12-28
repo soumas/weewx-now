@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weewx_pwa/injection.dart';
 import 'package:weewx_pwa/presentation/bloc/config_bloc.dart';
 import 'package:weewx_pwa/presentation/routes.dart';
+import 'package:weewx_pwa/presentation/themes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: router,
+      theme: themeDataLight,
       builder: (context, child) => BlocProvider(
         create: (context) => sl.get<ConfigBloc>(),
         child: child,

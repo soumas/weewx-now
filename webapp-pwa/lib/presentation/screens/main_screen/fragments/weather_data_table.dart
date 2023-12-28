@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:weewx_pwa/presentation/widgets/key_value_table.dart';
 
-class WeatherAggDataTable extends StatelessWidget {
-  const WeatherAggDataTable({
+class WeatherDataTable extends StatelessWidget {
+  const WeatherDataTable({
     super.key,
   });
 

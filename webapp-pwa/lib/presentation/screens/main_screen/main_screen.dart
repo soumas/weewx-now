@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_pwa/presentation/screens/fragments/headline_row.dart';
-import 'package:weewx_pwa/presentation/screens/fragments/image_viewer.dart';
-import 'package:weewx_pwa/presentation/screens/fragments/weather_agg_data_table.dart';
-import 'package:weewx_pwa/presentation/screens/fragments/weather_graphs.dart';
+import 'package:weewx_pwa/presentation/screens/main_screen/fragments/headline_row.dart';
+import 'package:weewx_pwa/presentation/screens/main_screen/fragments/image_viewer.dart';
+import 'package:weewx_pwa/presentation/screens/main_screen/fragments/weather_data_table.dart';
+import 'package:weewx_pwa/presentation/screens/main_screen/fragments/weather_graphs.dart';
 import 'package:weewx_pwa/presentation/widgets/responsive_container.dart';
 import 'package:weewx_pwa/util/responsive_utils.dart';
 
@@ -15,7 +15,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Column(
         children: [
@@ -48,7 +47,7 @@ class MainScreen extends StatelessWidget {
                   const Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(left: 20),
-                      child: WeatherAggDataTable(),
+                      child: WeatherDataTable(),
                     ),
                   ),
                 ],
@@ -67,7 +66,7 @@ class MainScreen extends StatelessWidget {
           // weather table for non large screen
           if (ScreenSizeExt.of(context) != ScreenSize.large)
             const ResponsiveContainer(
-              child: WeatherAggDataTable(),
+              child: WeatherDataTable(),
             ),
           // spacer before graphs
           const SizedBox(

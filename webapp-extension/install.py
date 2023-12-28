@@ -26,6 +26,9 @@ class WebappInstaller(ExtensionInstaller):
                         'skin': 'webapp',
                         'enable': 'true',
                         'HTML_ROOT': '/var/www/html/weewx/webapp',
+                        'Extras': {
+                            'password': ''
+                        } 
                     }
                 }
             },
@@ -35,7 +38,7 @@ class WebappInstaller(ExtensionInstaller):
                    ('skins/webapp', [                
                 'skins/webapp/skin.conf', 
                 'skins/webapp/index.html.tmpl',
-                'skins/webapp/config.json.tmpl',
+                'skins/webapp/settings.json.tmpl',
                 'skins/webapp/weather.json.tmpl',
                 'skins/webapp/lang/cn.conf',
                 'skins/webapp/lang/cz.conf',

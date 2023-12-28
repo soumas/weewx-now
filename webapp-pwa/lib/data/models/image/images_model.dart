@@ -3,37 +3,45 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 
 import 'package:weewx_pwa/data/models/image/image_metadata_model.dart';
+import 'package:weewx_pwa/domain/entities/image/image_category_entity.dart';
+import 'package:weewx_pwa/domain/entities/image/image_meta_data_entity.dart';
 import 'package:weewx_pwa/domain/entities/image/images_entity.dart';
 
 class ImagesModel {
-  final List<ImageMetaDataModel> webcam;
+  final List<ImageMetaDataModel> images;
 
   ImagesModel({
-    required this.webcam,
+    required this.images,
   });
 
   ImagesEntity toEntity() {
-    return ImagesEntity(webcam: webcam.map((e) => e.toEntity()).toList());
+    final map = <ImageCategoryEntity, List<ImageMetaDataEntity>>{};
+    for (final img in images) {
+      final cat = ImageCategoryEntity(id: img.category);
+      map.putIfAbsent(cat, () => []);
+      map[cat]!.add(img.toEntity());
+    }
+    return ImagesEntity(images: map);
   }
 
   ImagesModel copyWith({
-    List<ImageMetaDataModel>? webcam,
+    List<ImageMetaDataModel>? images,
   }) {
     return ImagesModel(
-      webcam: webcam ?? this.webcam,
+      images: images ?? this.images,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'webcam': webcam.map((x) => x.toMap()).toList(),
+      'images': images.map((x) => x.toMap()).toList(),
     };
   }
 
   factory ImagesModel.fromMap(Map<String, dynamic> map) {
     return ImagesModel(
-      webcam: List<ImageMetaDataModel>.from(
-          map['webcam']?.map((x) => ImageMetaDataModel.fromMap(x))),
+      images: List<ImageMetaDataModel>.from(
+          map['images']?.map((x) => ImageMetaDataModel.fromMap(x))),
     );
   }
 
@@ -43,15 +51,15 @@ class ImagesModel {
       ImagesModel.fromMap(json.decode(source));
 
   @override
-  String toString() => 'ImagesModel(webcam: $webcam)';
+  String toString() => 'ImagesModel(images: $images)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ImagesModel && listEquals(other.webcam, webcam);
+    return other is ImagesModel && listEquals(other.images, images);
   }
 
   @override
-  int get hashCode => webcam.hashCode;
+  int get hashCode => images.hashCode;
 }

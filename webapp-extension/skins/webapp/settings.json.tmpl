@@ -1,16 +1,22 @@
 #import json
-{
+{    
     "station":
     {
         "location": $json.dumps($station.location),
         "latitude": $station.stn_info.latitude_f,
         "longitude": $station.stn_info.longitude_f,
         "altitudeMeters": $station.altitude.meter.raw,
+        "lang": $json.dumps($lang),
         "url": $json.dumps($station.station_url),
         "hardware": $json.dumps($station.hardware),
         "uptimeOS": $json.dumps($station.os_uptime.long_form),
         "uptimeWeeWX": $json.dumps($station.uptime.long_form),
         "versionWeeWX": "$station.version"
+    },
+    "webapp":
+    {
+        #if 'password' in $Extras
+        "password": $json.dumps($Extras.password)
+        #end if
     }
 }
-

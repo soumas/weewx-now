@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:weewx_pwa/data/models/weather/weather_aggregation_model.dart';
 import 'package:weewx_pwa/data/models/weather/weather_current_model.dart';
-import 'package:weewx_pwa/domain/entities/weather/weather_entity.dart';
+import 'package:weewx_pwa/domain/entities/weather/weather_data_entity.dart';
 
 class WeatherModel {
   final WeatherCurrentModel current;
@@ -19,8 +19,8 @@ class WeatherModel {
     required this.year,
   });
 
-  WeatherEntity toEntity() {
-    return WeatherEntity(
+  WeatherDataEntity toEntity() {
+    return WeatherDataEntity(
       current: current.toEntity(),
       day: day.toEntity(),
       week: week.toEntity(),
