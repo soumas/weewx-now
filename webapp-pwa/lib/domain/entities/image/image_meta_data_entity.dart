@@ -10,21 +10,4 @@ class ImageMetaDataEntity {
     required this.filename,
     required this.date,
   });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is ImageMetaDataEntity &&
-        other.category == category &&
-        other.filename == filename &&
-        other.date == date;
-  }
-
-  @override
-  int get hashCode => category.hashCode ^ filename.hashCode ^ date.hashCode;
-
-  @override
-  String toString() =>
-      'ImageMetaDataEntity(category: $category, filename: $filename, date: $date)';
 }

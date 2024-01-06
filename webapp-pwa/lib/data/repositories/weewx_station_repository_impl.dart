@@ -1,4 +1,7 @@
 import 'package:weewx_pwa/data/datasources/weewx_station_data_source.dart';
+import 'package:weewx_pwa/data/models/images_model_ext.dart';
+import 'package:weewx_pwa/data/models/settings_model_ext.dart';
+import 'package:weewx_pwa/data/models/weather_model_ext.dart';
 import 'package:weewx_pwa/domain/entities/image/images_entity.dart';
 import 'package:weewx_pwa/domain/entities/settings/settings_entity.dart';
 import 'package:weewx_pwa/domain/entities/weather/weather_data_entity.dart';

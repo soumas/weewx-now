@@ -1,6 +1,5 @@
 class ImageCategoryEntity {
   final String id;
-
   ImageCategoryEntity({
     required this.id,
   });
@@ -14,7 +13,4 @@ class ImageCategoryEntity {
 
   @override
   int get hashCode => id.hashCode;
-
-  @override
-  String toString() => 'ImageCategoryEntity(id: $id)';
 }
