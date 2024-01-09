@@ -12,7 +12,7 @@ class UpdateMainScreenDataUsecase {
     // TODO
     String ep = 'http://localhost/weewx/webapp/';
     return MainScreenDataEntity(
-      settings: await repository.loadSettings(ep),
+      stationname: (await repository.loadSettings(ep)).station.location,
       weather: await repository.loadWeather(ep),
       images: await repository.loadImages(ep),
     );

@@ -10,7 +10,7 @@ class ChangeStationUsecase {
 
   Future<MainScreenDataEntity> execute(String endpoint) async {
     return MainScreenDataEntity(
-      settings: await repository.loadSettings(endpoint),
+      stationname: (await repository.loadSettings(endpoint)).station.location,
       weather: await repository.loadWeather(endpoint),
       images: await repository.loadImages(endpoint),
     );

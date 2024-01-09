@@ -1,52 +1,18 @@
-class StationEntity {
-  final String location;
-  final double latitude;
-  final double longitude;
-  final double altitudeMeters;
-  final String url;
-  final String hardware;
-  final String uptimeOS;
-  final String uptimeWeeWX;
-  final String versionWeeWX;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  StationEntity({
-    required this.location,
-    required this.latitude,
-    required this.longitude,
-    required this.altitudeMeters,
-    required this.url,
-    required this.hardware,
-    required this.uptimeOS,
-    required this.uptimeWeeWX,
-    required this.versionWeeWX,
-  });
+part 'station_entity.freezed.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is StationEntity &&
-        other.location == location &&
-        other.latitude == latitude &&
-        other.longitude == longitude &&
-        other.altitudeMeters == altitudeMeters &&
-        other.url == url &&
-        other.hardware == hardware &&
-        other.uptimeOS == uptimeOS &&
-        other.uptimeWeeWX == uptimeWeeWX &&
-        other.versionWeeWX == versionWeeWX;
-  }
-
-  @override
-  int get hashCode {
-    return location.hashCode ^
-        latitude.hashCode ^
-        longitude.hashCode ^
-        altitudeMeters.hashCode ^
-        url.hashCode ^
-        hardware.hashCode ^
-        uptimeOS.hashCode ^
-        uptimeWeeWX.hashCode ^
-        versionWeeWX.hashCode;
-  }
+@freezed
+class StationEntity with _$StationEntity {
+  factory StationEntity({
+    required String location,
+    required double latitude,
+    required double longitude,
+    required double altitudeMeters,
+    required String url,
+    required String hardware,
+    required String uptimeOS,
+    required String uptimeWeeWX,
+    required String versionWeeWX,
+  }) = _StationEntity;
 }

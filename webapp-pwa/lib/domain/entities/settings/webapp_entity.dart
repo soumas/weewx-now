@@ -1,16 +1,10 @@
-class WebappEntity {
-  final String? password;
-  WebappEntity({
-    this.password,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+part 'webapp_entity.freezed.dart';
 
-    return other is WebappEntity && other.password == password;
-  }
-
-  @override
-  int get hashCode => password.hashCode;
+@freezed
+class WebappEntity with _$WebappEntity {
+  factory WebappEntity({
+    String? password,
+  }) = _WebappEntity;
 }

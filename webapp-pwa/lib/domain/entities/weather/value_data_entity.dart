@@ -1,21 +1,11 @@
-class ValueDataEntity {
-  final double value;
-  final String units;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ValueDataEntity({
-    required this.value,
-    required this.units,
-  });
+part 'value_data_entity.freezed.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is ValueDataEntity &&
-        other.value == value &&
-        other.units == units;
-  }
-
-  @override
-  int get hashCode => value.hashCode ^ units.hashCode;
+@freezed
+class ValueDataEntity with _$ValueDataEntity {
+  factory ValueDataEntity({
+    required double value,
+    required String units,
+  }) = _ValueDataEntity;
 }

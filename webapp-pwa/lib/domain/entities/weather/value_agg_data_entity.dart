@@ -1,24 +1,12 @@
-class ValueAggDataEntity {
-  final String at;
-  final double value;
-  final String units;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  ValueAggDataEntity({
-    required this.at,
-    required this.value,
-    required this.units,
-  });
+part 'value_agg_data_entity.freezed.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is ValueAggDataEntity &&
-        other.at == at &&
-        other.value == value &&
-        other.units == units;
-  }
-
-  @override
-  int get hashCode => at.hashCode ^ value.hashCode ^ units.hashCode;
+@freezed
+class ValueAggDataEntity with _$ValueAggDataEntity {
+  factory ValueAggDataEntity({
+    required String at,
+    required double value,
+    required String units,
+  }) = _ValueAggDataEntity;
 }

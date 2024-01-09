@@ -26,9 +26,10 @@ class MainScreen extends StatelessWidget {
                 case MainScreenInitial():
                   return const MainScreenLoadingWidget();
                 case ChangingStation():
-                  return MainScreenLoadingWidget(
-                    information: Text('change station to ${state.endpoint}.'),
-                  );
+                  // return MainScreenLoadingWidget(
+                  //   information: Text('change station to ${state.endpoint}.'),
+                  // );
+                  return const MainScreenDataWidget();
                 case MainScreenData():
                   return const MainScreenDataWidget();
               }

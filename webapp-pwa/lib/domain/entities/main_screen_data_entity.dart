@@ -1,27 +1,14 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weewx_pwa/domain/entities/image/images_entity.dart';
-import 'package:weewx_pwa/domain/entities/settings/settings_entity.dart';
 import 'package:weewx_pwa/domain/entities/weather/weather_data_entity.dart';
 
-class MainScreenDataEntity {
-  final SettingsEntity settings;
-  final WeatherDataEntity weather;
-  final ImagesEntity images;
+part 'main_screen_data_entity.freezed.dart';
 
-  MainScreenDataEntity({
-    required this.settings,
-    required this.weather,
-    required this.images,
-  });
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is MainScreenDataEntity &&
-        other.weather == weather &&
-        other.images == images;
-  }
-
-  @override
-  int get hashCode => weather.hashCode ^ images.hashCode;
+@freezed
+class MainScreenDataEntity with _$MainScreenDataEntity {
+  factory MainScreenDataEntity({
+    required String stationname,
+    required WeatherDataEntity weather,
+    required ImagesEntity images,
+  }) = _MainScreenDataEntity;
 }

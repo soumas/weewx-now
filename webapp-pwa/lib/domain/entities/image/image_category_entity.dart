@@ -1,16 +1,10 @@
-class ImageCategoryEntity {
-  final String id;
-  ImageCategoryEntity({
-    required this.id,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+part 'image_category_entity.freezed.dart';
 
-    return other is ImageCategoryEntity && other.id == id;
-  }
-
-  @override
-  int get hashCode => id.hashCode;
+@freezed
+class ImageCategoryEntity with _$ImageCategoryEntity {
+  factory ImageCategoryEntity({
+    required String id,
+  }) = _ImageCategoryEntity;
 }
