@@ -1,23 +1,32 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weewx_pwa/domain/entities/weather/value_data_entity.dart';
 
-part 'weather_current_entity.freezed.dart';
-
-@freezed
-class WeatherCurrentEntity with _$WeatherCurrentEntity {
-  factory WeatherCurrentEntity({
-    required DateTime generation,
-    required ValueDataEntity temperature,
-    required ValueDataEntity dewpoint,
-    required ValueDataEntity humidity,
-    required ValueDataEntity heatIndex,
-    required ValueDataEntity barometer,
-    required ValueDataEntity windSpeed,
-    required ValueDataEntity windGust,
-    required ValueDataEntity windDirection,
-    required ValueDataEntity windChill,
-    required ValueDataEntity rainRate,
-    required ValueDataEntity insideTemperature,
-    required ValueDataEntity insideHumidity,
-  }) = _WeatherCurrentEntity;
+class WeatherCurrentEntity {
+  final DateTime generation;
+  final ValueDataEntity temperature;
+  final ValueDataEntity dewpoint;
+  final ValueDataEntity humidity;
+  final ValueDataEntity heatIndex;
+  final ValueDataEntity barometer;
+  final ValueDataEntity windSpeed;
+  final ValueDataEntity windGust;
+  final ValueDataEntity windDirection;
+  final ValueDataEntity windChill;
+  final ValueDataEntity rainRate;
+  final ValueDataEntity insideTemperature;
+  final ValueDataEntity insideHumidity;
+  WeatherCurrentEntity({
+    required this.generation,
+    required this.temperature,
+    required this.dewpoint,
+    required this.humidity,
+    required this.heatIndex,
+    required this.barometer,
+    required this.windSpeed,
+    required this.windGust,
+    required this.windDirection,
+    required this.windChill,
+    required this.rainRate,
+    required this.insideTemperature,
+    required this.insideHumidity,
+  });
 }

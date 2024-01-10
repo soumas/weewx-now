@@ -1,26 +1,38 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:weewx_pwa/domain/entities/weather/value_agg_data_entity.dart';
 
-part 'weather_aggregation_entity.freezed.dart';
-
-@freezed
-class WeatherAggregationEntity with _$WeatherAggregationEntity {
-  factory WeatherAggregationEntity({
-    required ValueAggDataEntity maxTemperature,
-    required ValueAggDataEntity minTemperature,
-    required ValueAggDataEntity maxDewpoint,
-    required ValueAggDataEntity minDewpoint,
-    required ValueAggDataEntity maxHumidity,
-    required ValueAggDataEntity minHumidity,
-    required ValueAggDataEntity maxBarometer,
-    required ValueAggDataEntity minBarometer,
-    required ValueAggDataEntity maxWindSpeed,
-    required ValueAggDataEntity maxWindGust,
-    required ValueAggDataEntity maxRainRate,
-    required ValueAggDataEntity rainTotal,
-    required ValueAggDataEntity maxInsideTemperature,
-    required ValueAggDataEntity minInsideTemperature,
-    required ValueAggDataEntity maxInsideHumidity,
-    required ValueAggDataEntity minInsideHumidity,
-  }) = _WeatherAggregationEntity;
+class WeatherAggregationEntity {
+  final ValueAggDataEntity maxTemperature;
+  final ValueAggDataEntity minTemperature;
+  final ValueAggDataEntity maxDewpoint;
+  final ValueAggDataEntity minDewpoint;
+  final ValueAggDataEntity maxHumidity;
+  final ValueAggDataEntity minHumidity;
+  final ValueAggDataEntity maxBarometer;
+  final ValueAggDataEntity minBarometer;
+  final ValueAggDataEntity maxWindSpeed;
+  final ValueAggDataEntity maxWindGust;
+  final ValueAggDataEntity maxRainRate;
+  final ValueAggDataEntity rainTotal;
+  final ValueAggDataEntity maxInsideTemperature;
+  final ValueAggDataEntity minInsideTemperature;
+  final ValueAggDataEntity maxInsideHumidity;
+  final ValueAggDataEntity minInsideHumidity;
+  WeatherAggregationEntity({
+    required this.maxTemperature,
+    required this.minTemperature,
+    required this.maxDewpoint,
+    required this.minDewpoint,
+    required this.maxHumidity,
+    required this.minHumidity,
+    required this.maxBarometer,
+    required this.minBarometer,
+    required this.maxWindSpeed,
+    required this.maxWindGust,
+    required this.maxRainRate,
+    required this.rainTotal,
+    required this.maxInsideTemperature,
+    required this.minInsideTemperature,
+    required this.maxInsideHumidity,
+    required this.minInsideHumidity,
+  });
 }

@@ -1,18 +1,22 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'station_entity.freezed.dart';
-
-@freezed
-class StationEntity with _$StationEntity {
-  factory StationEntity({
-    required String location,
-    required double latitude,
-    required double longitude,
-    required double altitudeMeters,
-    required String url,
-    required String hardware,
-    required String uptimeOS,
-    required String uptimeWeeWX,
-    required String versionWeeWX,
-  }) = _StationEntity;
+class StationEntity {
+  final String location;
+  final double latitude;
+  final double longitude;
+  final double altitudeMeters;
+  final String url;
+  final String hardware;
+  final String uptimeOS;
+  final String uptimeWeeWX;
+  final String versionWeeWX;
+  StationEntity({
+    required this.location,
+    required this.latitude,
+    required this.longitude,
+    required this.altitudeMeters,
+    required this.url,
+    required this.hardware,
+    required this.uptimeOS,
+    required this.uptimeWeeWX,
+    required this.versionWeeWX,
+  });
 }

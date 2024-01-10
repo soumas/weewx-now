@@ -1,12 +1,10 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'value_agg_data_entity.freezed.dart';
-
-@freezed
-class ValueAggDataEntity with _$ValueAggDataEntity {
-  factory ValueAggDataEntity({
-    required String at,
-    required double value,
-    required String units,
-  }) = _ValueAggDataEntity;
+class ValueAggDataEntity {
+  final String at;
+  final double value;
+  final String units;
+  ValueAggDataEntity({
+    required this.at,
+    required this.value,
+    required this.units,
+  });
 }
