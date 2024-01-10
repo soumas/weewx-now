@@ -70,7 +70,7 @@ class ImageIndexGenerator(weewx.reportengine.ReportGenerator):
             else:
                 self.debug('Subdirectory %s not found. No Images will be available in weewx web app' % images_dir)
                         
-            jsonContent = '{"generation":"%s","list":[%s]}' % (datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f'), ','.join(images_json_lst))
+            jsonContent = '{"generation":"%s","images":[%s]}' % (datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f'), ','.join(images_json_lst))
             
             # write json to output file
             targetfile = os.path.join(root_dir, 'images.json')
