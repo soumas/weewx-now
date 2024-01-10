@@ -26,13 +26,15 @@ class MainApp extends StatelessWidget {
       ],
       child: Builder(builder: (context) {
         final themeMode = context.watch<ThemeCubit>().currentThemeMode;
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: router,
-          theme: themeDataLight,
-          darkTheme: themeDataDark,
-          themeMode: themeMode,
-        );
+        return themeMode != null
+            ? MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                routerConfig: router,
+                theme: themeDataLight,
+                darkTheme: themeDataDark,
+                themeMode: themeMode,
+              )
+            : const SizedBox();
       }),
     );
   }

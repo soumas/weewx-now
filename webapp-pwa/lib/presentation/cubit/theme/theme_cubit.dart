@@ -1,20 +1,35 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
+import 'package:weewx_pwa/domain/repositories/theme_repository.dart';
+
 part 'theme_state.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeInitial());
+  final ThemeRepository themeRepository;
 
-  ThemeMode _themeMode = ThemeMode.light;
-  ThemeMode get currentThemeMode => _themeMode;
+  ThemeCubit({
+    required this.themeRepository,
+  }) : super(ThemeInitial());
 
-  toggleThemeMode() {
+  Future init() async {
+    setThemeMode(await themeRepository.getThemeMode());
+  }
+
+  ThemeMode? _themeMode;
+  ThemeMode? get currentThemeMode => _themeMode;
+
+  toggleThemeMode() async {
     if (_themeMode == ThemeMode.dark) {
-      _themeMode = ThemeMode.light;
+      setThemeMode(ThemeMode.light);
     } else {
-      _themeMode = ThemeMode.dark;
+      setThemeMode(ThemeMode.dark);
     }
+  }
+
+  setThemeMode(ThemeMode themeMode) async {
+    _themeMode = themeMode;
+    await themeRepository.setThemeMode(themeMode);
     emit(ThemeChanged());
   }
 }

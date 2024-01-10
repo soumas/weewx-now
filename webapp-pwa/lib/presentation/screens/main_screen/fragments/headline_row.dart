@@ -18,7 +18,7 @@ class HeadlineRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'cState.data.stationname',
+            'context.watch<WeewxEndpointCubit>(),',
             style: Theme.of(context).textTheme.headlineLarge,
           ),
           const Expanded(child: SizedBox()),
