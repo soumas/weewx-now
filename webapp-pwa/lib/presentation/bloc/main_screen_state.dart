@@ -1,38 +1,27 @@
 part of 'main_screen_bloc.dart';
 
 @immutable
-sealed class MainScreenState {}
+sealed class MainScreenState {
+  final bool busy;
+  const MainScreenState({
+    this.busy = false,
+  });
+}
 
 final class MainScreenInitial extends MainScreenState {}
 
-final class ChangingStation extends MainScreenState {
-  final String endpoint;
-  ChangingStation({
+final class NewInitialEndpoint extends MainScreenState {
+  final WeewxEndpointEntity endpoint;
+  const NewInitialEndpoint({
     required this.endpoint,
   });
 }
 
-final class MainScreenData extends MainScreenState {
-  final bool isUpdating;
-  final ImageCategoryEntity selectedImageCategory;
-  final TimePeriod selectedTimePeriod;
-
-  MainScreenData({
-    required this.isUpdating,
-    required this.selectedImageCategory,
-    required this.selectedTimePeriod,
+final class InitialEndpointLoaded extends MainScreenState {
+  final WeewxEndpointEntity endpoint;
+  const InitialEndpointLoaded({
+    required this.endpoint,
   });
-
-  MainScreenData copyWith({
-    bool? isUpdating,
-    ImageCategoryEntity? selectedImageCategory,
-    TimePeriod? selectedTimePeriod,
-  }) {
-    return MainScreenData(
-      isUpdating: isUpdating ?? this.isUpdating,
-      selectedImageCategory:
-          selectedImageCategory ?? this.selectedImageCategory,
-      selectedTimePeriod: selectedTimePeriod ?? this.selectedTimePeriod,
-    );
-  }
 }
+
+final class NoEndpointAvailable extends MainScreenState {}

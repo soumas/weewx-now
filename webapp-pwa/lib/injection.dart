@@ -1,11 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:weewx_pwa/data/datasources/theme_data_source.dart';
+import 'package:weewx_pwa/data/datasources/weewx_endpoint_data_source.dart';
 import 'package:weewx_pwa/data/datasources/weewx_station_data_source.dart';
 import 'package:weewx_pwa/data/repositories/theme_repository_impl.dart';
+import 'package:weewx_pwa/data/repositories/weewx_endpoint_repository_impl.dart';
 import 'package:weewx_pwa/data/repositories/weewx_station_repository_impl.dart';
 import 'package:weewx_pwa/domain/repositories/theme_repository.dart';
+import 'package:weewx_pwa/domain/repositories/weewx_endpoint_repository.dart';
 import 'package:weewx_pwa/domain/repositories/weewx_station_repository.dart';
+import 'package:weewx_pwa/presentation/bloc/main_screen_bloc.dart';
 import 'package:weewx_pwa/presentation/cubit/theme/theme_cubit.dart';
 import 'package:weewx_pwa/presentation/cubit/weewx_endpoint/weewx_endpoint_cubit.dart';
 
@@ -22,13 +26,19 @@ class Injection {
     sl.registerLazySingleton<WeewxStationDataSource>(
       () => WeewxStationDataSourceImpl(http: sl()),
     );
+    sl.registerLazySingleton<WeewxEndpointDataSource>(
+      () => WeewxEndpointDataSourceImpl(),
+    );
 
     // Repositories
     sl.registerLazySingleton<ThemeRepository>(
-      () => ThemeRepositoryImpl(themeDataSource: sl()),
+      () => ThemeRepositoryImpl(dataSource: sl()),
     );
     sl.registerLazySingleton<WeewxStationRepository>(
       () => WeewxStationRepositoryImpl(dataSource: sl()),
+    );
+    sl.registerLazySingleton<WeewxEndpointRepository>(
+      () => WeewxEndpointRepositoryImpl(dataSource: sl()),
     );
 
     // Usecases
@@ -42,6 +52,9 @@ class Injection {
     );
     sl.registerFactory<WeewxEndpointCubit>(
       () => WeewxEndpointCubit(),
+    );
+    sl.registerFactory<MainScreenBloc>(
+      () => MainScreenBloc(endpointRepository: sl()),
     );
 
     // Misc

@@ -4,3 +4,5 @@ const double kLayoutBreakpointL = 1200;
 
 // shared preferences
 const kSharedPrefKeyThemeMode = 'thememode';
+const kSharedPrefKeyEndpoints = 'endpoints';
+const kSharedPrefKeyLastSelectedEndpoint = 'lastSelectedEndpoint';
