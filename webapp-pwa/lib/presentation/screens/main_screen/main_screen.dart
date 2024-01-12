@@ -60,6 +60,12 @@ class _MainScreenState extends State<MainScreen> {
                   );
                 } else if (state is MainScreenData) {
                   return const MainScreenDataWidget();
+                } else if (state is LoadingMainScreenData) {
+                  return const Center(
+                      child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator()));
                 } else {
                   return kDebugMode ? Text(state.toString()) : const SizedBox();
                 }

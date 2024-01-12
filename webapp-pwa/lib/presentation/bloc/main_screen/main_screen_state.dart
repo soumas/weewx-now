@@ -30,11 +30,13 @@ final class LoadingMainScreenData extends MainScreenState {}
 
 final class MainScreenData extends MainScreenState {
   final WeewxEndpointEntity endpoint;
+  final List<WeewxEndpointEntity> endpointOptions;
   final WeatherDataEntity weather;
   final ImagesEntity images;
   const MainScreenData({
     super.busy,
     required this.endpoint,
+    required this.endpointOptions,
     required this.weather,
     required this.images,
   });
@@ -42,12 +44,14 @@ final class MainScreenData extends MainScreenState {
   MainScreenData copyWith({
     bool? busy,
     WeewxEndpointEntity? endpoint,
+    List<WeewxEndpointEntity>? endpointOptions,
     WeatherDataEntity? weather,
     ImagesEntity? images,
   }) {
     return MainScreenData(
       busy: busy ?? super.busy,
       endpoint: endpoint ?? this.endpoint,
+      endpointOptions: endpointOptions ?? this.endpointOptions,
       weather: weather ?? this.weather,
       images: images ?? this.images,
     );

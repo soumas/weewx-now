@@ -57,6 +57,7 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
     });
 
     on<ChangeEndpoint>((event, emit) async {
+      emit(LoadingMainScreenData());
       await endpointRepository.saveLastSelectedEndpoint(event.endpoint);
       emit(EndpointChanged(endpoint: event.endpoint));
     });
@@ -66,12 +67,17 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
         emit((state as MainScreenData).copyWith(busy: true));
       } else {
         emit(LoadingMainScreenData());
-        await Future.delayed(const Duration(seconds: 1));
       }
+
+      await Future.delayed(const Duration(seconds: 1));
+
       final weather = await stationRepository.loadWeather(event.endpoint);
       final images = await stationRepository.loadImages(event.endpoint);
+      final endpointOptions = await endpointRepository.loadEndpoints();
+
       emit(MainScreenData(
         endpoint: event.endpoint,
+        endpointOptions: endpointOptions,
         weather: weather,
         images: images,
       ));
