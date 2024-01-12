@@ -1,38 +1,48 @@
-import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weewx_pwa/data/models/weewx_endpoint_model.dart';
 import 'package:weewx_pwa/util/constants.dart';
 
 abstract class WeewxEndpointDataSource {
   Future<List<WeewxEndpointModel>> loadEndpoints();
-  Future saveEndpoints(List<WeewxEndpointModel> endpoints);
+  Future<List<WeewxEndpointModel>> addOrUpdateEndpoint(
+      WeewxEndpointModel endpoint);
+  Future<List<WeewxEndpointModel>> deleteEndpoint(String endpointUrl);
   Future<WeewxEndpointModel?> loadLastSelectedEndpoint();
-  Future saveLastSelectedEndpoint(WeewxEndpointModel endpoint);
+  Future<WeewxEndpointModel> saveLastSelectedEndpoint(
+      WeewxEndpointModel endpoint);
 }
 
 class WeewxEndpointDataSourceImpl extends WeewxEndpointDataSource {
   @override
   Future<List<WeewxEndpointModel>> loadEndpoints() async {
-    final json = (await SharedPreferences.getInstance())
-        .getString(kSharedPrefKeyEndpoints);
-    if (json == null) {
+    final jsonLst = (await SharedPreferences.getInstance())
+        .getStringList(kSharedPrefKeyEndpoints);
+    if (jsonLst == null) {
       return [];
     }
-    Iterable l = jsonDecode(json);
     return List<WeewxEndpointModel>.from(
-      l.map((e) => WeewxEndpointModel.fromJson(e)),
+      jsonLst.map((e) => WeewxEndpointModel.fromJson(e)),
     );
   }
 
   @override
-  Future saveEndpoints(List<WeewxEndpointModel> endpoints) async {
-    (await SharedPreferences.getInstance()).setString(
-      kSharedPrefKeyEndpoints,
-      jsonEncode(
-        endpoints.map((e) => e.toJson()),
-      ),
-    );
+  Future<List<WeewxEndpointModel>> addOrUpdateEndpoint(
+      WeewxEndpointModel endpoint) async {
+    var epLst = await loadEndpoints();
+    if (epLst.any((element) => element.url == endpoint.url)) {
+      epLst = await deleteEndpoint(endpoint.url);
+    }
+    epLst.add(endpoint);
+    await _saveEndpoints(epLst);
+    return epLst;
+  }
+
+  @override
+  Future<List<WeewxEndpointModel>> deleteEndpoint(String endpointUrl) async {
+    var epLst = await loadEndpoints();
+    epLst.removeWhere((element) => element.url == endpointUrl);
+    await _saveEndpoints(epLst);
+    return epLst;
   }
 
   @override
@@ -43,8 +53,17 @@ class WeewxEndpointDataSourceImpl extends WeewxEndpointDataSource {
   }
 
   @override
-  Future saveLastSelectedEndpoint(WeewxEndpointModel endpoint) async {
-    (await SharedPreferences.getInstance())
+  Future<WeewxEndpointModel> saveLastSelectedEndpoint(
+      WeewxEndpointModel endpoint) async {
+    await (await SharedPreferences.getInstance())
         .setString(kSharedPrefKeyLastSelectedEndpoint, endpoint.toJson());
+    return endpoint;
+  }
+
+  Future<bool> _saveEndpoints(List<WeewxEndpointModel> epLst) async {
+    return (await SharedPreferences.getInstance()).setStringList(
+      kSharedPrefKeyEndpoints,
+      epLst.map((e) => e.toJson()).toList(),
+    );
   }
 }

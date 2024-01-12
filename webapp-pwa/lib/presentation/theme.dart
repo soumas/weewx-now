@@ -7,6 +7,7 @@ const Color themeColor4 = Color.fromARGB(200, 162, 174, 187);
 const Color themeColor5 = Color.fromARGB(200, 223, 224, 226);
 
 final themeDataLight = ThemeData.light(useMaterial3: true).copyWith(
+  scaffoldBackgroundColor: Colors.transparent,
   textTheme: const TextTheme(
     headlineLarge: TextStyle(fontSize: 36),
     headlineMedium: TextStyle(fontSize: 24),
@@ -15,6 +16,7 @@ final themeDataLight = ThemeData.light(useMaterial3: true).copyWith(
 );
 
 final themeDataDark = ThemeData.dark(useMaterial3: true).copyWith(
+  scaffoldBackgroundColor: Colors.transparent,
   textTheme: const TextTheme(
     headlineLarge: TextStyle(fontSize: 36),
     headlineMedium: TextStyle(fontSize: 24),

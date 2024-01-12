@@ -9,7 +9,8 @@ import 'package:weewx_pwa/data/repositories/weewx_station_repository_impl.dart';
 import 'package:weewx_pwa/domain/repositories/theme_repository.dart';
 import 'package:weewx_pwa/domain/repositories/weewx_endpoint_repository.dart';
 import 'package:weewx_pwa/domain/repositories/weewx_station_repository.dart';
-import 'package:weewx_pwa/presentation/bloc/main_screen_bloc.dart';
+import 'package:weewx_pwa/presentation/bloc/add_endpoint_screen/add_endpoint_screen_bloc.dart';
+import 'package:weewx_pwa/presentation/bloc/main_screen/main_screen_bloc.dart';
 import 'package:weewx_pwa/presentation/cubit/theme/theme_cubit.dart';
 import 'package:weewx_pwa/presentation/cubit/weewx_endpoint/weewx_endpoint_cubit.dart';
 
@@ -54,7 +55,16 @@ class Injection {
       () => WeewxEndpointCubit(),
     );
     sl.registerFactory<MainScreenBloc>(
-      () => MainScreenBloc(endpointRepository: sl()),
+      () => MainScreenBloc(
+        stationRepository: sl(),
+        endpointRepository: sl(),
+      ),
+    );
+    sl.registerFactory<AddEndpointScreenBloc>(
+      () => AddEndpointScreenBloc(
+        stationRepository: sl(),
+        endpointRepository: sl(),
+      ),
     );
 
     // Misc

@@ -2,7 +2,10 @@ import 'package:weewx_pwa/domain/entities/endpoint/weewx_endpoint_entity.dart';
 
 abstract class WeewxEndpointRepository {
   Future<List<WeewxEndpointEntity>> loadEndpoints();
-  Future saveEndpoints(List<WeewxEndpointEntity> endpoints);
+  Future<List<WeewxEndpointEntity>> addOrUpdateEndpoint(
+      WeewxEndpointEntity endpoint);
+  Future<List<WeewxEndpointEntity>> deleteEndpoint(String endpointUrl);
   Future<WeewxEndpointEntity?> loadLastSelectedEndpoint();
-  Future saveLastSelectedEndpoint(WeewxEndpointEntity endpoints);
+  Future<WeewxEndpointEntity> saveLastSelectedEndpoint(
+      WeewxEndpointEntity endpoint);
 }

@@ -16,20 +16,30 @@ class WeewxEndpointRepositoryImpl extends WeewxEndpointRepository {
   }
 
   @override
-  Future saveEndpoints(List<WeewxEndpointEntity> endpoints) {
-    return dataSource.saveEndpoints(
-        endpoints.map((e) => WeewxEndpointModelExt.fromEntity(e)).toList());
+  Future<List<WeewxEndpointEntity>> addOrUpdateEndpoint(
+      WeewxEndpointEntity endpoint) async {
+    return List.of((await dataSource
+            .addOrUpdateEndpoint(WeewxEndpointModelExt.fromEntity(endpoint)))
+        .map((e) => e.toEntity()));
   }
 
   @override
-  Future<WeewxEndpointEntity?> loadLastSelectedEndpoint() {
-    // TODO: implement loadLastSelectedEndpoint
-    throw UnimplementedError();
+  Future<List<WeewxEndpointEntity>> deleteEndpoint(String endpointUrl) async {
+    return List.of((await dataSource.deleteEndpoint(endpointUrl))
+        .map((e) => e.toEntity()));
   }
 
   @override
-  Future saveLastSelectedEndpoint(WeewxEndpointEntity endpoints) {
-    // TODO: implement saveLastSelectedEndpoint
-    throw UnimplementedError();
+  Future<WeewxEndpointEntity?> loadLastSelectedEndpoint() async {
+    final lep = await dataSource.loadLastSelectedEndpoint();
+    return lep?.toEntity();
+  }
+
+  @override
+  Future<WeewxEndpointEntity> saveLastSelectedEndpoint(
+      WeewxEndpointEntity endpoint) async {
+    return (await dataSource.saveLastSelectedEndpoint(
+            WeewxEndpointModelExt.fromEntity(endpoint)))
+        .toEntity();
   }
 }
