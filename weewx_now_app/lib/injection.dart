@@ -9,10 +9,11 @@ import 'package:weewx_now_app/data/repositories/weewx_station_repository_impl.da
 import 'package:weewx_now_app/domain/repositories/theme_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_station_repository.dart';
-import 'package:weewx_now_app/presentation/state/add_station_screen/add_station_screen_bloc.dart';
-import 'package:weewx_now_app/presentation/state/dashboard_screen/dashboard_screen_bloc.dart';
-import 'package:weewx_now_app/presentation/state/theme/theme_cubit.dart';
-import 'package:weewx_now_app/presentation/state/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now_app/presentation/bloc/add_station_screen/add_station_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/bloc/my_stations_screen/my_stations_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/bloc/theme/theme_cubit.dart';
+import 'package:weewx_now_app/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -56,6 +57,9 @@ class Injection {
     );
     sl.registerFactory<AddStationScreenBloc>(
       () => AddStationScreenBloc(endpointRepository: sl(), stationRepository: sl()),
+    );
+    sl.registerFactory<MyStationsScreenBloc>(
+      () => MyStationsScreenBloc(endpointRepository: sl())..add(LoadMyStations()),
     );
 
     // Misc

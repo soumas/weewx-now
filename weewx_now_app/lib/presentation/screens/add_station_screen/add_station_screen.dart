@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now_app/injection.dart';
-import 'package:weewx_now_app/presentation/state/add_station_screen/add_station_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/bloc/add_station_screen/add_station_screen_bloc.dart';
 
 class AddStationScreen extends StatefulWidget {
   const AddStationScreen({super.key, this.endpointSuggestion});

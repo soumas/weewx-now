@@ -5,9 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now_app/injection.dart';
 import 'package:weewx_now_app/presentation/screens/add_station_screen/add_station_screen.dart';
-import 'package:weewx_now_app/presentation/state/dashboard_screen/dashboard_screen_bloc.dart';
-import 'package:weewx_now_app/presentation/state/theme/theme_cubit.dart';
-import 'package:weewx_now_app/presentation/state/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now_app/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/bloc/theme/theme_cubit.dart';
+import 'package:weewx_now_app/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now_app/presentation/screens/my_stations_sceen/my_stations_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -33,6 +34,10 @@ class DashboardScreen extends StatelessWidget {
             title: const Text('WeeWX Now'),
             trailingActions: [
               PlatformPopupMenu(options: [
+                PopupMenuOption(
+                  label: 'stationen',
+                  onTap: (p0) => context.pushNamed(MyStationsScreen.routeName),
+                ),
                 PopupMenuOption(
                   label: 'reload',
                   onTap: (p0) => context.read<WeewxEndpointCubit>().init(),

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:weewx_now_app/injection.dart';
-import 'package:weewx_now_app/presentation/state/theme/theme_cubit.dart';
+import 'package:weewx_now_app/presentation/bloc/theme/theme_cubit.dart';
 import 'package:weewx_now_app/presentation/routes.dart';
 import 'package:weewx_now_app/presentation/theme.dart';
 
-import 'presentation/state/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
