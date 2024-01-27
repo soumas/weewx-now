@@ -17,9 +17,11 @@
     },
     "extras":
     {
+        "endpoint": $json.dumps($Extras.endpoint),
+        "hideImageViewer": $json.dumps($Extras.hideImageViewer),
         #if 'password' in $Extras
         "password": $json.dumps($Extras.password)
-        #end if
+        #end if       
     },
     "texts":
     {

@@ -1,13 +1,13 @@
 import 'package:weewx_now_app/data/models/settings_model.dart';
-import 'package:weewx_now_app/domain/entities/settings/settings_entity.dart';
-import 'package:weewx_now_app/domain/entities/settings/station_entity.dart';
-import 'package:weewx_now_app/domain/entities/settings/texts_entity.dart';
-import 'package:weewx_now_app/domain/entities/settings/extras_entity.dart';
+import 'package:weewx_now_app/domain/entities/wee_wx_config/wee_wx_config.dart';
+import 'package:weewx_now_app/domain/entities/wee_wx_config/station_config.dart';
+import 'package:weewx_now_app/domain/entities/wee_wx_config/labels.dart';
+import 'package:weewx_now_app/domain/entities/wee_wx_config/now_config.dart';
 
 extension SettingsModelExt on SettingsModel {
-  SettingsEntity toEntity() {
-    return SettingsEntity(
-        station: StationEntity(
+  WeeWxConfig toEntity() {
+    return WeeWxConfig(
+        station: StationConfig(
           location: station.location,
           latitude: station.latitude,
           longitude: station.longitude,
@@ -18,8 +18,12 @@ extension SettingsModelExt on SettingsModel {
           uptimeWeeWX: station.uptimeWeeWX,
           versionWeeWX: station.versionWeeWX,
         ),
-        extras: ExtrasEntity(),
-        texts: TextsEntity(
+        now: NowConfig(
+          endpoint: extras.url,
+          hideImageViewer: extras.hideImageViewer,
+          password: extras.password,
+        ),
+        texts: Labels(
           outTemp: texts.outTemp,
           dewpoint: texts.dewpoint,
           outHumidity: texts.outHumidity,

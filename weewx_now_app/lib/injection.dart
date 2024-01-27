@@ -9,10 +9,9 @@ import 'package:weewx_now_app/data/repositories/weewx_station_repository_impl.da
 import 'package:weewx_now_app/domain/repositories/theme_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_station_repository.dart';
-import 'package:weewx_now_app/presentation/bloc/add_endpoint_screen/add_endpoint_screen_bloc.dart';
-import 'package:weewx_now_app/presentation/bloc/main_screen/main_screen_bloc.dart';
-import 'package:weewx_now_app/presentation/cubit/theme/theme_cubit.dart';
-import 'package:weewx_now_app/presentation/cubit/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now_app/presentation/state/dashboard_screen/dashboard_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/state/theme/theme_cubit.dart';
+import 'package:weewx_now_app/presentation/state/weewx_endpoint/weewx_endpoint_cubit.dart';
 
 final sl = GetIt.instance;
 
@@ -42,29 +41,17 @@ class Injection {
       () => WeewxEndpointRepositoryImpl(dataSource: sl()),
     );
 
-    // Usecases
-    //sl.registerLazySingleton(() => ChangeStationUsecase(repository: sl()));
-    //sl.registerLazySingleton(
-    //    () => UpdateMainScreenDataUsecase(repository: sl()));
-
-    // Blocs
-    sl.registerFactory<ThemeCubit>(
-      () => ThemeCubit(themeRepository: sl())..init(),
+    // BLOC
+    // ThemeCubit is singleton because it wraps the whole app
+    sl.registerLazySingleton<ThemeCubit>(
+      () => ThemeCubit(themeRepository: sl()),
     );
-    sl.registerFactory<WeewxEndpointCubit>(
-      () => WeewxEndpointCubit(),
+    // WeewxEndpointCubit is singleton because it wraps the whole app
+    sl.registerLazySingleton<WeewxEndpointCubit>(
+      () => WeewxEndpointCubit(weewxEndpointRepository: sl())..init(),
     );
-    sl.registerFactory<MainScreenBloc>(
-      () => MainScreenBloc(
-        stationRepository: sl(),
-        endpointRepository: sl(),
-      ),
-    );
-    sl.registerFactory<AddEndpointScreenBloc>(
-      () => AddEndpointScreenBloc(
-        stationRepository: sl(),
-        endpointRepository: sl(),
-      ),
+    sl.registerFactory<DashboardScreenBloc>(
+      () => DashboardScreenBloc(stationRepository: sl()),
     );
 
     // Misc

@@ -197,27 +197,39 @@ class Station {
 }
 
 class Extras {
+  final String url;
+  final bool hideImageViewer;
   final String password;
   Extras({
+    required this.url,
+    required this.hideImageViewer,
     required this.password,
   });
 
   Extras copyWith({
+    String? url,
+    bool? hideImageViewer,
     String? password,
   }) {
     return Extras(
+      url: url ?? this.url,
+      hideImageViewer: hideImageViewer ?? this.hideImageViewer,
       password: password ?? this.password,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'url': url,
+      'hideImageViewer': hideImageViewer,
       'password': password,
     };
   }
 
   factory Extras.fromMap(Map<String, dynamic> map) {
     return Extras(
+      url: map['url'] ?? '',
+      hideImageViewer: map['hideImageViewer'] ?? false,
       password: map['password'] ?? '',
     );
   }
@@ -227,17 +239,22 @@ class Extras {
   factory Extras.fromJson(String source) => Extras.fromMap(json.decode(source));
 
   @override
-  String toString() => 'Extras(password: $password)';
+  String toString() =>
+      'Extras(url: $url, hideImageViewer: $hideImageViewer, password: $password)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Extras && other.password == password;
+    return other is Extras &&
+        other.url == url &&
+        other.hideImageViewer == hideImageViewer &&
+        other.password == password;
   }
 
   @override
-  int get hashCode => password.hashCode;
+  int get hashCode =>
+      url.hashCode ^ hideImageViewer.hashCode ^ password.hashCode;
 }
 
 class Texts {

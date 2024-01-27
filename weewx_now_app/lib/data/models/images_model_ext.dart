@@ -1,22 +1,24 @@
 import 'package:weewx_now_app/data/models/images_model.dart';
-import 'package:weewx_now_app/domain/entities/image/image_category_entity.dart';
-import 'package:weewx_now_app/domain/entities/image/image_meta_data_entity.dart';
-import 'package:weewx_now_app/domain/entities/image/images_entity.dart';
+import 'package:weewx_now_app/domain/entities/image/image_category.dart';
+import 'package:weewx_now_app/domain/entities/image/image_meta_data.dart';
+import 'package:weewx_now_app/domain/entities/image/image_type.dart';
+import 'package:weewx_now_app/domain/entities/image/image_bundle.dart';
 
 extension ImagesModelExt on ImagesModel {
-  ImagesEntity toEntity() {
-    final imagesMap = <ImageCategoryEntity, List<ImageMetaDataEntity>>{};
+  ImageBundle toEntity() {
+    final imagesMap = <ImageCategory, List<ImageMetaData>>{};
     for (final img in images) {
-      final cat = ImageCategoryEntity(id: img.category);
+      final cat = ImageCategory(id: img.category);
       imagesMap.putIfAbsent(cat, () => []);
-      imagesMap[cat]!.add(ImageMetaDataEntity(
+      imagesMap[cat]!.add(ImageMetaData(
+        type: ImageTypeExt.fromString(img.type),
         category: cat,
+        data: img.data,
         date: DateTime.parse(img.date),
-        filename: img.filename,
       ));
     }
 
-    return ImagesEntity(
+    return ImageBundle(
       generation: DateTime.parse(generation),
       map: imagesMap,
     );

@@ -58,7 +58,7 @@ class ImageIndexGenerator(weewx.reportengine.ReportGenerator):
                         for file in os.scandir(category_dir):
                             if file.is_file():
                                 if pathlib.Path(file.name).suffix.lower() in supported_ext:
-                                    images_json_lst.append('{"category":%s,"filename":%s,"date":%s}' % (json.dumps(category_name), json.dumps(file.name), json.dumps(datetime.fromtimestamp(os.path.getctime(file.path)).strftime('%Y-%m-%dT%H:%M:%S.%f'))))
+                                    images_json_lst.append('{"type":"image","category":%s,"data":%s,"date":%s}' % (json.dumps(category_name), json.dumps(file.name), json.dumps(datetime.fromtimestamp(os.path.getctime(file.path)).strftime('%Y-%m-%dT%H:%M:%S.%f'))))
                                     statCntImages += 1
                                     self.debug('Image added "%s" (category "%s")' % (file.path, category_name))
                                 else:

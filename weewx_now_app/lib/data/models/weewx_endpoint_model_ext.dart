@@ -1,15 +1,15 @@
 import 'package:weewx_now_app/data/models/weewx_endpoint_model.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint_entity.dart';
+import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
 
 extension WeewxEndpointModelExt on WeewxEndpointModel {
-  WeewxEndpointEntity toEntity() {
-    return WeewxEndpointEntity(
+  WeewxEndpoint toEntity() {
+    return WeewxEndpoint(
       name: name,
       url: url,
     );
   }
 
-  static WeewxEndpointModel fromEntity(WeewxEndpointEntity e) {
+  static WeewxEndpointModel fromEntity(WeewxEndpoint e) {
     return WeewxEndpointModel(
       name: e.name,
       url: e.url,

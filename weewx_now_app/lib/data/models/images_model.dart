@@ -56,39 +56,45 @@ class ImagesModel {
 }
 
 class Image {
+  final String type;
   final String category;
-  final String filename;
+  final String data;
   final String date;
   Image({
+    required this.type,
     required this.category,
-    required this.filename,
+    required this.data,
     required this.date,
   });
 
   Image copyWith({
+    String? type,
     String? category,
-    String? filename,
+    String? data,
     String? date,
   }) {
     return Image(
+      type: type ?? this.type,
       category: category ?? this.category,
-      filename: filename ?? this.filename,
+      data: data ?? this.data,
       date: date ?? this.date,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'type': type,
       'category': category,
-      'filename': filename,
+      'data': data,
       'date': date,
     };
   }
 
   factory Image.fromMap(Map<String, dynamic> map) {
     return Image(
+      type: map['type'] ?? '',
       category: map['category'] ?? '',
-      filename: map['filename'] ?? '',
+      data: map['data'] ?? '',
       date: map['date'] ?? '',
     );
   }
@@ -98,19 +104,23 @@ class Image {
   factory Image.fromJson(String source) => Image.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'Image(category: $category, filename: $filename, date: $date)';
+  String toString() {
+    return 'Image(type: $type, category: $category, data: $data, date: $date)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is Image &&
+        other.type == type &&
         other.category == category &&
-        other.filename == filename &&
+        other.data == data &&
         other.date == date;
   }
 
   @override
-  int get hashCode => category.hashCode ^ filename.hashCode ^ date.hashCode;
+  int get hashCode {
+    return type.hashCode ^ category.hashCode ^ data.hashCode ^ date.hashCode;
+  }
 }

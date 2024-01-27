@@ -1,6 +1,6 @@
 import 'package:weewx_now_app/data/datasources/weewx_endpoint_data_source.dart';
 import 'package:weewx_now_app/data/models/weewx_endpoint_model_ext.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint_entity.dart';
+import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
 
 class WeewxEndpointRepositoryImpl extends WeewxEndpointRepository {
@@ -10,36 +10,28 @@ class WeewxEndpointRepositoryImpl extends WeewxEndpointRepository {
   });
 
   @override
-  Future<List<WeewxEndpointEntity>> loadEndpoints() async {
-    return List<WeewxEndpointEntity>.of(
-        (await dataSource.loadEndpoints()).map((e) => e.toEntity()));
+  Future<List<WeewxEndpoint>> loadEndpoints() async {
+    return List<WeewxEndpoint>.of((await dataSource.loadEndpoints()).map((e) => e.toEntity()));
   }
 
   @override
-  Future<List<WeewxEndpointEntity>> addOrUpdateEndpoint(
-      WeewxEndpointEntity endpoint) async {
-    return List.of((await dataSource
-            .addOrUpdateEndpoint(WeewxEndpointModelExt.fromEntity(endpoint)))
-        .map((e) => e.toEntity()));
+  Future<List<WeewxEndpoint>> addOrUpdateEndpoint(WeewxEndpoint endpoint) async {
+    return List.of((await dataSource.addOrUpdateEndpoint(WeewxEndpointModelExt.fromEntity(endpoint))).map((e) => e.toEntity()));
   }
 
   @override
-  Future<List<WeewxEndpointEntity>> deleteEndpoint(String endpointUrl) async {
-    return List.of((await dataSource.deleteEndpoint(endpointUrl))
-        .map((e) => e.toEntity()));
+  Future<List<WeewxEndpoint>> deleteEndpoint(String endpointUrl) async {
+    return List.of((await dataSource.deleteEndpoint(endpointUrl)).map((e) => e.toEntity()));
   }
 
   @override
-  Future<WeewxEndpointEntity?> loadLastSelectedEndpoint() async {
+  Future<WeewxEndpoint?> loadLastSelectedEndpoint() async {
     final lep = await dataSource.loadLastSelectedEndpoint();
     return lep?.toEntity();
   }
 
   @override
-  Future<WeewxEndpointEntity> saveLastSelectedEndpoint(
-      WeewxEndpointEntity endpoint) async {
-    return (await dataSource.saveLastSelectedEndpoint(
-            WeewxEndpointModelExt.fromEntity(endpoint)))
-        .toEntity();
+  Future<WeewxEndpoint> saveLastSelectedEndpoint(WeewxEndpoint endpoint) async {
+    return (await dataSource.saveLastSelectedEndpoint(WeewxEndpointModelExt.fromEntity(endpoint))).toEntity();
   }
 }
