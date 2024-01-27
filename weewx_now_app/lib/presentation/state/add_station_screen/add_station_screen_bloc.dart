@@ -5,33 +5,33 @@ import 'package:weewx_now_app/domain/entities/wee_wx_config/wee_wx_config.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_station_repository.dart';
 
-part 'add_endpoint_screen_event.dart';
-part 'add_endpoint_screen_state.dart';
+part 'add_station_screen_event.dart';
+part 'add_station_screen_state.dart';
 
-class AddEndpointScreenBloc extends Bloc<AddEndpointScreenEvent, AddEndpointScreenState> {
+class AddStationScreenBloc extends Bloc<AddStationScreenEvent, AddStationScreenState> {
   final WeewxStationRepository stationRepository;
   final WeewxEndpointRepository endpointRepository;
 
-  AddEndpointScreenBloc({
+  AddStationScreenBloc({
     required this.stationRepository,
     required this.endpointRepository,
-  }) : super(AddEndpointScreenInitial()) {
+  }) : super(AddStationScreenInitial()) {
     on<CheckEndpoint>((event, emit) async {
-      emit(CheckingEndpoint());
+      emit(EndpointCheckLoading());
       try {
         WeeWxConfig settings = await stationRepository.loadSettings(
           WeewxEndpoint(name: '_', url: event.endpointUrl),
         );
         emit(EndpointCheckSuccess(endpointUrl: event.endpointUrl, settings: settings));
       } catch (e) {
-        emit(EndpointCheckFailed(message: e.toString(), endpointUrl: event.endpointUrl));
+        emit(EndpointCheckError(message: e.toString(), endpointUrl: event.endpointUrl));
       }
     });
 
-    on<AddEndpoint>((event, emit) async {
+    on<AddStation>((event, emit) async {
       final ep = WeewxEndpoint(name: event.name, url: event.url);
       await endpointRepository.addOrUpdateEndpoint(ep);
-      emit(EndpointAdded(endpoint: ep));
+      emit(StationAdded(endpoint: ep));
     });
   }
 }

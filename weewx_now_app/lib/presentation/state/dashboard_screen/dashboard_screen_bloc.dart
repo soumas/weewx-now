@@ -17,6 +17,7 @@ class DashboardScreenBloc extends Bloc<DashboardScreenEvent, DashboardScreenStat
     on<LoadEverChangingData>((event, emit) async {
       try {
         emit(EverChangingDataLoading(endpoint: event.endpoint));
+        await Future.delayed(const Duration(seconds: 2)); // TODO do not wait for better times
         final weather = await stationRepository.loadWeather(event.endpoint);
         final images = await stationRepository.loadImages(event.endpoint);
         emit(EverChangingLoaded(endpoint: event.endpoint, images: images, weather: weather));

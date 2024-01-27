@@ -9,6 +9,7 @@ import 'package:weewx_now_app/data/repositories/weewx_station_repository_impl.da
 import 'package:weewx_now_app/domain/repositories/theme_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
 import 'package:weewx_now_app/domain/repositories/weewx_station_repository.dart';
+import 'package:weewx_now_app/presentation/state/add_station_screen/add_station_screen_bloc.dart';
 import 'package:weewx_now_app/presentation/state/dashboard_screen/dashboard_screen_bloc.dart';
 import 'package:weewx_now_app/presentation/state/theme/theme_cubit.dart';
 import 'package:weewx_now_app/presentation/state/weewx_endpoint/weewx_endpoint_cubit.dart';
@@ -52,6 +53,9 @@ class Injection {
     );
     sl.registerFactory<DashboardScreenBloc>(
       () => DashboardScreenBloc(stationRepository: sl()),
+    );
+    sl.registerFactory<AddStationScreenBloc>(
+      () => AddStationScreenBloc(endpointRepository: sl(), stationRepository: sl()),
     );
 
     // Misc
