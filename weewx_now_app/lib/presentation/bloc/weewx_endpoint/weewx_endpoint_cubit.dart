@@ -11,7 +11,7 @@ class CurrentEndpointCubit extends Cubit<WeewxEndpointState> {
     required this.weewxEndpointRepository,
   }) : super(WeewxEndpointInitial());
 
-  late WeewxEndpoint selectedEndpoint;
+  WeewxEndpoint? selectedEndpoint;
   final WeewxEndpointRepository weewxEndpointRepository;
 
   Future init() async {

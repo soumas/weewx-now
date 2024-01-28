@@ -1,5 +1,5 @@
 name: weewx_now_app
-description: A mobile app as "skin" for WeeWX weather server
+description: A mobile app "skin" for WeeWX weather server
 publish_to: 'none'
 version: 0.1.0
 
@@ -17,6 +17,7 @@ dependencies:
   shared_preferences: ^2.2.2
   collection: ^1.18.0
   flutter_platform_widgets: ^6.0.2
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +28,17 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+
+# flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path: "assets/images/app_icon.png"
+
+  android: "launcher_icon"
+  # image_path_android: "assets/icon/icon.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  # adaptive_icon_background: "assets/icon/background.png"
+  # adaptive_icon_foreground: "assets/icon/foreground.png"
+
+  ios: false
+  # image_path_ios: "assets/icon/icon.png"
+  remove_alpha_channel_ios: true

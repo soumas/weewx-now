@@ -34,21 +34,28 @@ class _DashboardReloadButtonState extends State<DashboardReloadButton> with Sing
           _rotationController.reset();
         }
       },
-      child: PlatformIconButton(
-        icon: AnimatedBuilder(
-            animation: _rotationController,
-            builder: (context, child) {
-              return RotationTransition(
-                turns: Tween(begin: 0.0, end: 1.0).animate(_rotationController),
-                child: Icon(PlatformIcons(context).refresh),
-              );
-            }),
-        onPressed: () {
-          context.read<DashboardScreenBloc>().add(
-                LoadDashboardData(
-                  endpoint: context.read<CurrentEndpointCubit>().selectedEndpoint,
-                ),
-              );
+      child: BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
+        builder: (context, state) {
+          if (state is DashboardData) {
+            return PlatformIconButton(
+              icon: AnimatedBuilder(
+                  animation: _rotationController,
+                  builder: (context, child) {
+                    return RotationTransition(
+                      turns: Tween(begin: 0.0, end: 1.0).animate(_rotationController),
+                      child: Icon(PlatformIcons(context).refresh),
+                    );
+                  }),
+              onPressed: () {
+                context.read<DashboardScreenBloc>().add(
+                      LoadDashboardData(
+                        endpoint: context.read<CurrentEndpointCubit>().selectedEndpoint!,
+                      ),
+                    );
+              },
+            );
+          }
+          return const SizedBox();
         },
       ),
     );
