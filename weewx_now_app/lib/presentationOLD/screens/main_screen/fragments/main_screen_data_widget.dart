@@ -9,8 +9,8 @@ import 'package:weewx_now_app/util/responsive_utils.dart';
 
 class MainScreenDataWidget extends StatelessWidget {
   const MainScreenDataWidget({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -30,7 +30,7 @@ class MyStationsScreen extends StatelessWidget {
                         (e) => PlatformElevatedButton(
                           child: Text(e.name),
                           onPressed: () {
-                            context.read<WeewxEndpointCubit>().selectEndpoint(e);
+                            context.read<CurrentEndpointCubit>().selectEndpoint(e);
                             context.pop();
                           },
                         ),

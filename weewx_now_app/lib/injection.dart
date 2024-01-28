@@ -49,8 +49,8 @@ class Injection {
       () => ThemeCubit(themeRepository: sl()),
     );
     // WeewxEndpointCubit is singleton because it wraps the whole app
-    sl.registerLazySingleton<WeewxEndpointCubit>(
-      () => WeewxEndpointCubit(weewxEndpointRepository: sl())..init(),
+    sl.registerLazySingleton<CurrentEndpointCubit>(
+      () => CurrentEndpointCubit(weewxEndpointRepository: sl())..init(),
     );
     sl.registerFactory<DashboardScreenBloc>(
       () => DashboardScreenBloc(stationRepository: sl()),

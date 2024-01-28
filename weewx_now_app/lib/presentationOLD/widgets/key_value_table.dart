@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class KeyValueTable extends StatelessWidget {
   const KeyValueTable({
-    Key? key,
+    super.key,
     required this.keyValuePairs,
-  }) : super(key: key);
+  });
 
   final Map<String, String> keyValuePairs;
 

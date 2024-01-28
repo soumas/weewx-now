@@ -6,11 +6,12 @@ import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart
 
 part 'weewx_endpoint_state.dart';
 
-class WeewxEndpointCubit extends Cubit<WeewxEndpointState> {
-  WeewxEndpointCubit({
+class CurrentEndpointCubit extends Cubit<WeewxEndpointState> {
+  CurrentEndpointCubit({
     required this.weewxEndpointRepository,
   }) : super(WeewxEndpointInitial());
 
+  late WeewxEndpoint selectedEndpoint;
   final WeewxEndpointRepository weewxEndpointRepository;
 
   Future init() async {
@@ -24,6 +25,7 @@ class WeewxEndpointCubit extends Cubit<WeewxEndpointState> {
 
   void selectEndpoint(WeewxEndpoint endpoint) async {
     await weewxEndpointRepository.saveLastSelectedEndpoint(endpoint);
-    emit(WeewxEndpointSelection(endpoint: endpoint));
+    selectedEndpoint = endpoint;
+    emit(WeewxEndpointSelected());
   }
 }

@@ -19,7 +19,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => sl.get<ThemeCubit>()),
-        BlocProvider(create: (context) => sl.get<WeewxEndpointCubit>()),
+        BlocProvider(create: (context) => sl.get<CurrentEndpointCubit>()),
       ],
       child: const MainApp(),
     ),

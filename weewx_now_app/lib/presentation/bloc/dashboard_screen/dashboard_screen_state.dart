@@ -7,40 +7,48 @@ final class DashboardScreenInitial extends DashboardScreenState {}
 
 final class EndpointRequired extends DashboardScreenState {}
 
-final class EverChangingDataLoading extends DashboardScreenState {
+final class DashboardInitializing extends DashboardScreenState {
   final WeewxEndpoint endpoint;
-  EverChangingDataLoading({
+  DashboardInitializing({
     required this.endpoint,
   });
 }
 
-final class EverChangingLoaded extends DashboardScreenState {
+final class DashboardData extends DashboardScreenState {
+  final bool loading;
   final WeewxEndpoint endpoint;
+  final WeeWxConfig config;
   final ImageBundle images;
   final WeatherData weather;
-  EverChangingLoaded({
+  DashboardData({
+    required this.loading,
     required this.endpoint,
+    required this.config,
     required this.images,
     required this.weather,
   });
 
-  EverChangingLoaded copyWith({
+  DashboardData copyWith({
+    bool? loading,
     WeewxEndpoint? endpoint,
+    WeeWxConfig? config,
     ImageBundle? images,
     WeatherData? weather,
   }) {
-    return EverChangingLoaded(
+    return DashboardData(
+      loading: loading ?? this.loading,
       endpoint: endpoint ?? this.endpoint,
+      config: config ?? this.config,
       images: images ?? this.images,
       weather: weather ?? this.weather,
     );
   }
 }
 
-final class EverChangingDataError extends DashboardScreenState {
+final class DashboardDataError extends DashboardScreenState {
   final WeewxEndpoint endpoint;
   final String error;
-  EverChangingDataError({
+  DashboardDataError({
     required this.endpoint,
     required this.error,
   });

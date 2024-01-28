@@ -8,6 +8,7 @@ import 'package:weewx_now_app/presentation/screens/add_station_screen/add_statio
 import 'package:weewx_now_app/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
 import 'package:weewx_now_app/presentation/bloc/theme/theme_cubit.dart';
 import 'package:weewx_now_app/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now_app/presentation/screens/dashboard_screen/fragments/dashboard_reload_button.dart';
 import 'package:weewx_now_app/presentation/screens/my_stations_sceen/my_stations_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -19,11 +20,11 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl.get<DashboardScreenBloc>(),
-      child: BlocListener<WeewxEndpointCubit, WeewxEndpointState>(
-        listenWhen: (previous, current) => current is WeewxEndpointSelection || current is NoSelectableEndpointFound,
+      child: BlocListener<CurrentEndpointCubit, WeewxEndpointState>(
+        listenWhen: (previous, current) => current is WeewxEndpointSelected || current is NoSelectableEndpointFound,
         listener: (context, state) {
-          if (state is WeewxEndpointSelection) {
-            context.read<DashboardScreenBloc>().add(LoadEverChangingData(endpoint: state.endpoint));
+          if (state is WeewxEndpointSelected) {
+            context.read<DashboardScreenBloc>().add(LoadDashboardData(endpoint: context.read<CurrentEndpointCubit>().selectedEndpoint));
           }
           if (state is NoSelectableEndpointFound) {
             context.read<DashboardScreenBloc>().add(EmitEndpointRequired());
@@ -31,8 +32,9 @@ class DashboardScreen extends StatelessWidget {
         },
         child: PlatformScaffold(
           appBar: PlatformAppBar(
-            title: const Text('WeeWX Now'),
+            title: const Text('Belchertown, MA Weather Conditions'),
             trailingActions: [
+              const DashboardReloadButton(),
               PlatformPopupMenu(options: [
                 PopupMenuOption(
                   label: 'stationen',
@@ -40,7 +42,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 PopupMenuOption(
                   label: 'reload',
-                  onTap: (p0) => context.read<WeewxEndpointCubit>().init(),
+                  onTap: (p0) => context.read<CurrentEndpointCubit>().init(),
                 ),
                 PopupMenuOption(
                   label: 'toggle theme',
@@ -52,11 +54,11 @@ class DashboardScreen extends StatelessWidget {
           body: SafeArea(
             child: BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
               builder: (context, state) {
-                if (state is EverChangingDataLoading) {
+                if (state is DashboardInitializing) {
                   return PlatformCircularProgressIndicator();
-                } else if (state is EverChangingLoaded) {
+                } else if (state is DashboardData) {
                   return Text('${state.weather.toString()} ${state.endpoint.name}');
-                } else if (state is EverChangingDataError) {
+                } else if (state is DashboardDataError) {
                   return Text("error: ${state.error}");
                 } else if (state is EndpointRequired) {
                   return Column(
@@ -66,7 +68,7 @@ class DashboardScreen extends StatelessWidget {
                         onPressed: () {
                           context.pushNamed<WeewxEndpoint>(AddStationScreen.routeName).then((newEndpoint) {
                             if (newEndpoint != null) {
-                              context.read<WeewxEndpointCubit>().selectEndpoint(newEndpoint);
+                              context.read<CurrentEndpointCubit>().selectEndpoint(newEndpoint);
                             }
                           });
                         },

@@ -19,9 +19,9 @@ class _ImageViewerState extends State<ImageViewer> {
     return BlocBuilder<ImageViewerCubit, ImageViewerState>(
       builder: (context, state) {
         switch (state.runtimeType) {
-          case ImageViewerData:
+          case == ImageViewerData:
             return _imageViewer(state as ImageViewerData);
-          case NoImageViewerData:
+          case == NoImageViewerData:
             return _noImage(state as ImageViewerData);
           default:
             return const SizedBox();
@@ -35,8 +35,7 @@ class _ImageViewerState extends State<ImageViewer> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: !data.settings.now.hideImageViewer
-            ? const Text(
-                'No imagage available. If you are the administrator of the endpoint and displaying an image is not intended, please consider the '
+            ? const Text('No imagage available. If you are the administrator of the endpoint and displaying an image is not intended, please consider the '
                 'hideImageViewer'
                 ' option in the weewx.config.')
             : null,
@@ -81,8 +80,7 @@ class _ImageViewerState extends State<ImageViewer> {
                         activeTrackColor: Colors.orangeAccent,
                         thumbColor: Colors.red,
                         //thumbShape: TimeSliderThumbShape(),
-                        overlayShape:
-                            const RoundSliderOverlayShape(overlayRadius: 15.0),
+                        overlayShape: const RoundSliderOverlayShape(overlayRadius: 15.0),
                       ),
                       child: Slider(
                         min: 0,
@@ -124,10 +122,7 @@ class _ImageViewerState extends State<ImageViewer> {
               enableFilter: false,
               enableSearch: true,
               requestFocusOnTap: false,
-              dropdownMenuEntries: data.images.map.entries
-                  .map<DropdownMenuEntry<String>>((e) =>
-                      DropdownMenuEntry(value: e.key.id, label: e.key.id))
-                  .toList(),
+              dropdownMenuEntries: data.images.map.entries.map<DropdownMenuEntry<String>>((e) => DropdownMenuEntry(value: e.key.id, label: e.key.id)).toList(),
             ),
           ),
         Align(

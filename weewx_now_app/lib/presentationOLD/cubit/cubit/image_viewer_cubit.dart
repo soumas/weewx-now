@@ -11,9 +11,10 @@ class ImageViewerCubit extends Cubit<ImageViewerState> {
   ImageViewerCubit() : super(ImageViewerInitial());
 
   void applyImages(WeeWxConfig settings, ImageBundle images) async {
+    if (state case ImageViewerInitial _) {}
     switch (state.runtimeType) {
-      case ImageViewerInitial:
-      case NoImageViewerData:
+      case == ImageViewerInitial:
+      case == NoImageViewerData:
         if (images.map.isEmpty) {
           emit(NoImageViewerData());
         } else {
@@ -29,7 +30,7 @@ class ImageViewerCubit extends Cubit<ImageViewerState> {
           );
         }
         break;
-      case ImageViewerData:
+      case == ImageViewerData:
         emit((state as ImageViewerData).copyWith(images: images));
         break;
     }
