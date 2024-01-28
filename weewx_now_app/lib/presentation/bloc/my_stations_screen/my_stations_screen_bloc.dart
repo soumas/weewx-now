@@ -15,7 +15,6 @@ class MyStationsScreenBloc extends Bloc<MyStationsScreenEvent, MyStationsScreenS
   }) : super(MyStationsScreenInitial()) {
     on<LoadMyStations>((event, emit) async {
       emit(MyStationsScreenLoading());
-      await Future.delayed(const Duration(seconds: 2)); // TODO do not wait for better times
       var stationsLst = await endpointRepository.loadEndpoints();
       emit(MyStationsScreenLoaded(endpoints: stationsLst));
     });
