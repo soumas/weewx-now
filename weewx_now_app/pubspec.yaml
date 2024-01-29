@@ -18,6 +18,10 @@ dependencies:
   collection: ^1.18.0
   flutter_platform_widgets: ^6.0.2
   flutter_launcher_icons: ^0.13.1
+  flutter_svg: ^2.0.9
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 dev_dependencies:
   flutter_test:
@@ -28,6 +32,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+  generate: true #intl
 
 # flutter pub run flutter_launcher_icons
 flutter_launcher_icons:

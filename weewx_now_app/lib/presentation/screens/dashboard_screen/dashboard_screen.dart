@@ -4,6 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weewx_now_app/injection.dart';
 import 'package:weewx_now_app/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
+import 'package:weewx_now_app/presentation/bloc/locale/locale_cubit.dart';
 import 'package:weewx_now_app/presentation/bloc/theme/theme_cubit.dart';
 import 'package:weewx_now_app/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 import 'package:weewx_now_app/presentation/screens/dashboard_screen/fragments/dashboard_reload_button.dart';
@@ -42,6 +43,18 @@ class DashboardScreen extends StatelessWidget {
                 PopupMenuOption(
                   label: 'toggle theme',
                   onTap: (p0) => context.read<ThemeCubit>().toggleThemeMode(),
+                ),
+                PopupMenuOption(
+                  label: 'language en',
+                  onTap: (p0) => context.read<LocaleCubit>().setLocale(const Locale('en')),
+                ),
+                PopupMenuOption(
+                  label: 'language de',
+                  onTap: (p0) => context.read<LocaleCubit>().setLocale(const Locale('de')),
+                ),
+                PopupMenuOption(
+                  label: 'current lang: ${context.watch<LocaleCubit>().currentLocale}',
+                  onTap: (p0) {},
                 ),
               ], icon: const Icon(Icons.menu)),
             ],

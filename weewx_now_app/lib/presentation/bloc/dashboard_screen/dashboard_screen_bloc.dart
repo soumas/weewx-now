@@ -23,7 +23,6 @@ class DashboardScreenBloc extends Bloc<DashboardScreenEvent, DashboardScreenStat
         if (_isFirstRequestForEndpoint(event)) {
           emit(DashboardInitializing(endpoint: event.endpoint));
         }
-        await Future.delayed(const Duration(seconds: 1, milliseconds: 100)); // TODO do not wait
         final config = await stationRepository.loadSettings(event.endpoint);
         final weather = await stationRepository.loadWeather(event.endpoint);
         final images = await stationRepository.loadImages(event.endpoint);
