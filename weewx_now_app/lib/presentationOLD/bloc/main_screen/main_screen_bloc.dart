@@ -63,8 +63,6 @@ class MainScreenBloc extends Bloc<MainScreenEvent, MainScreenState> {
         emit(LoadingMainScreenData());
       }
 
-      await Future.delayed(const Duration(seconds: 1));
-
       final weather = await stationRepository.loadWeather(event.endpoint);
       final settings = await stationRepository.loadSettings(event.endpoint);
       final endpointOptions = await endpointRepository.loadEndpoints();

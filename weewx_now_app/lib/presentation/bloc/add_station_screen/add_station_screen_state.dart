@@ -5,29 +5,37 @@ sealed class AddStationScreenState {}
 
 final class AddStationScreenInitial extends AddStationScreenState {}
 
-final class EndpointCheckLoading extends AddStationScreenState {}
+class AddStationScreenData extends AddStationScreenState {
+  final String userInputUrl;
+  final bool endpointCheckRunning;
+  final String? endpointCheckError;
+  final WeeWxConfig? weeWxConfig;
 
-final class EndpointCheckSuccess extends AddStationScreenState {
-  final String endpointUrl;
-  final WeeWxConfig settings;
-  EndpointCheckSuccess({
-    required this.endpointUrl,
-    required this.settings,
+  AddStationScreenData({
+    this.userInputUrl = '',
+    this.endpointCheckRunning = false,
+    this.endpointCheckError,
+    this.weeWxConfig,
   });
+
+  AddStationScreenData copyWith({
+    String? userInputUrl,
+    bool? endpointCheckRunning,
+    String? endpointCheckError,
+    WeeWxConfig? weeWxConfig,
+  }) {
+    return AddStationScreenData(
+      userInputUrl: userInputUrl ?? this.userInputUrl,
+      endpointCheckRunning: endpointCheckRunning ?? this.endpointCheckRunning,
+      endpointCheckError: endpointCheckError ?? this.endpointCheckError,
+      weeWxConfig: weeWxConfig ?? this.weeWxConfig,
+    );
+  }
 }
 
-final class EndpointCheckError extends AddStationScreenState {
-  final String endpointUrl;
-  final String message;
-  EndpointCheckError({
-    required this.endpointUrl,
-    required this.message,
-  });
-}
-
-final class StationAdded extends AddStationScreenState {
+final class AddStationCompleted extends AddStationScreenState {
   final WeewxEndpoint endpoint;
-  StationAdded({
+  AddStationCompleted({
     required this.endpoint,
   });
 }

@@ -34,7 +34,6 @@ class DashboardScreen extends StatelessWidget {
           appBar: PlatformAppBar(
             title: context.watch<CurrentEndpointCubit>().selectedEndpoint != null ? Text(context.watch<CurrentEndpointCubit>().selectedEndpoint!.name) : null,
             trailingActions: [
-              const DashboardReloadButton(),
               PlatformPopupMenu(options: [
                 PopupMenuOption(
                   label: 'stationen',
@@ -63,7 +62,12 @@ class DashboardScreen extends StatelessWidget {
             child: BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
               builder: (context, state) {
                 if (state is DashboardData) {
-                  return Text('${state.weather.toString()} ${state.endpoint.name}');
+                  return Column(
+                    children: [
+                      const DashboardReloadButton(),
+                      Text('${state.weather.toString()} ${state.config.station.location}'),
+                    ],
+                  );
                 } else if (state is DashboardDataError) {
                   return Text("error: ${state.error}");
                 } else if (state is EndpointRequired) {

@@ -16,22 +16,38 @@ class AddStationScreenBloc extends Bloc<AddStationScreenEvent, AddStationScreenS
     required this.stationRepository,
     required this.endpointRepository,
   }) : super(AddStationScreenInitial()) {
-    on<CheckEndpoint>((event, emit) async {
-      emit(EndpointCheckLoading());
+    on<InitAddStationScreenData>((event, emit) async {
+      emit(AddStationScreenData());
+    });
+
+    on<UserInputUrl>((event, emit) async {
+      emit(AddStationScreenData(userInputUrl: event.input));
+    });
+
+    on<RunEndpointCheck>((event, emit) async {
       try {
-        WeeWxConfig settings = await stationRepository.loadSettings(
-          WeewxEndpoint(name: '_', url: event.endpointUrl),
-        );
-        emit(EndpointCheckSuccess(endpointUrl: event.endpointUrl, settings: settings));
+        emit(stateData.copyWith(endpointCheckRunning: true));
+        WeeWxConfig cfg = await stationRepository.loadSettings(WeewxEndpoint(name: '', url: stateData.userInputUrl));
+        emit(AddStationScreenData(
+          userInputUrl: stateData.userInputUrl,
+          weeWxConfig: cfg,
+        ));
       } catch (e) {
-        emit(EndpointCheckError(message: e.toString(), endpointUrl: event.endpointUrl));
+        emit(stateData.copyWith(endpointCheckError: e.toString()));
+      } finally {
+        emit(stateData.copyWith(endpointCheckRunning: false));
       }
     });
 
     on<AddStation>((event, emit) async {
-      final ep = WeewxEndpoint(name: event.name, url: event.url);
+      final ep = WeewxEndpoint(name: stateData.weeWxConfig!.station.location, url: stateData.userInputUrl);
       await endpointRepository.addOrUpdateEndpoint(ep);
-      emit(StationAdded(endpoint: ep));
+      emit(AddStationCompleted(endpoint: ep));
+    });
+
+    on<ClearStation>((event, emit) async {
+      emit(AddStationScreenData(userInputUrl: stateData.userInputUrl));
     });
   }
+  AddStationScreenData get stateData => state as AddStationScreenData;
 }

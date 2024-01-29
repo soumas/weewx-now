@@ -70,7 +70,7 @@ class Injection {
       () => DashboardScreenBloc(stationRepository: sl()),
     );
     sl.registerFactory<AddStationScreenBloc>(
-      () => AddStationScreenBloc(endpointRepository: sl(), stationRepository: sl()),
+      () => AddStationScreenBloc(endpointRepository: sl(), stationRepository: sl())..add(InitAddStationScreenData()),
     );
     sl.registerFactory<MyStationsScreenBloc>(
       () => MyStationsScreenBloc(endpointRepository: sl())..add(LoadMyStations()),
