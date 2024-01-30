@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:weewx_now_app/util/constants.dart';
+import 'package:weewx_now/util/constants.dart';
 
 abstract class ThemeDataSource {
   Future<String?> readThemeMode();

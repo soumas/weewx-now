@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/domain/repositories/locale_repository.dart';
+import 'package:weewx_now/domain/repositories/locale_repository.dart';
 
 part 'locale_state.dart';
 

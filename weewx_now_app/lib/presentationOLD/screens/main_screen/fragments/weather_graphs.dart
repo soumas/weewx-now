@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/presentationOLD/widgets/responsive_table.dart';
+import 'package:weewx_now/presentationOLD/widgets/responsive_table.dart';
 
 class WeatherGraphs extends StatelessWidget {
   const WeatherGraphs({

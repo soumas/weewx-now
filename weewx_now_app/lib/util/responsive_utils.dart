@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/util/constants.dart';
+import 'package:weewx_now/util/constants.dart';
 
 enum ScreenSize { small, medium, large }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/util/responsive_utils.dart';
+import 'package:weewx_now/util/responsive_utils.dart';
 
 class ResponsiveTable extends StatelessWidget {
   const ResponsiveTable({
@@ -21,11 +21,7 @@ class ResponsiveTable extends StatelessWidget {
                 if (i < _images.length)
                   Container(
                     padding: const EdgeInsets.all(4.0),
-                    margin: EdgeInsets.only(
-                        top: 4,
-                        bottom: 4,
-                        left: (cols > 0 && j > 0) ? 4 : 0,
-                        right: (cols > 0 && j < cols - 1) ? 4 : 0),
+                    margin: EdgeInsets.only(top: 4, bottom: 4, left: (cols > 0 && j > 0) ? 4 : 0, right: (cols > 0 && j < cols - 1) ? 4 : 0),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey.shade100, width: 2),
                       color: Colors.white,

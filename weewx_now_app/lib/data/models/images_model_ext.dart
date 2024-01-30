@@ -1,8 +1,8 @@
-import 'package:weewx_now_app/data/models/images_model.dart';
-import 'package:weewx_now_app/domain/entities/image/image_category.dart';
-import 'package:weewx_now_app/domain/entities/image/image_meta_data.dart';
-import 'package:weewx_now_app/domain/entities/image/image_type.dart';
-import 'package:weewx_now_app/domain/entities/image/image_bundle.dart';
+import 'package:weewx_now/data/models/images_model.dart';
+import 'package:weewx_now/domain/entities/image/image_category.dart';
+import 'package:weewx_now/domain/entities/image/image_meta_data.dart';
+import 'package:weewx_now/domain/entities/image/image_type.dart';
+import 'package:weewx_now/domain/entities/image/image_bundle.dart';
 
 extension ImagesModelExt on ImagesModel {
   ImageBundle toEntity() {

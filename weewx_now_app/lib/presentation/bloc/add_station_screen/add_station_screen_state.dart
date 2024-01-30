@@ -5,27 +5,27 @@ sealed class AddStationScreenState {}
 
 final class AddStationScreenInitial extends AddStationScreenState {}
 
-class AddStationScreenData extends AddStationScreenState {
-  final String userInputUrl;
+final class AddStationScreenData extends AddStationScreenState {
+  final String lastCheckeEndpoint;
   final bool endpointCheckRunning;
   final String? endpointCheckError;
   final WeeWxConfig? weeWxConfig;
 
   AddStationScreenData({
-    this.userInputUrl = '',
+    this.lastCheckeEndpoint = '',
     this.endpointCheckRunning = false,
     this.endpointCheckError,
     this.weeWxConfig,
   });
 
   AddStationScreenData copyWith({
-    String? userInputUrl,
+    String? lastCheckeEndpoint,
     bool? endpointCheckRunning,
     String? endpointCheckError,
     WeeWxConfig? weeWxConfig,
   }) {
     return AddStationScreenData(
-      userInputUrl: userInputUrl ?? this.userInputUrl,
+      lastCheckeEndpoint: lastCheckeEndpoint ?? this.lastCheckeEndpoint,
       endpointCheckRunning: endpointCheckRunning ?? this.endpointCheckRunning,
       endpointCheckError: endpointCheckError ?? this.endpointCheckError,
       weeWxConfig: weeWxConfig ?? this.weeWxConfig,

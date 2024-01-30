@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'package:weewx_now_app/domain/repositories/theme_repository.dart';
+import 'package:weewx_now/domain/repositories/theme_repository.dart';
 
 part 'theme_state.dart';
 

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
-import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/repositories/weewx_endpoint_repository.dart';
 
 part 'weewx_endpoint_state.dart';
 

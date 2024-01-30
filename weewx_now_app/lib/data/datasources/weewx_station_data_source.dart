@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:weewx_now_app/data/models/images_model.dart';
-import 'package:weewx_now_app/data/models/settings_model.dart';
-import 'package:weewx_now_app/data/models/weather_model.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/data/models/images_model.dart';
+import 'package:weewx_now/data/models/settings_model.dart';
+import 'package:weewx_now/data/models/weather_model.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
 
 abstract class WeewxStationDataSource {
   Future<SettingsModel> loadSettings(WeewxEndpoint endpoint);

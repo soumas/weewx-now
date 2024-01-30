@@ -1,4 +1,4 @@
-import 'package:weewx_now_app/domain/entities/weather/value_data.dart';
+import 'package:weewx_now/domain/entities/weather/value_data.dart';
 
 class WeatherCurrent {
   final DateTime generation;

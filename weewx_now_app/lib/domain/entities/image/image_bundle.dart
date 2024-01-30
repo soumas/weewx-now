@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:weewx_now_app/domain/entities/image/image_category.dart';
-import 'package:weewx_now_app/domain/entities/image/image_meta_data.dart';
+import 'package:weewx_now/domain/entities/image/image_category.dart';
+import 'package:weewx_now/domain/entities/image/image_meta_data.dart';
 
 class ImageBundle {
   final DateTime generation;
@@ -15,9 +15,7 @@ class ImageBundle {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ImageBundle &&
-        other.generation == generation &&
-        mapEquals(other.map, map);
+    return other is ImageBundle && other.generation == generation && mapEquals(other.map, map);
   }
 
   @override

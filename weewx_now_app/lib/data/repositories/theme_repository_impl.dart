@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:weewx_now_app/data/datasources/theme_data_source.dart';
-import 'package:weewx_now_app/domain/repositories/theme_repository.dart';
+import 'package:weewx_now/data/datasources/theme_data_source.dart';
+import 'package:weewx_now/domain/repositories/theme_repository.dart';
 
 class ThemeRepositoryImpl extends ThemeRepository {
   final ThemeDataSource dataSource;

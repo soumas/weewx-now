@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
-import 'package:weewx_now_app/injection.dart';
-import 'package:weewx_now_app/presentation/bloc/locale/locale_cubit.dart';
-import 'package:weewx_now_app/presentation/bloc/theme/theme_cubit.dart';
-import 'package:weewx_now_app/presentation/routes.dart';
-import 'package:weewx_now_app/presentation/theme.dart';
-import 'package:weewx_now_app/util/constants.dart';
+import 'package:weewx_now/injection.dart';
+import 'package:weewx_now/presentation/bloc/locale/locale_cubit.dart';
+import 'package:weewx_now/presentation/bloc/theme/theme_cubit.dart';
+import 'package:weewx_now/presentation/routes.dart';
+import 'package:weewx_now/presentation/theme.dart';
+import 'package:weewx_now/util/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';

@@ -1,4 +1,4 @@
-name: weewx_now_app
+name: weewx_now
 description: A mobile app "skin" for WeeWX weather server
 publish_to: 'none'
 version: 0.1.0
@@ -18,11 +18,10 @@ dependencies:
   collection: ^1.18.0
   flutter_platform_widgets: ^6.0.2
   flutter_launcher_icons: ^0.13.1
-  flutter_svg: ^2.0.9
   flutter_localizations:
     sdk: flutter
   intl: any
-  mobile_scanner: ^4.0.0
+  flutter_barcode_scanner: 2.0.0
 
 dev_dependencies:
   flutter_test:

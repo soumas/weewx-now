@@ -1,9 +1,9 @@
-import 'package:weewx_now_app/data/models/weather_model.dart';
-import 'package:weewx_now_app/domain/entities/weather/value_agg_data.dart';
-import 'package:weewx_now_app/domain/entities/weather/value_data.dart';
-import 'package:weewx_now_app/domain/entities/weather/weather_aggregation.dart';
-import 'package:weewx_now_app/domain/entities/weather/weather_current.dart';
-import 'package:weewx_now_app/domain/entities/weather/weather_data.dart';
+import 'package:weewx_now/data/models/weather_model.dart';
+import 'package:weewx_now/domain/entities/weather/value_agg_data.dart';
+import 'package:weewx_now/domain/entities/weather/value_data.dart';
+import 'package:weewx_now/domain/entities/weather/weather_aggregation.dart';
+import 'package:weewx_now/domain/entities/weather/weather_current.dart';
+import 'package:weewx_now/domain/entities/weather/weather_data.dart';
 
 extension WeatherModelModelExt on WeatherModel {
   WeatherData toEntity() {

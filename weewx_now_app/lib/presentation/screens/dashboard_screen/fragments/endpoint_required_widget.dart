@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
-import 'package:weewx_now_app/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
-import 'package:weewx_now_app/presentation/screens/add_station_screen/add_station_screen.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now/presentation/screens/add_station_screen/add_station_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
 

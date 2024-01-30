@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/wee_wx_config.dart';
-import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
-import 'package:weewx_now_app/domain/repositories/weewx_station_repository.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/wee_wx_config.dart';
+import 'package:weewx_now/domain/repositories/weewx_endpoint_repository.dart';
+import 'package:weewx_now/domain/repositories/weewx_station_repository.dart';
 
 part 'add_station_screen_event.dart';
 part 'add_station_screen_state.dart';
@@ -20,16 +20,12 @@ class AddStationScreenBloc extends Bloc<AddStationScreenEvent, AddStationScreenS
       emit(AddStationScreenData());
     });
 
-    on<UserInputUrl>((event, emit) async {
-      emit(AddStationScreenData(userInputUrl: event.input));
-    });
-
     on<RunEndpointCheck>((event, emit) async {
       try {
-        emit(stateData.copyWith(endpointCheckRunning: true));
-        WeeWxConfig cfg = await stationRepository.loadSettings(WeewxEndpoint(name: '', url: stateData.userInputUrl));
+        emit(stateData.copyWith(endpointCheckRunning: true, lastCheckeEndpoint: event.url));
+        WeeWxConfig cfg = await stationRepository.loadSettings(WeewxEndpoint(name: '', url: event.url));
         emit(AddStationScreenData(
-          userInputUrl: stateData.userInputUrl,
+          lastCheckeEndpoint: stateData.lastCheckeEndpoint,
           weeWxConfig: cfg,
         ));
       } catch (e) {
@@ -40,13 +36,13 @@ class AddStationScreenBloc extends Bloc<AddStationScreenEvent, AddStationScreenS
     });
 
     on<AddStation>((event, emit) async {
-      final ep = WeewxEndpoint(name: stateData.weeWxConfig!.station.location, url: stateData.userInputUrl);
+      final ep = WeewxEndpoint(name: stateData.weeWxConfig!.station.location, url: stateData.lastCheckeEndpoint);
       await endpointRepository.addOrUpdateEndpoint(ep);
       emit(AddStationCompleted(endpoint: ep));
     });
 
     on<ClearStation>((event, emit) async {
-      emit(AddStationScreenData(userInputUrl: stateData.userInputUrl));
+      emit(AddStationScreenData(lastCheckeEndpoint: stateData.lastCheckeEndpoint));
     });
   }
   AddStationScreenData get stateData => state as AddStationScreenData;

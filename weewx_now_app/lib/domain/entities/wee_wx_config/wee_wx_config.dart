@@ -1,6 +1,6 @@
-import 'package:weewx_now_app/domain/entities/wee_wx_config/now_config.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/station_config.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/labels.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/now_config.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/station_config.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/labels.dart';
 
 class WeeWxConfig {
   final StationConfig station;
@@ -16,10 +16,7 @@ class WeeWxConfig {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is WeeWxConfig &&
-        other.station == station &&
-        other.now == now &&
-        other.texts == texts;
+    return other is WeeWxConfig && other.station == station && other.now == now && other.texts == texts;
   }
 
   @override

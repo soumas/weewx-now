@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weewx_now_app/presentationOLD/cubit/cubit/image_viewer_cubit.dart';
+import 'package:weewx_now/presentationOLD/cubit/cubit/image_viewer_cubit.dart';
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({

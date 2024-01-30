@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/data/datasources/locale_data_source.dart';
-import 'package:weewx_now_app/domain/repositories/locale_repository.dart';
-import 'package:weewx_now_app/util/constants.dart';
+import 'package:weewx_now/data/datasources/locale_data_source.dart';
+import 'package:weewx_now/domain/repositories/locale_repository.dart';
+import 'package:weewx_now/util/constants.dart';
 
 class LocaleRepositoryImpl extends LocaleRepository {
   final LocaleDataSource dataSource;

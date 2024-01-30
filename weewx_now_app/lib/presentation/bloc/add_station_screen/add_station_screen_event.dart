@@ -5,14 +5,12 @@ sealed class AddStationScreenEvent {}
 
 class InitAddStationScreenData extends AddStationScreenEvent {}
 
-class UserInputUrl extends AddStationScreenEvent {
-  final String input;
-  UserInputUrl({
-    required this.input,
+class RunEndpointCheck extends AddStationScreenEvent {
+  final String url;
+  RunEndpointCheck({
+    required this.url,
   });
 }
-
-class RunEndpointCheck extends AddStationScreenEvent {}
 
 class AddStation extends AddStationScreenEvent {}
 

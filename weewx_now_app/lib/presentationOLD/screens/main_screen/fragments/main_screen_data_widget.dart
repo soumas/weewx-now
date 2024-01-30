@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:weewx_now_app/presentationOLD/screens/main_screen/fragments/headline_row.dart';
-import 'package:weewx_now_app/presentationOLD/screens/main_screen/fragments/image_viewer.dart';
-import 'package:weewx_now_app/presentationOLD/screens/main_screen/fragments/weather_data_table.dart';
-import 'package:weewx_now_app/presentationOLD/screens/main_screen/fragments/weather_graphs.dart';
-import 'package:weewx_now_app/presentationOLD/widgets/responsive_container.dart';
-import 'package:weewx_now_app/util/responsive_utils.dart';
+import 'package:weewx_now/presentationOLD/screens/main_screen/fragments/headline_row.dart';
+import 'package:weewx_now/presentationOLD/screens/main_screen/fragments/image_viewer.dart';
+import 'package:weewx_now/presentationOLD/screens/main_screen/fragments/weather_data_table.dart';
+import 'package:weewx_now/presentationOLD/screens/main_screen/fragments/weather_graphs.dart';
+import 'package:weewx_now/presentationOLD/widgets/responsive_container.dart';
+import 'package:weewx_now/util/responsive_utils.dart';
 
 class MainScreenDataWidget extends StatelessWidget {
   const MainScreenDataWidget({

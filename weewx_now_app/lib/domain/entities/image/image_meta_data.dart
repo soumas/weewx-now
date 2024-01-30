@@ -1,5 +1,5 @@
-import 'package:weewx_now_app/domain/entities/image/image_category.dart';
-import 'package:weewx_now_app/domain/entities/image/image_type.dart';
+import 'package:weewx_now/domain/entities/image/image_category.dart';
+import 'package:weewx_now/domain/entities/image/image_type.dart';
 
 class ImageMetaData {
   final ImageType type;
@@ -17,11 +17,7 @@ class ImageMetaData {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ImageMetaData &&
-        other.type == type &&
-        other.category == category &&
-        other.data == data &&
-        other.date == date;
+    return other is ImageMetaData && other.type == type && other.category == category && other.data == data && other.date == date;
   }
 
   @override

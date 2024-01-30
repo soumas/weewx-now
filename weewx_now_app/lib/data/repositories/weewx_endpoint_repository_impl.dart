@@ -1,7 +1,7 @@
-import 'package:weewx_now_app/data/datasources/weewx_endpoint_data_source.dart';
-import 'package:weewx_now_app/data/models/weewx_endpoint_model_ext.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
-import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
+import 'package:weewx_now/data/datasources/weewx_endpoint_data_source.dart';
+import 'package:weewx_now/data/models/weewx_endpoint_model_ext.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/repositories/weewx_endpoint_repository.dart';
 
 class WeewxEndpointRepositoryImpl extends WeewxEndpointRepository {
   final WeewxEndpointDataSource dataSource;

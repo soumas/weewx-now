@@ -1,8 +1,8 @@
-import 'package:weewx_now_app/data/models/settings_model.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/wee_wx_config.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/station_config.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/labels.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/now_config.dart';
+import 'package:weewx_now/data/models/settings_model.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/wee_wx_config.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/station_config.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/labels.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/now_config.dart';
 
 extension SettingsModelExt on SettingsModel {
   WeeWxConfig toEntity() {

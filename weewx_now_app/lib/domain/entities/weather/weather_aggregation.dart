@@ -1,4 +1,4 @@
-import 'package:weewx_now_app/domain/entities/weather/value_agg_data.dart';
+import 'package:weewx_now/domain/entities/weather/value_agg_data.dart';
 
 class WeatherAggregation {
   final ValueAggData maxTemperature;

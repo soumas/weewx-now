@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:weewx_now_app/presentationOLD/screens/main_screen/main_screen.dart';
+import 'package:weewx_now/presentationOLD/screens/main_screen/main_screen.dart';
 
 final router = GoRouter(
   routes: <RouteBase>[

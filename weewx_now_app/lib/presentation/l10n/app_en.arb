@@ -1,4 +1,9 @@
 {
     "@@locale": "en",
-    "addWeeWXStation": "Add WeeWX Station"
+    "addWeeWXStation": "Add WeeWX Station",
+    "weeWXStationLink": "WeeWX Station Link",
+    "continuee": "Continue",
+    "cancel": "Cancel",
+    "viaQrCode": "via QR code",
+    "viaLink": "via link"
 }

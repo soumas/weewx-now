@@ -1,4 +1,4 @@
-package com.example.weewx_now_app
+package com.soumasoft.weewx_now
 
 import io.flutter.embedding.android.FlutterActivity
 

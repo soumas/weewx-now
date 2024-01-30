@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/presentationOLD/widgets/key_value_table.dart';
+import 'package:weewx_now/presentationOLD/widgets/key_value_table.dart';
 
 class WeatherDataTable extends StatelessWidget {
   const WeatherDataTable({

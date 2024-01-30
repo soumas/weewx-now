@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
-import 'package:weewx_now_app/domain/entities/image/image_bundle.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/wee_wx_config.dart';
-import 'package:weewx_now_app/domain/entities/weather/weather_data.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/entities/image/image_bundle.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/wee_wx_config.dart';
+import 'package:weewx_now/domain/entities/weather/weather_data.dart';
 
-import 'package:weewx_now_app/domain/repositories/weewx_endpoint_repository.dart';
-import 'package:weewx_now_app/domain/repositories/weewx_station_repository.dart';
+import 'package:weewx_now/domain/repositories/weewx_endpoint_repository.dart';
+import 'package:weewx_now/domain/repositories/weewx_station_repository.dart';
 
 part 'main_screen_event.dart';
 part 'main_screen_state.dart';

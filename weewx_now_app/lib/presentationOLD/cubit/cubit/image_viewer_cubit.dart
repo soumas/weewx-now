@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:weewx_now_app/domain/entities/image/image_category.dart';
-import 'package:weewx_now_app/domain/entities/image/image_meta_data.dart';
-import 'package:weewx_now_app/domain/entities/image/image_bundle.dart';
-import 'package:weewx_now_app/domain/entities/wee_wx_config/wee_wx_config.dart';
+import 'package:weewx_now/domain/entities/image/image_category.dart';
+import 'package:weewx_now/domain/entities/image/image_meta_data.dart';
+import 'package:weewx_now/domain/entities/image/image_bundle.dart';
+import 'package:weewx_now/domain/entities/wee_wx_config/wee_wx_config.dart';
 
 part 'image_viewer_state.dart';
 

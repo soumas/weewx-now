@@ -1,4 +1,4 @@
-import 'package:weewx_now_app/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
 
 abstract class WeewxEndpointRepository {
   Future<List<WeewxEndpoint>> loadEndpoints();
