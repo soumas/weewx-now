@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:weewx_now_app/injection.dart';
 import 'package:weewx_now_app/presentation/bloc/add_station_screen/add_station_screen_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:weewx_now_app/presentation/screens/qr_scan_screen/qr_scan_screen.dart';
 
 class AddStationScreen extends StatelessWidget {
   const AddStationScreen({super.key});
@@ -35,6 +36,14 @@ class AddStationScreen extends StatelessWidget {
                     if (state.weeWxConfig == null) {
                       return Column(
                         children: [
+                          PlatformElevatedButton(
+                            child: const Text('qr'),
+                            onPressed: () {
+                              context
+                                  .pushNamed<String>(QrScanScreen.routeName)
+                                  .then((value) => context.read<AddStationScreenBloc>().add(UserInputUrl(input: value ?? state.userInputUrl)));
+                            },
+                          ),
                           PlatformTextFormField(
                             keyboardType: TextInputType.url,
                             autofocus: true,
