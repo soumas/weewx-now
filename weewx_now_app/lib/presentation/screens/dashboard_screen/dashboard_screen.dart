@@ -32,7 +32,6 @@ class DashboardScreen extends StatelessWidget {
         },
         child: PlatformScaffold(
           appBar: PlatformAppBar(
-            title: context.watch<CurrentEndpointCubit>().selectedEndpoint != null ? Text(context.watch<CurrentEndpointCubit>().selectedEndpoint!.name) : null,
             trailingActions: [
               PlatformPopupMenu(options: [
                 PopupMenuOption(

@@ -8,6 +8,8 @@ import 'package:weewx_now/presentation/screens/add_station_screen/add_station_sc
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
 
+import 'package:weewx_now/util/precached_images.dart';
+
 class EndpointRequiredWidget extends StatelessWidget {
   const EndpointRequiredWidget({
     super.key,
@@ -20,10 +22,11 @@ class EndpointRequiredWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
         children: [
-          SizedBox(
-            width: [MediaQuery.of(context).size.width * 0.75, 1200].reduce(math.min).toDouble(),
-            child: const Image(
-              image: AssetImage('assets/images/logo_full.png'),
+          Hero(
+            tag: AddStationScreen.heroImageTag,
+            child: Image(
+              image: PrecachedImages.logoFull,
+              width: [MediaQuery.of(context).size.width * 0.85, 1200].reduce(math.min).toDouble(),
             ),
           ),
           PlatformElevatedButton(

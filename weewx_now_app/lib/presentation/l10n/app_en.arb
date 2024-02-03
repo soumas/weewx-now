@@ -1,9 +1,10 @@
 {
     "@@locale": "en",
     "addWeeWXStation": "Add WeeWX Station",
-    "weeWXStationLink": "WeeWX Station Link",
+    "weeWXStationUrl": "WeeWX Station web address",
     "continuee": "Continue",
     "cancel": "Cancel",
-    "viaQrCode": "via QR code",
-    "viaLink": "via link"
+    "addStationViaQrCodeDesc": "I have the QR code of my WeeWX station and would like to scan it now.",
+    "addStationVialviaUrlDesc": "I have the web address of my WeeWX station and would like to enter it manually.",
+    "addStationVialviaPublicService": "I want to search for my WeeWX station in the public WeeWX Now registry."
 }

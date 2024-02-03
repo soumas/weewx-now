@@ -1,9 +1,10 @@
 {
     "@@locale": "de",
     "addWeeWXStation": "WeeWX Station hinzufügen",
-    "weeWXStationLink": "WeeWX Station Link",
+    "weeWXStationUrl": "WeeWX Station Internetadresse",
     "continuee": "Weiter",
     "cancel": "Abbrechen",
-    "viaQrCode": "per QR Code",
-    "viaLink": "per Link"
+    "addStationViaQrCodeDesc": "Ich habe den QR Code meiner WeeWX Station und möchte ihn jetzt scannen.",
+    "addStationVialviaUrlDesc": "Ich habe die Internetadresse meiner WeeWX Station und möchte sie manuell eingeben.",
+    "addStationVialviaPublicService": "Ich möchte meine WeeWX Station im öffentlichen WeeWX now Register suchen."
 }

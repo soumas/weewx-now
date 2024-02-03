@@ -34,7 +34,7 @@ class _StationUrlInputDialogState extends State<StationUrlInputDialog> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: PlatformAlertDialog(
-        title: Text(AppLocalizations.of(context)!.weeWXStationLink),
+        title: Text(AppLocalizations.of(context)!.weeWXStationUrl),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [

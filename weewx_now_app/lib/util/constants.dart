@@ -2,6 +2,10 @@
 const double kLayoutBreakpointM = 800;
 const double kLayoutBreakpointL = 1200;
 
+// assets
+const kAssetPathFullLogo = 'assets/images/logo_full.png';
+const kAssetPathAddStationTop = 'assets/images/add_station_top.png';
+
 // locales
 const kDefaultLocale = 'en';
 const kSupportedLocales = ['en', 'de'];

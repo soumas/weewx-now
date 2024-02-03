@@ -9,6 +9,7 @@ import 'package:weewx_now/presentation/routes.dart';
 import 'package:weewx_now/presentation/theme.dart';
 import 'package:weewx_now/util/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:weewx_now/util/precached_images.dart';
 
 import 'presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 
@@ -34,6 +35,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PrecachedImages.init(context);
     final themeMode = context.watch<ThemeCubit>().currentThemeMode;
     final locale = context.watch<LocaleCubit>().currentLocale;
 
