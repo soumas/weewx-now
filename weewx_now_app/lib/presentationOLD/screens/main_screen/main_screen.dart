@@ -6,7 +6,7 @@ import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentationOLD/bloc/main_screen/main_screen_bloc.dart';
 import 'package:weewx_now/presentationOLD/cubit/cubit/image_viewer_cubit.dart';
-import 'package:weewx_now/presentation/screens/add_station_screen/add_station_screen.dart';
+import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_station_precheck_screen.dart';
 import 'package:weewx_now/presentationOLD/screens/main_screen/fragments/main_screen_data_widget.dart';
 import 'package:weewx_now/presentationOLD/widgets/responsive_container.dart';
 
@@ -86,7 +86,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   _addNewEndpoint(BuildContext context, WeewxEndpoint? endpoint) {
-    return context.pushNamed(AddStationScreen.routeName, extra: endpoint).then((value) {
+    return context.pushNamed(AddStationPrecheckScreen.routeName, extra: endpoint).then((value) {
       if (value != null) {
         // user has added new endpoint - let's use it now
         mainScreenBloc.add(ChangeEndpoint(endpoint: value as WeewxEndpoint));

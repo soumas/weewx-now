@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentation/bloc/my_stations_screen/my_stations_screen_bloc.dart';
 import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
-import 'package:weewx_now/presentation/screens/add_station_screen/add_station_screen.dart';
+import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_station_precheck_screen.dart';
 
 class MyStationsScreen extends StatelessWidget {
   const MyStationsScreen({super.key});
@@ -39,7 +39,7 @@ class MyStationsScreen extends StatelessWidget {
                     ..addAll([
                       PlatformElevatedButton(
                         child: const Text('NEU HINZUFÜGEN'),
-                        onPressed: () => context.pushNamed(AddStationScreen.routeName),
+                        onPressed: () => context.pushNamed(AddStationPrecheckScreen.routeName),
                       ),
                     ]),
                 );

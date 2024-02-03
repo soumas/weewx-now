@@ -1,30 +1,53 @@
 part of 'add_station_screen_bloc.dart';
 
 @immutable
-sealed class AddStationScreenState {}
+sealed class AddStationPrecheckScreenState {}
 
-final class AddStationScreenInitial extends AddStationScreenState {}
+final class AddStationPrecheckScreenInitial extends AddStationPrecheckScreenState {}
 
-final class AddStationScreenData extends AddStationScreenState {
+final class AddStationPrecheckRunning extends AddStationPrecheckScreenState {
+  final String url;
+  AddStationPrecheckRunning({
+    required this.url,
+  });
+}
+
+final class AddStationPrecheckSuccess extends AddStationPrecheckScreenState {
+  final WeeWxConfig weeWxConfig;
+  AddStationPrecheckSuccess({
+    required this.weeWxConfig,
+  });
+}
+
+final class AddStationPrecheckFailed extends AddStationPrecheckScreenState {
+  final String error;
+  final String lastCheckedUrl;
+  AddStationPrecheckFailed({
+    required this.error,
+    required this.lastCheckedUrl,
+  });
+}
+
+/*final class AddStationPrecheckScreenData extends AddStationPrecheckScreenState {
   final String lastCheckeEndpoint;
   final bool endpointCheckRunning;
   final String? endpointCheckError;
   final WeeWxConfig? weeWxConfig;
 
-  AddStationScreenData({
+  AddStationPrecheckScreenData({
     this.lastCheckeEndpoint = '',
     this.endpointCheckRunning = false,
     this.endpointCheckError,
     this.weeWxConfig,
   });
 
-  AddStationScreenData copyWith({
+  AddStationPrecheckScreenData copyWith({
     String? lastCheckeEndpoint,
     bool? endpointCheckRunning,
     String? endpointCheckError,
     WeeWxConfig? weeWxConfig,
   }) {
-    return AddStationScreenData(
+    return AddStationPrecheckScreenData(
       lastCheckeEndpoint: lastCheckeEndpoint ?? this.lastCheckeEndpoint,
       endpointCheckRunning: endpointCheckRunning ?? this.endpointCheckRunning,
       endpointCheckError: endpointCheckError ?? this.endpointCheckError,
@@ -32,10 +55,11 @@ final class AddStationScreenData extends AddStationScreenState {
     );
   }
 }
-
-final class AddStationCompleted extends AddStationScreenState {
+final class AddStationCompleted extends AddStationPrecheckScreenState {
   final WeewxEndpoint endpoint;
   AddStationCompleted({
     required this.endpoint,
   });
 }
+
+*/

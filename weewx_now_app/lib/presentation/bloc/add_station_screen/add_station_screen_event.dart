@@ -1,17 +1,11 @@
 part of 'add_station_screen_bloc.dart';
 
 @immutable
-sealed class AddStationScreenEvent {}
+sealed class AddStationPrecheckScreenEvent {}
 
-class InitAddStationScreenData extends AddStationScreenEvent {}
-
-class RunEndpointCheck extends AddStationScreenEvent {
+class RunCheck extends AddStationPrecheckScreenEvent {
   final String url;
-  RunEndpointCheck({
+  RunCheck({
     required this.url,
   });
 }
-
-class AddStation extends AddStationScreenEvent {}
-
-class ClearStation extends AddStationScreenEvent {}

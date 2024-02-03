@@ -8,42 +8,22 @@ import 'package:weewx_now/domain/repositories/weewx_station_repository.dart';
 part 'add_station_screen_event.dart';
 part 'add_station_screen_state.dart';
 
-class AddStationScreenBloc extends Bloc<AddStationScreenEvent, AddStationScreenState> {
+class AddStationPrecheckScreenBloc extends Bloc<AddStationPrecheckScreenEvent, AddStationPrecheckScreenState> {
   final WeewxStationRepository stationRepository;
   final WeewxEndpointRepository endpointRepository;
 
-  AddStationScreenBloc({
+  AddStationPrecheckScreenBloc({
     required this.stationRepository,
     required this.endpointRepository,
-  }) : super(AddStationScreenInitial()) {
-    on<InitAddStationScreenData>((event, emit) async {
-      emit(AddStationScreenData());
-    });
-
-    on<RunEndpointCheck>((event, emit) async {
+  }) : super(AddStationPrecheckScreenInitial()) {
+    on<RunCheck>((event, emit) async {
       try {
-        emit(stateData.copyWith(endpointCheckRunning: true, lastCheckeEndpoint: event.url));
+        emit(AddStationPrecheckRunning(url: event.url));
         WeeWxConfig cfg = await stationRepository.loadSettings(WeewxEndpoint(name: '', url: event.url));
-        emit(AddStationScreenData(
-          lastCheckeEndpoint: stateData.lastCheckeEndpoint,
-          weeWxConfig: cfg,
-        ));
+        emit(AddStationPrecheckSuccess(weeWxConfig: cfg));
       } catch (e) {
-        emit(stateData.copyWith(endpointCheckError: e.toString()));
-      } finally {
-        emit(stateData.copyWith(endpointCheckRunning: false));
+        emit(AddStationPrecheckFailed(lastCheckedUrl: event.url, error: e.toString()));
       }
     });
-
-    on<AddStation>((event, emit) async {
-      final ep = WeewxEndpoint(name: stateData.weeWxConfig!.station.location, url: stateData.lastCheckeEndpoint);
-      await endpointRepository.addOrUpdateEndpoint(ep);
-      emit(AddStationCompleted(endpoint: ep));
-    });
-
-    on<ClearStation>((event, emit) async {
-      emit(AddStationScreenData(lastCheckeEndpoint: stateData.lastCheckeEndpoint));
-    });
   }
-  AddStationScreenData get stateData => state as AddStationScreenData;
 }

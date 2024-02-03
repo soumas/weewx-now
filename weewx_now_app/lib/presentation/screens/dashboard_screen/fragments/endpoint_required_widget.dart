@@ -4,7 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
-import 'package:weewx_now/presentation/screens/add_station_screen/add_station_screen.dart';
+import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_station_precheck_screen.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
 
@@ -23,7 +23,7 @@ class EndpointRequiredWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Hero(
-            tag: AddStationScreen.heroImageTag,
+            tag: AddStationPrecheckScreen.heroImageTag,
             child: Image(
               image: PrecachedImages.logoFull,
               width: [MediaQuery.of(context).size.width * 0.85, 1200].reduce(math.min).toDouble(),
@@ -32,7 +32,7 @@ class EndpointRequiredWidget extends StatelessWidget {
           PlatformElevatedButton(
             child: Text(AppLocalizations.of(context)!.addWeeWXStation),
             onPressed: () {
-              context.pushNamed<WeewxEndpoint>(AddStationScreen.routeName).then((newEndpoint) {
+              context.pushNamed<WeewxEndpoint>(AddStationPrecheckScreen.routeName).then((newEndpoint) {
                 if (newEndpoint != null) {
                   context.read<CurrentEndpointCubit>().selectEndpoint(newEndpoint);
                 }

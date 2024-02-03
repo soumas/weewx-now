@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now/presentationOLD/bloc/main_screen/main_screen_bloc.dart';
-import 'package:weewx_now/presentation/screens/add_station_screen/add_station_screen.dart';
+import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_station_precheck_screen.dart';
 
 class HeadlineRow extends StatelessWidget {
   const HeadlineRow({
@@ -64,7 +64,7 @@ class HeadlineRow extends StatelessWidget {
                             ..add(
                               ElevatedButton(
                                 onPressed: () async {
-                                  context.pop(await context.pushNamed(AddStationScreen.routeName));
+                                  context.pop(await context.pushNamed(AddStationPrecheckScreen.routeName));
                                 },
                                 child: const Text('Neue Station'),
                               ),
