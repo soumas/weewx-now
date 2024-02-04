@@ -7,36 +7,47 @@ class AddStationMethodButton extends StatelessWidget {
     required this.context,
     required this.iconData,
     required this.description,
-    required this.onPressed,
+    required this.actionLabel,
+    this.onPressed,
+    this.inputWidgetnWidget,
   });
 
   final BuildContext context;
   final IconData iconData;
   final String description;
-  final void Function() onPressed;
+  final String actionLabel;
+  final void Function()? onPressed;
+  final Widget? inputWidgetnWidget;
 
   @override
   Widget build(BuildContext context) {
-    return PlatformTextButton(
-      child: Card(
-        child: PlatformTextButton(
-          onPressed: onPressed,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                iconData,
-                size: 60,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: Text(description),
-                ),
-              ),
-            ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            iconData,
+            size: 80,
           ),
-        ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(6),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(description),
+                  if (inputWidgetnWidget != null) inputWidgetnWidget!,
+                  PlatformTextButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: onPressed,
+                    child: Text(actionLabel),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

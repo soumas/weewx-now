@@ -1,4 +1,4 @@
-part of 'add_station_screen_bloc.dart';
+part of 'add_station_precheck_screen_bloc.dart';
 
 @immutable
 sealed class AddStationPrecheckScreenEvent {}

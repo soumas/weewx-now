@@ -1,10 +1,23 @@
 {
-    "@@locale": "en",
+    "@@locale": "en",    
     "addWeeWXStation": "Add WeeWX Station",
     "weeWXStationUrl": "WeeWX Station web address",
     "continuee": "Continue",
     "cancel": "Cancel",
+    "close": "Close",
+    "checkConnection": "Check the connection",
+    "searchStation": "Search for station",
+    "scanQrCode": "scan QR code",
+    "comingSoon": "Coming soon",
+    "unknownError": "Unknown error",
     "addStationViaQrCodeDesc": "I have the QR code of my WeeWX station and would like to scan it now.",
     "addStationVialviaUrlDesc": "I have the web address of my WeeWX station and would like to enter it manually.",
-    "addStationVialviaPublicService": "I want to search for my WeeWX station in the public WeeWX Now registry."
+    "addStationVialviaPublicService": "I want to search for my WeeWX station in the public WeeWX Now registry.",
+    "addStationCheckFailedDialogErrorOnCalling": "Error calling {url}",
+    "dioErrorTimeout": "The connection timed out",
+    "dioErrorBadCertificate": "Invalid certificate",
+    "dioErrorBadResponse": "Serverresponse: {statusCode} {statusMessage}",
+    "dioErrorConnectionError": "The connection was aborted",
+    "dioErrorImpossible": "Connection not possible. Please check the address and ensure that your device is connected to the internet.",
+    "weewxnowRegisterComingSoon": "This feature is not yet available. If you would like to pre-register your WeeWX Now station, please contact office@soumasoft.com"
 }
