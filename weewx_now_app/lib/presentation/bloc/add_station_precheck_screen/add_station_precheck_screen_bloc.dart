@@ -20,7 +20,7 @@ class AddStationPrecheckScreenBloc extends Bloc<AddStationPrecheckScreenEvent, A
       try {
         emit(AddStationPrecheckRunning(url: event.url));
         WeeWxConfig cfg = await stationRepository.loadSettings(WeewxEndpoint(name: '', url: event.url));
-        emit(AddStationPrecheckSuccess(weeWxConfig: cfg));
+        emit(AddStationPrecheckSuccess(endpointUrl: event.url, weeWxConfig: cfg));
       } catch (e) {
         emit(AddStationPrecheckFailed(lastCheckedUrl: event.url, error: e));
       }

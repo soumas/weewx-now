@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentation/bloc/add_station_precheck_screen/add_station_precheck_screen_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:weewx_now/presentation/screens/add_station_confirm_screen/add_station_confirm_screen.dart';
 import 'package:weewx_now/presentation/screens/add_station_precheck_screen/fragments/add_station_check_failed_dialog.dart';
 import 'package:weewx_now/presentation/screens/add_station_precheck_screen/fragments/add_station_method_button.dart';
 
@@ -40,10 +41,12 @@ class _AddStationPrecheckScreenState extends State<AddStationPrecheckScreen> {
         ),
         body: Builder(builder: (context) {
           return BlocListener<AddStationPrecheckScreenBloc, AddStationPrecheckScreenState>(
-            listenWhen: (previous, current) => current is AddStationPrecheckFailed,
             listener: (context, state) {
               if (state is AddStationPrecheckFailed) {
                 showPlatformDialog<String>(context: context, builder: (context) => AddStationCheckFailedDialog(error: state.error));
+              }
+              if (state is AddStationPrecheckSuccess) {
+                context.pushNamed(AddStationConfirmScreen.routeName, extra: state);
               }
             },
             child: SafeArea(
