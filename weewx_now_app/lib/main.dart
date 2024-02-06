@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:weewx_now/injection.dart';
+import 'package:weewx_now/presentation/bloc/busy/busy_cubit.dart';
 import 'package:weewx_now/presentation/bloc/locale/locale_cubit.dart';
 import 'package:weewx_now/presentation/bloc/theme/theme_cubit.dart';
 import 'package:weewx_now/presentation/routes.dart';
@@ -24,6 +25,7 @@ void main() async {
         BlocProvider(create: (context) => sl.get<ThemeCubit>()..init()),
         BlocProvider(create: (context) => sl.get<LocaleCubit>()..init()),
         BlocProvider(create: (context) => sl.get<CurrentEndpointCubit>()..init()),
+        BlocProvider(create: (context) => sl.get<BusyCubit>()),
       ],
       child: const MainApp(),
     ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:weewx_now/injection.dart';
+import 'package:weewx_now/presentation/bloc/busy/busy_cubit.dart';
 import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
 import 'package:weewx_now/presentation/bloc/locale/locale_cubit.dart';
 import 'package:weewx_now/presentation/bloc/theme/theme_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/dashboard_reload_button.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/endpoint_required_widget.dart';
 import 'package:weewx_now/presentation/screens/my_stations_sceen/my_stations_screen.dart';
+import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -21,7 +23,6 @@ class DashboardScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl.get<DashboardScreenBloc>(),
       child: BlocListener<CurrentEndpointCubit, WeewxEndpointState>(
-        listenWhen: (previous, current) => current is WeewxEndpointSelected || current is NoSelectableEndpointFound,
         listener: (context, state) {
           if (state is WeewxEndpointSelected) {
             context.read<DashboardScreenBloc>().add(LoadDashboardData(endpoint: context.read<CurrentEndpointCubit>().selectedEndpoint!));
@@ -30,7 +31,7 @@ class DashboardScreen extends StatelessWidget {
             context.read<DashboardScreenBloc>().add(EmitEndpointRequired());
           }
         },
-        child: PlatformScaffold(
+        child: WeeWxNowScaffold(
           appBar: PlatformAppBar(
             trailingActions: [
               PlatformPopupMenu(options: [
@@ -57,7 +58,10 @@ class DashboardScreen extends StatelessWidget {
               ], icon: const Icon(Icons.menu)),
             ],
           ),
-          body: SafeArea(
+          child: BlocListener<DashboardScreenBloc, DashboardScreenState>(
+            listener: (context, state) {
+              context.read<BusyCubit>().setBusy(state is DashboardInitializing || (state is DashboardData && state.loading));
+            },
             child: BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
               builder: (context, state) {
                 if (state is DashboardData) {
