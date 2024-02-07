@@ -58,7 +58,7 @@ class DashboardScreen extends StatelessWidget {
               ], icon: const Icon(Icons.menu)),
             ],
           ),
-          child: BlocListener<DashboardScreenBloc, DashboardScreenState>(
+          body: BlocListener<DashboardScreenBloc, DashboardScreenState>(
             listener: (context, state) {
               context.read<BusyCubit>().setBusy(state is DashboardInitializing || (state is DashboardData && state.loading));
             },

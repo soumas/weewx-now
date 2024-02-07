@@ -3,26 +3,22 @@ import 'dart:convert';
 class SettingsModel {
   final String generation;
   final Station station;
-  final Extras extras;
-  final Texts texts;
+  final Weewxnow weewxnow;
   SettingsModel({
     required this.generation,
     required this.station,
-    required this.extras,
-    required this.texts,
+    required this.weewxnow,
   });
 
   SettingsModel copyWith({
     String? generation,
     Station? station,
-    Extras? extras,
-    Texts? texts,
+    Weewxnow? weewxnow,
   }) {
     return SettingsModel(
       generation: generation ?? this.generation,
       station: station ?? this.station,
-      extras: extras ?? this.extras,
-      texts: texts ?? this.texts,
+      weewxnow: weewxnow ?? this.weewxnow,
     );
   }
 
@@ -30,8 +26,7 @@ class SettingsModel {
     return {
       'generation': generation,
       'station': station.toMap(),
-      'extras': extras.toMap(),
-      'texts': texts.toMap(),
+      'weewxnow': weewxnow.toMap(),
     };
   }
 
@@ -39,39 +34,26 @@ class SettingsModel {
     return SettingsModel(
       generation: map['generation'] ?? '',
       station: Station.fromMap(map['station']),
-      extras: Extras.fromMap(map['extras']),
-      texts: Texts.fromMap(map['texts']),
+      weewxnow: Weewxnow.fromMap(map['weewxnow']),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory SettingsModel.fromJson(String source) =>
-      SettingsModel.fromMap(json.decode(source));
+  factory SettingsModel.fromJson(String source) => SettingsModel.fromMap(json.decode(source));
 
   @override
-  String toString() {
-    return 'SettingsModel(generation: $generation, station: $station, extras: $extras, texts: $texts)';
-  }
+  String toString() => 'SettingsModel(generation: $generation, station: $station, weewxnow: $weewxnow)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is SettingsModel &&
-        other.generation == generation &&
-        other.station == station &&
-        other.extras == extras &&
-        other.texts == texts;
+    return other is SettingsModel && other.generation == generation && other.station == station && other.weewxnow == weewxnow;
   }
 
   @override
-  int get hashCode {
-    return generation.hashCode ^
-        station.hashCode ^
-        extras.hashCode ^
-        texts.hashCode;
-  }
+  int get hashCode => generation.hashCode ^ station.hashCode ^ weewxnow.hashCode;
 }
 
 class Station {
@@ -156,8 +138,7 @@ class Station {
 
   String toJson() => json.encode(toMap());
 
-  factory Station.fromJson(String source) =>
-      Station.fromMap(json.decode(source));
+  factory Station.fromJson(String source) => Station.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -196,23 +177,27 @@ class Station {
   }
 }
 
-class Extras {
-  final String url;
+class Weewxnow {
+  final String responsibleEntityName;
+  final String responsibleEntityUrl;
   final bool hideImageViewer;
   final String password;
-  Extras({
-    required this.url,
+  Weewxnow({
+    required this.responsibleEntityName,
+    required this.responsibleEntityUrl,
     required this.hideImageViewer,
     required this.password,
   });
 
-  Extras copyWith({
-    String? url,
+  Weewxnow copyWith({
+    String? responsibleEntityName,
+    String? responsibleEntityUrl,
     bool? hideImageViewer,
     String? password,
   }) {
-    return Extras(
-      url: url ?? this.url,
+    return Weewxnow(
+      responsibleEntityName: responsibleEntityName ?? this.responsibleEntityName,
+      responsibleEntityUrl: responsibleEntityUrl ?? this.responsibleEntityUrl,
       hideImageViewer: hideImageViewer ?? this.hideImageViewer,
       password: password ?? this.password,
     );
@@ -220,15 +205,17 @@ class Extras {
 
   Map<String, dynamic> toMap() {
     return {
-      'url': url,
+      'responsibleEntityName': responsibleEntityName,
+      'responsibleEntityUrl': responsibleEntityUrl,
       'hideImageViewer': hideImageViewer,
       'password': password,
     };
   }
 
-  factory Extras.fromMap(Map<String, dynamic> map) {
-    return Extras(
-      url: map['url'] ?? '',
+  factory Weewxnow.fromMap(Map<String, dynamic> map) {
+    return Weewxnow(
+      responsibleEntityName: map['responsibleEntityName'] ?? '',
+      responsibleEntityUrl: map['responsibleEntityUrl'] ?? '',
       hideImageViewer: map['hideImageViewer'] ?? false,
       password: map['password'] ?? '',
     );
@@ -236,304 +223,26 @@ class Extras {
 
   String toJson() => json.encode(toMap());
 
-  factory Extras.fromJson(String source) => Extras.fromMap(json.decode(source));
+  factory Weewxnow.fromJson(String source) => Weewxnow.fromMap(json.decode(source));
 
   @override
-  String toString() =>
-      'Extras(url: $url, hideImageViewer: $hideImageViewer, password: $password)';
+  String toString() {
+    return 'Weewxnow(responsibleEntityName: $responsibleEntityName, responsibleEntityUrl: $responsibleEntityUrl, hideImageViewer: $hideImageViewer, password: $password)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Extras &&
-        other.url == url &&
+    return other is Weewxnow &&
+        other.responsibleEntityName == responsibleEntityName &&
+        other.responsibleEntityUrl == responsibleEntityUrl &&
         other.hideImageViewer == hideImageViewer &&
         other.password == password;
   }
 
   @override
-  int get hashCode =>
-      url.hashCode ^ hideImageViewer.hashCode ^ password.hashCode;
-}
-
-class Texts {
-  final String outTemp;
-  final String dewpoint;
-  final String outHumidity;
-  final String heatindex;
-  final String barometer;
-  final String windSpeed;
-  final String windGust;
-  final String windDir;
-  final String windchill;
-  final String rainRate;
-  final String inTemp;
-  final String inHumidity;
-  final String outTempMax;
-  final String outTempMin;
-  final String dewpointMax;
-  final String dewpointMin;
-  final String outHumidityMax;
-  final String outHumidityMin;
-  final String barometerMax;
-  final String barometerMin;
-  final String windSpeedMax;
-  final String windGustMax;
-  final String rainRateMax;
-  final String rainTotal;
-  final String inTempMax;
-  final String inTempMin;
-  final String inHumidityMax;
-  final String inHumidityMin;
-  final String currentConditions;
-  final String at;
-  Texts({
-    required this.outTemp,
-    required this.dewpoint,
-    required this.outHumidity,
-    required this.heatindex,
-    required this.barometer,
-    required this.windSpeed,
-    required this.windGust,
-    required this.windDir,
-    required this.windchill,
-    required this.rainRate,
-    required this.inTemp,
-    required this.inHumidity,
-    required this.outTempMax,
-    required this.outTempMin,
-    required this.dewpointMax,
-    required this.dewpointMin,
-    required this.outHumidityMax,
-    required this.outHumidityMin,
-    required this.barometerMax,
-    required this.barometerMin,
-    required this.windSpeedMax,
-    required this.windGustMax,
-    required this.rainRateMax,
-    required this.rainTotal,
-    required this.inTempMax,
-    required this.inTempMin,
-    required this.inHumidityMax,
-    required this.inHumidityMin,
-    required this.currentConditions,
-    required this.at,
-  });
-
-  Texts copyWith({
-    String? outTemp,
-    String? dewpoint,
-    String? outHumidity,
-    String? heatindex,
-    String? barometer,
-    String? windSpeed,
-    String? windGust,
-    String? windDir,
-    String? windchill,
-    String? rainRate,
-    String? inTemp,
-    String? inHumidity,
-    String? outTempMax,
-    String? outTempMin,
-    String? dewpointMax,
-    String? dewpointMin,
-    String? outHumidityMax,
-    String? outHumidityMin,
-    String? barometerMax,
-    String? barometerMin,
-    String? windSpeedMax,
-    String? windGustMax,
-    String? rainRateMax,
-    String? rainTotal,
-    String? inTempMax,
-    String? inTempMin,
-    String? inHumidityMax,
-    String? inHumidityMin,
-    String? currentConditions,
-    String? at,
-  }) {
-    return Texts(
-      outTemp: outTemp ?? this.outTemp,
-      dewpoint: dewpoint ?? this.dewpoint,
-      outHumidity: outHumidity ?? this.outHumidity,
-      heatindex: heatindex ?? this.heatindex,
-      barometer: barometer ?? this.barometer,
-      windSpeed: windSpeed ?? this.windSpeed,
-      windGust: windGust ?? this.windGust,
-      windDir: windDir ?? this.windDir,
-      windchill: windchill ?? this.windchill,
-      rainRate: rainRate ?? this.rainRate,
-      inTemp: inTemp ?? this.inTemp,
-      inHumidity: inHumidity ?? this.inHumidity,
-      outTempMax: outTempMax ?? this.outTempMax,
-      outTempMin: outTempMin ?? this.outTempMin,
-      dewpointMax: dewpointMax ?? this.dewpointMax,
-      dewpointMin: dewpointMin ?? this.dewpointMin,
-      outHumidityMax: outHumidityMax ?? this.outHumidityMax,
-      outHumidityMin: outHumidityMin ?? this.outHumidityMin,
-      barometerMax: barometerMax ?? this.barometerMax,
-      barometerMin: barometerMin ?? this.barometerMin,
-      windSpeedMax: windSpeedMax ?? this.windSpeedMax,
-      windGustMax: windGustMax ?? this.windGustMax,
-      rainRateMax: rainRateMax ?? this.rainRateMax,
-      rainTotal: rainTotal ?? this.rainTotal,
-      inTempMax: inTempMax ?? this.inTempMax,
-      inTempMin: inTempMin ?? this.inTempMin,
-      inHumidityMax: inHumidityMax ?? this.inHumidityMax,
-      inHumidityMin: inHumidityMin ?? this.inHumidityMin,
-      currentConditions: currentConditions ?? this.currentConditions,
-      at: at ?? this.at,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'outTemp': outTemp,
-      'dewpoint': dewpoint,
-      'outHumidity': outHumidity,
-      'heatindex': heatindex,
-      'barometer': barometer,
-      'windSpeed': windSpeed,
-      'windGust': windGust,
-      'windDir': windDir,
-      'windchill': windchill,
-      'rainRate': rainRate,
-      'inTemp': inTemp,
-      'inHumidity': inHumidity,
-      'outTempMax': outTempMax,
-      'outTempMin': outTempMin,
-      'dewpointMax': dewpointMax,
-      'dewpointMin': dewpointMin,
-      'outHumidityMax': outHumidityMax,
-      'outHumidityMin': outHumidityMin,
-      'barometerMax': barometerMax,
-      'barometerMin': barometerMin,
-      'windSpeedMax': windSpeedMax,
-      'windGustMax': windGustMax,
-      'rainRateMax': rainRateMax,
-      'rainTotal': rainTotal,
-      'inTempMax': inTempMax,
-      'inTempMin': inTempMin,
-      'inHumidityMax': inHumidityMax,
-      'inHumidityMin': inHumidityMin,
-      'currentConditions': currentConditions,
-      'at': at,
-    };
-  }
-
-  factory Texts.fromMap(Map<String, dynamic> map) {
-    return Texts(
-      outTemp: map['outTemp'] ?? '',
-      dewpoint: map['dewpoint'] ?? '',
-      outHumidity: map['outHumidity'] ?? '',
-      heatindex: map['heatindex'] ?? '',
-      barometer: map['barometer'] ?? '',
-      windSpeed: map['windSpeed'] ?? '',
-      windGust: map['windGust'] ?? '',
-      windDir: map['windDir'] ?? '',
-      windchill: map['windchill'] ?? '',
-      rainRate: map['rainRate'] ?? '',
-      inTemp: map['inTemp'] ?? '',
-      inHumidity: map['inHumidity'] ?? '',
-      outTempMax: map['outTempMax'] ?? '',
-      outTempMin: map['outTempMin'] ?? '',
-      dewpointMax: map['dewpointMax'] ?? '',
-      dewpointMin: map['dewpointMin'] ?? '',
-      outHumidityMax: map['outHumidityMax'] ?? '',
-      outHumidityMin: map['outHumidityMin'] ?? '',
-      barometerMax: map['barometerMax'] ?? '',
-      barometerMin: map['barometerMin'] ?? '',
-      windSpeedMax: map['windSpeedMax'] ?? '',
-      windGustMax: map['windGustMax'] ?? '',
-      rainRateMax: map['rainRateMax'] ?? '',
-      rainTotal: map['rainTotal'] ?? '',
-      inTempMax: map['inTempMax'] ?? '',
-      inTempMin: map['inTempMin'] ?? '',
-      inHumidityMax: map['inHumidityMax'] ?? '',
-      inHumidityMin: map['inHumidityMin'] ?? '',
-      currentConditions: map['currentConditions'] ?? '',
-      at: map['at'] ?? '',
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Texts.fromJson(String source) => Texts.fromMap(json.decode(source));
-
-  @override
-  String toString() {
-    return 'Texts(outTemp: $outTemp, dewpoint: $dewpoint, outHumidity: $outHumidity, heatindex: $heatindex, barometer: $barometer, windSpeed: $windSpeed, windGust: $windGust, windDir: $windDir, windchill: $windchill, rainRate: $rainRate, inTemp: $inTemp, inHumidity: $inHumidity, outTempMax: $outTempMax, outTempMin: $outTempMin, dewpointMax: $dewpointMax, dewpointMin: $dewpointMin, outHumidityMax: $outHumidityMax, outHumidityMin: $outHumidityMin, barometerMax: $barometerMax, barometerMin: $barometerMin, windSpeedMax: $windSpeedMax, windGustMax: $windGustMax, rainRateMax: $rainRateMax, rainTotal: $rainTotal, inTempMax: $inTempMax, inTempMin: $inTempMin, inHumidityMax: $inHumidityMax, inHumidityMin: $inHumidityMin, currentConditions: $currentConditions, at: $at)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Texts &&
-        other.outTemp == outTemp &&
-        other.dewpoint == dewpoint &&
-        other.outHumidity == outHumidity &&
-        other.heatindex == heatindex &&
-        other.barometer == barometer &&
-        other.windSpeed == windSpeed &&
-        other.windGust == windGust &&
-        other.windDir == windDir &&
-        other.windchill == windchill &&
-        other.rainRate == rainRate &&
-        other.inTemp == inTemp &&
-        other.inHumidity == inHumidity &&
-        other.outTempMax == outTempMax &&
-        other.outTempMin == outTempMin &&
-        other.dewpointMax == dewpointMax &&
-        other.dewpointMin == dewpointMin &&
-        other.outHumidityMax == outHumidityMax &&
-        other.outHumidityMin == outHumidityMin &&
-        other.barometerMax == barometerMax &&
-        other.barometerMin == barometerMin &&
-        other.windSpeedMax == windSpeedMax &&
-        other.windGustMax == windGustMax &&
-        other.rainRateMax == rainRateMax &&
-        other.rainTotal == rainTotal &&
-        other.inTempMax == inTempMax &&
-        other.inTempMin == inTempMin &&
-        other.inHumidityMax == inHumidityMax &&
-        other.inHumidityMin == inHumidityMin &&
-        other.currentConditions == currentConditions &&
-        other.at == at;
-  }
-
-  @override
   int get hashCode {
-    return outTemp.hashCode ^
-        dewpoint.hashCode ^
-        outHumidity.hashCode ^
-        heatindex.hashCode ^
-        barometer.hashCode ^
-        windSpeed.hashCode ^
-        windGust.hashCode ^
-        windDir.hashCode ^
-        windchill.hashCode ^
-        rainRate.hashCode ^
-        inTemp.hashCode ^
-        inHumidity.hashCode ^
-        outTempMax.hashCode ^
-        outTempMin.hashCode ^
-        dewpointMax.hashCode ^
-        dewpointMin.hashCode ^
-        outHumidityMax.hashCode ^
-        outHumidityMin.hashCode ^
-        barometerMax.hashCode ^
-        barometerMin.hashCode ^
-        windSpeedMax.hashCode ^
-        windGustMax.hashCode ^
-        rainRateMax.hashCode ^
-        rainTotal.hashCode ^
-        inTempMax.hashCode ^
-        inTempMin.hashCode ^
-        inHumidityMax.hashCode ^
-        inHumidityMin.hashCode ^
-        currentConditions.hashCode ^
-        at.hashCode;
+    return responsibleEntityName.hashCode ^ responsibleEntityUrl.hashCode ^ hideImageViewer.hashCode ^ password.hashCode;
   }
 }

@@ -28,11 +28,11 @@ class AddStationMethodButton extends StatelessWidget {
         children: [
           Icon(
             iconData,
-            size: 80,
+            size: 60,
           ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(6),
+              padding: const EdgeInsets.all(3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

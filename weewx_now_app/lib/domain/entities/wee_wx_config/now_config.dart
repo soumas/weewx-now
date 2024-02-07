@@ -1,24 +1,28 @@
-class NowConfig {
-  final String endpoint;
-  final bool hideImageViewer;
+class WeeWXNowConfig {
+  final String responsibleEntityName;
+  final String responsibleEntityUrl;
   final String? password;
-  NowConfig({
-    required this.endpoint,
-    required this.hideImageViewer,
+  final bool hideImageViewer;
+  WeeWXNowConfig({
+    required this.responsibleEntityName,
+    required this.responsibleEntityUrl,
     this.password,
+    required this.hideImageViewer,
   });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is NowConfig &&
-        other.endpoint == endpoint &&
-        other.hideImageViewer == hideImageViewer &&
-        other.password == password;
+    return other is WeeWXNowConfig &&
+        other.responsibleEntityName == responsibleEntityName &&
+        other.responsibleEntityUrl == responsibleEntityUrl &&
+        other.password == password &&
+        other.hideImageViewer == hideImageViewer;
   }
 
   @override
-  int get hashCode =>
-      endpoint.hashCode ^ hideImageViewer.hashCode ^ password.hashCode;
+  int get hashCode {
+    return responsibleEntityName.hashCode ^ responsibleEntityUrl.hashCode ^ password.hashCode ^ hideImageViewer.hashCode;
+  }
 }

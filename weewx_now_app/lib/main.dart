@@ -8,9 +8,9 @@ import 'package:weewx_now/presentation/bloc/locale/locale_cubit.dart';
 import 'package:weewx_now/presentation/bloc/theme/theme_cubit.dart';
 import 'package:weewx_now/presentation/routes.dart';
 import 'package:weewx_now/presentation/theme.dart';
+import 'package:weewx_now/presentation/widgets/precached_images.dart';
 import 'package:weewx_now/util/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:weewx_now/util/precached_images.dart';
 
 import 'presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 
@@ -37,32 +37,33 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PrecachedImages.init(context);
     final themeMode = context.watch<ThemeCubit>().currentThemeMode;
     final locale = context.watch<LocaleCubit>().currentLocale;
 
-    return PlatformProvider(
-      settings: PlatformSettingsData(
-        iosUsesMaterialWidgets: true,
-        iosUseZeroPaddingForAppbarPlatformIcon: true,
-      ),
-      builder: (context) => PlatformTheme(
-        themeMode: themeMode,
-        materialLightTheme: themeDataLight,
-        materialDarkTheme: themeDataDark,
-        cupertinoLightTheme: MaterialBasedCupertinoThemeData(materialTheme: themeDataLight),
-        cupertinoDarkTheme: MaterialBasedCupertinoThemeData(materialTheme: themeDataDark),
-        matchCupertinoSystemChromeBrightness: true,
-        builder: (context) => PlatformApp.router(
-          locale: locale,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: kSupportedLocales.map((e) => Locale(e)),
-          routerConfig: router,
+    return PrecachedImages(
+      child: PlatformProvider(
+        settings: PlatformSettingsData(
+          iosUsesMaterialWidgets: true,
+          iosUseZeroPaddingForAppbarPlatformIcon: true,
+        ),
+        builder: (context) => PlatformTheme(
+          themeMode: themeMode,
+          materialLightTheme: themeDataLight,
+          materialDarkTheme: themeDataDark,
+          cupertinoLightTheme: MaterialBasedCupertinoThemeData(materialTheme: themeDataLight),
+          cupertinoDarkTheme: MaterialBasedCupertinoThemeData(materialTheme: themeDataDark),
+          matchCupertinoSystemChromeBrightness: true,
+          builder: (context) => PlatformApp.router(
+            locale: locale,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: kSupportedLocales.map((e) => Locale(e)),
+            routerConfig: router,
+          ),
         ),
       ),
     );

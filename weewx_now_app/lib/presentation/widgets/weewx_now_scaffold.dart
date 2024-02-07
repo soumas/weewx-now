@@ -7,11 +7,11 @@ class WeeWxNowScaffold extends StatelessWidget {
   const WeeWxNowScaffold({
     super.key,
     this.appBar,
-    required this.child,
+    required this.body,
   });
 
   final PlatformAppBar? appBar;
-  final Widget child;
+  final Widget body;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class WeeWxNowScaffold extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            child,
+            body,
             const BusyIndicator(),
           ],
         ),

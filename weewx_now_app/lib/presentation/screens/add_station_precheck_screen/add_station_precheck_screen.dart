@@ -10,8 +10,9 @@ import 'package:weewx_now/presentation/bloc/busy/busy_cubit.dart';
 import 'package:weewx_now/presentation/screens/add_station_confirm_screen/add_station_confirm_screen.dart';
 import 'package:weewx_now/presentation/screens/add_station_precheck_screen/fragments/add_station_check_failed_dialog.dart';
 import 'package:weewx_now/presentation/screens/add_station_precheck_screen/fragments/add_station_method_button.dart';
+import 'package:weewx_now/presentation/widgets/precached_images.dart';
 import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
-import 'package:weewx_now/util/precached_images.dart';
+import 'dart:math' as math;
 
 class AddStationPrecheckScreen extends StatefulWidget {
   const AddStationPrecheckScreen({super.key});
@@ -24,7 +25,7 @@ class AddStationPrecheckScreen extends StatefulWidget {
 }
 
 class _AddStationPrecheckScreenState extends State<AddStationPrecheckScreen> {
-  final _urlInputController = TextEditingController();
+  final _urlInputController = TextEditingController(text: 'https://soumasoft.com/static/weewx/now');
 
   @override
   void dispose() {
@@ -51,17 +52,17 @@ class _AddStationPrecheckScreenState extends State<AddStationPrecheckScreen> {
             appBar: PlatformAppBar(
               title: Text(AppLocalizations.of(context)!.addWeeWXStation),
             ),
-            child: ListView(children: [
-              const Column(
+            body: ListView(children: [
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(bottom: 32, top: 16),
+                    padding: const EdgeInsets.only(bottom: 32, top: 16),
                     child: Hero(
                       tag: AddStationPrecheckScreen.heroImageTag,
                       child: Image(
-                        image: PrecachedImages.logoFull,
-                        width: 200,
+                        image: precachedLogoFull.image,
+                        width: [MediaQuery.of(context).size.width * 0.85, 1200].reduce(math.min).toDouble(),
                       ),
                     ),
                   ),
@@ -103,27 +104,6 @@ class _AddStationPrecheckScreenState extends State<AddStationPrecheckScreen> {
                   keyboardType: TextInputType.url,
                   onChanged: (value) => setState(() {}),
                 ),
-              ),
-              AddStationMethodButton(
-                context: context,
-                iconData: Icons.search,
-                description: AppLocalizations.of(context)!.addStationVialviaPublicService,
-                actionLabel: AppLocalizations.of(context)!.searchStation,
-                onPressed: () {
-                  showPlatformDialog(
-                    context: context,
-                    builder: (context) => PlatformAlertDialog(
-                      title: Text(AppLocalizations.of(context)!.comingSoon),
-                      content: Text(AppLocalizations.of(context)!.weewxnowRegisterComingSoon),
-                      actions: [
-                        PlatformDialogAction(
-                          child: Text(AppLocalizations.of(context)!.close),
-                          onPressed: () => context.pop(),
-                        )
-                      ],
-                    ),
-                  );
-                },
               ),
             ]),
           );

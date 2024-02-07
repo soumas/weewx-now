@@ -8,7 +8,7 @@ import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_s
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
 
-import 'package:weewx_now/util/precached_images.dart';
+import 'package:weewx_now/presentation/widgets/precached_images.dart';
 
 class EndpointRequiredWidget extends StatelessWidget {
   const EndpointRequiredWidget({
@@ -25,7 +25,7 @@ class EndpointRequiredWidget extends StatelessWidget {
           Hero(
             tag: AddStationPrecheckScreen.heroImageTag,
             child: Image(
-              image: PrecachedImages.logoFull,
+              image: precachedLogoFull.image,
               width: [MediaQuery.of(context).size.width * 0.85, 1200].reduce(math.min).toDouble(),
             ),
           ),

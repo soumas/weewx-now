@@ -56,7 +56,7 @@ class _ImageViewerState extends State<ImageViewer> {
                 return SizedBox(
                   width: constraints.maxWidth,
                   child: Image.network(
-                    '${data.settings.now.endpoint}/images/${data.selectedImage.category.id}/${data.selectedImage.data}',
+                    'TODO/images/${data.selectedImage.category.id}/${data.selectedImage.data}',
                     fit: BoxFit.cover,
                   ),
                 );
