@@ -6,4 +6,5 @@ abstract class WeewxEndpointRepository {
   Future<List<WeewxEndpoint>> deleteEndpoint(String endpointUrl);
   Future<WeewxEndpoint?> loadLastSelectedEndpoint();
   Future<WeewxEndpoint> saveLastSelectedEndpoint(WeewxEndpoint endpoint);
+  Future resetLastSelectedEndpoint();
 }

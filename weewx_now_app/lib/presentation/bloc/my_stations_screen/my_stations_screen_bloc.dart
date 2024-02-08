@@ -18,5 +18,13 @@ class MyStationsScreenBloc extends Bloc<MyStationsScreenEvent, MyStationsScreenS
       var stationsLst = await endpointRepository.loadEndpoints();
       emit(MyStationsScreenLoaded(endpoints: stationsLst));
     });
+    on<DeleteStation>((event, emit) async {
+      emit(MyStationsScreenLoading());
+      await endpointRepository.deleteEndpoint(event.endpoint.url);
+      if (event.isSelected) {
+        await endpointRepository.resetLastSelectedEndpoint();
+      }
+      add(LoadMyStations());
+    });
   }
 }

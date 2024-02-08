@@ -68,7 +68,10 @@ class DashboardScreen extends StatelessWidget {
                   return Column(
                     children: [
                       const DashboardReloadButton(),
-                      Text('${state.weather.toString()} ${state.config.station.location}'),
+                      Text(
+                        state.config.station.location,
+                        style: Theme.of(context).textTheme.headlineSmall,
+                      ),
                     ],
                   );
                 } else if (state is DashboardDataError) {

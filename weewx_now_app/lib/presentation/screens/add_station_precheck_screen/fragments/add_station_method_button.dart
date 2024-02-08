@@ -23,28 +23,26 @@ class AddStationMethodButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Row(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(
             iconData,
             size: 60,
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(3),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(description),
-                  if (inputWidgetnWidget != null) inputWidgetnWidget!,
-                  PlatformTextButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: onPressed,
-                    child: Text(actionLabel),
-                  )
-                ],
-              ),
+          Padding(
+            padding: const EdgeInsets.all(3),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(description),
+                if (inputWidgetnWidget != null) inputWidgetnWidget!,
+                PlatformTextButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: onPressed,
+                  child: Text(actionLabel),
+                )
+              ],
             ),
           ),
         ],

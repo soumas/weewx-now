@@ -8,10 +8,14 @@ class WeeWxNowScaffold extends StatelessWidget {
     super.key,
     this.appBar,
     required this.body,
+    this.material,
+    this.cupertino,
   });
 
   final PlatformAppBar? appBar;
   final Widget body;
+  final MaterialScaffoldData Function(BuildContext context, PlatformTarget platform)? material;
+  final CupertinoPageScaffoldData Function(BuildContext context, PlatformTarget platform)? cupertino;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +29,8 @@ class WeeWxNowScaffold extends StatelessWidget {
           ],
         ),
       ),
+      material: material,
+      cupertino: cupertino,
     );
   }
 }

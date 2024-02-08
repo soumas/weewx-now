@@ -8,6 +8,7 @@ abstract class WeewxEndpointDataSource {
   Future<List<WeewxEndpointModel>> deleteEndpoint(String endpointUrl);
   Future<WeewxEndpointModel?> loadLastSelectedEndpoint();
   Future<WeewxEndpointModel> saveLastSelectedEndpoint(WeewxEndpointModel endpoint);
+  Future resetLastSelectedEndpoint();
 }
 
 class WeewxEndpointDataSourceImpl extends WeewxEndpointDataSource {
@@ -51,6 +52,11 @@ class WeewxEndpointDataSourceImpl extends WeewxEndpointDataSource {
   Future<WeewxEndpointModel> saveLastSelectedEndpoint(WeewxEndpointModel endpoint) async {
     await (await SharedPreferences.getInstance()).setString(kSharedPrefKeyLastSelectedEndpoint, endpoint.toJson());
     return endpoint;
+  }
+
+  @override
+  Future resetLastSelectedEndpoint() async {
+    await (await SharedPreferences.getInstance()).remove(kSharedPrefKeyLastSelectedEndpoint);
   }
 
   Future<bool> _saveEndpoints(List<WeewxEndpointModel> epLst) async {

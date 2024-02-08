@@ -92,7 +92,7 @@ class _AddStationPrecheckScreenState extends State<AddStationPrecheckScreen> {
                 context: context,
                 iconData: Icons.share,
                 description: AppLocalizations.of(context)!.addStationVialviaUrlDesc,
-                actionLabel: AppLocalizations.of(context)!.checkConnection,
+                actionLabel: AppLocalizations.of(context)!.checkStationUrl,
                 onPressed: Uri.parse(_urlInputController.text).host.isNotEmpty
                     ? () async {
                         context.read<AddStationPrecheckScreenBloc>().add(RunCheck(url: _urlInputController.text));

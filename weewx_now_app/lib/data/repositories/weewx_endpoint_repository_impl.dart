@@ -34,4 +34,9 @@ class WeewxEndpointRepositoryImpl extends WeewxEndpointRepository {
   Future<WeewxEndpoint> saveLastSelectedEndpoint(WeewxEndpoint endpoint) async {
     return (await dataSource.saveLastSelectedEndpoint(WeewxEndpointModelExt.fromEntity(endpoint))).toEntity();
   }
+
+  @override
+  Future resetLastSelectedEndpoint() async {
+    return dataSource.resetLastSelectedEndpoint();
+  }
 }

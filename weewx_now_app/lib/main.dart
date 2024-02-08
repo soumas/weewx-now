@@ -15,6 +15,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 
 void main() async {
+  //debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Injection.init();

@@ -21,3 +21,5 @@ final class MyStationsScreenLoaded extends MyStationsScreenState {
     );
   }
 }
+
+final class StationsDeleted extends MyStationsScreenState {}
