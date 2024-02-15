@@ -19,7 +19,12 @@ class CurrentEndpointCubit extends Cubit<WeewxEndpointState> {
     if (lastSelected != null) {
       selectEndpoint(lastSelected);
     } else {
-      emit(NoSelectableEndpointFound());
+      final savedEndpointLst = await weewxEndpointRepository.loadEndpoints();
+      if (savedEndpointLst.isNotEmpty) {
+        selectEndpoint(savedEndpointLst.first);
+      } else {
+        emit(NoSelectableEndpointFound());
+      }
     }
   }
 

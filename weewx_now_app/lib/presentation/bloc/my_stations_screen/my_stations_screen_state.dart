@@ -22,4 +22,4 @@ final class MyStationsScreenLoaded extends MyStationsScreenState {
   }
 }
 
-final class StationsDeleted extends MyStationsScreenState {}
+final class StationDeleted extends MyStationsScreenState {}

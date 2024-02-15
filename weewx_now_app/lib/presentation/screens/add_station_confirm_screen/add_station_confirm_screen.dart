@@ -69,7 +69,7 @@ class _AddStationConfirmScreenState extends State<AddStationConfirmScreen> {
                 ),
                 PlatformListTile(
                   title: Text(
-                    AppLocalizations.of(context)!.addStationConfirmPositionAndOperator,
+                    AppLocalizations.of(context)!.addStationTitle,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ),
@@ -103,12 +103,6 @@ class _AddStationConfirmScreenState extends State<AddStationConfirmScreen> {
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 10),
                   child: Divider(),
-                ),
-                PlatformListTile(
-                  title: Text(
-                    AppLocalizations.of(context)!.myStation,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
                 ),
                 PlatformListTile(
                   title: const SizedBox(),

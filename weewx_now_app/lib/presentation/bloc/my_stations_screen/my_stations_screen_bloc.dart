@@ -24,6 +24,7 @@ class MyStationsScreenBloc extends Bloc<MyStationsScreenEvent, MyStationsScreenS
       if (event.isSelected) {
         await endpointRepository.resetLastSelectedEndpoint();
       }
+      emit(StationDeleted());
       add(LoadMyStations());
     });
   }

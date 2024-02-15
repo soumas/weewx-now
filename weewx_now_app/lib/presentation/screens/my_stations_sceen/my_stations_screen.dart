@@ -9,6 +9,7 @@ import 'package:weewx_now/presentation/bloc/my_stations_screen/my_stations_scree
 import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_station_precheck_screen.dart';
 import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyStationsScreen extends StatelessWidget {
   const MyStationsScreen({super.key});
@@ -23,10 +24,13 @@ class MyStationsScreen extends StatelessWidget {
       child: BlocListener<MyStationsScreenBloc, MyStationsScreenState>(
         listener: (context, state) {
           context.read<BusyCubit>().setBusy(state is MyStationsScreenLoading);
+          if (state is StationDeleted) {
+            context.read<CurrentEndpointCubit>().init();
+          }
         },
         child: WeeWxNowScaffold(
           appBar: PlatformAppBar(
-            title: const Text('Meine Stationen'),
+            title: Text(AppLocalizations.of(context)!.myStations),
             cupertino: (context, platform) {
               return CupertinoNavigationBarData(
                 trailing: PlatformIconButton(
@@ -56,15 +60,15 @@ class MyStationsScreen extends StatelessWidget {
                           showPlatformDialog<WeewxEndpoint>(
                             context: context,
                             builder: (context) => PlatformAlertDialog(
-                              title: Text('Station löschen?'),
-                              content: Text('Möchten Sie die Station "${state.endpoints[index].name}" (${state.endpoints[index].url}) endgültig löschen?'),
+                              title: Text(AppLocalizations.of(context)!.deleteStationDialogHeader),
+                              content: Text(AppLocalizations.of(context)!.deleteStationDialogText(state.endpoints[index].name)),
                               actions: [
                                 PlatformDialogAction(
-                                  child: PlatformText('Abbrechen'),
+                                  child: PlatformText(AppLocalizations.of(context)!.cancel),
                                   onPressed: () => context.pop(),
                                 ),
                                 PlatformDialogAction(
-                                  child: PlatformText('Löschen'),
+                                  child: PlatformText(AppLocalizations.of(context)!.delete),
                                   onPressed: () => context.pop(state.endpoints[index]),
                                 )
                               ],
