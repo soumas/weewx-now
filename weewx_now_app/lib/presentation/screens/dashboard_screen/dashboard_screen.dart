@@ -5,13 +5,13 @@ import 'package:go_router/go_router.dart';
 import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentation/bloc/busy/busy_cubit.dart';
 import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
-import 'package:weewx_now/presentation/bloc/locale/locale_cubit.dart';
-import 'package:weewx_now/presentation/bloc/theme/theme_cubit.dart';
 import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/dashboard_reload_button.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/endpoint_required_widget.dart';
 import 'package:weewx_now/presentation/screens/my_stations_sceen/my_stations_screen.dart';
+import 'package:weewx_now/presentation/screens/settings_screen/settings_screen.dart';
 import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -36,24 +36,14 @@ class DashboardScreen extends StatelessWidget {
             trailingActions: [
               PlatformPopupMenu(options: [
                 PopupMenuOption(
-                  label: 'stationen',
+                  label: AppLocalizations.of(context)!.myStations,
                   onTap: (p0) => context.pushNamed(MyStationsScreen.routeName),
                 ),
                 PopupMenuOption(
-                  label: 'toggle theme',
-                  onTap: (p0) => context.read<ThemeCubit>().toggleThemeMode(),
-                ),
-                PopupMenuOption(
-                  label: 'language en',
-                  onTap: (p0) => context.read<LocaleCubit>().setLocale(const Locale('en')),
-                ),
-                PopupMenuOption(
-                  label: 'language de',
-                  onTap: (p0) => context.read<LocaleCubit>().setLocale(const Locale('de')),
-                ),
-                PopupMenuOption(
-                  label: 'current lang: ${context.watch<LocaleCubit>().currentLocale}',
-                  onTap: (p0) {},
+                  label: AppLocalizations.of(context)!.settings,
+                  onTap: (p0) {
+                    context.pushNamed(SettingsScreen.routeName);
+                  },
                 ),
               ], icon: const Icon(Icons.menu)),
             ],

@@ -54,6 +54,10 @@ class MyStationsScreen extends StatelessWidget {
                             : PlatformIcons(context).checkBoxBlankOutlineRounded,
                       ),
                       title: Text(state.endpoints[index].name),
+                      subtitle: Text(
+                        state.endpoints[index].url,
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
                       trailing: PlatformIconButton(
                         icon: Icon(PlatformIcons(context).delete),
                         onPressed: () {

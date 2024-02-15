@@ -16,7 +16,7 @@ class LocaleCubit extends Cubit<LocaleState> {
   }
 
   Locale? _locale;
-  Locale? get currentLocale => _locale;
+  Locale get currentLocale => _locale!;
 
   setLocale(Locale locale) async {
     _locale = locale;
