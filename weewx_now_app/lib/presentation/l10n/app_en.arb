@@ -35,5 +35,9 @@
     "dioErrorBadCertificate": "Invalid certificate",
     "dioErrorBadResponse": "Serverresponse: {statusCode} {statusMessage}",
     "dioErrorConnectionError": "The connection was aborted",
-    "dioErrorImpossible": "Connection not possible. Please check the address and ensure that your device is connected to the internet."
+    "dioErrorImpossible": "Connection not possible. Please check the address and ensure that your device is connected to the internet.",
+    "timePeriodDay": "Day",
+    "timePeriodWeek": "Week",
+    "timePeriodMonth": "Month",
+    "timePeriodYear": "Year"
 }

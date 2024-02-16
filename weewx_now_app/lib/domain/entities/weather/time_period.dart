@@ -1,1 +1,1 @@
-enum TimePeriod { current, day, month, week, year }
+enum TimePeriod { day, month, week, year }

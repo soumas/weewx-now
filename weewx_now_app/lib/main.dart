@@ -20,12 +20,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Injection.init();
+  await sl.get<ThemeCubit>().init();
+  await sl.get<LocaleCubit>().init();
 
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => sl.get<ThemeCubit>()..init()),
-        BlocProvider(create: (context) => sl.get<LocaleCubit>()..init()),
+        BlocProvider(create: (context) => sl.get<ThemeCubit>()),
+        BlocProvider(create: (context) => sl.get<LocaleCubit>()),
         BlocProvider(create: (context) => sl.get<CurrentEndpointCubit>()..init()),
         BlocProvider(create: (context) => sl.get<BusyCubit>()),
       ],

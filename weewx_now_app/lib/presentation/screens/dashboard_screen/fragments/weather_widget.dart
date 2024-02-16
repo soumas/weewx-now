@@ -1,0 +1,146 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
+import 'package:weewx_now/domain/entities/weather/time_period.dart';
+import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
+import 'package:weewx_now/presentationOLD/widgets/key_value_table.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class WeatherWidget extends StatefulWidget {
+  const WeatherWidget({super.key});
+
+  @override
+  State<WeatherWidget> createState() => _WeatherWidgetState();
+}
+
+class _WeatherWidgetState extends State<WeatherWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
+      builder: (context, state) {
+        if (state is DashboardData) {
+          return Column(children: [
+            PlatformListTile(
+              title: Text(
+                'Current Conditions',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            const Divider(),
+            PlatformListTile(
+              title: const KeyValueTable(
+                keyValuePairs: <String, String>{
+                  'Tracking Time': '12.11.2023 @ 15:36',
+                  'Outside Temperature': '6.2°C',
+                  'Heat Index': '4.7°C',
+                  'Wind Chill': '6.2°C',
+                  'Dew Point': '1.1°C',
+                  'Outside Humidity': '70%',
+                  'Barometer': '1007.6 mbar (-0.8)',
+                  'Wind': '2 km/h ESE (112°)',
+                  'Rain Today': '0.00 cm',
+                  'Rain Rate': '0.00 cm/h',
+                  'UV Index': '0.0',
+                  'Radiation': '102 W/m²',
+                  'Inside Temperature': '23.1°C',
+                  'Inside Humidity': '35%',
+                },
+              ),
+            ),
+            PlatformListTile(
+              title: Text(
+                'History',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              trailing: PlatformPopupMenu(
+                icon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(_evalTimePeriodLabel(state.selectedTimePeriod)),
+                    const Icon(Icons.chevron_right),
+                  ],
+                ),
+                options: [
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.day),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.day))),
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.week),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.week))),
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.month),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.month))),
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.year),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.year))),
+                ],
+              ),
+            ),
+            const Divider(),
+            PlatformListTile(
+              title: Column(children: [
+                //Image.network('${state.endpoint.url}/dayET.png'),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}barometer.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}tempdew.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}tempfeel.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}hum.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}wind.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}winddir.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}windvec.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}UV.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}tempin.png'),
+                ),
+                AspectRatio(
+                  aspectRatio: 16 / 7,
+                  child: Image.network('https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}humin.png'),
+                ),
+              ]),
+            )
+          ]);
+        }
+        return const SizedBox();
+      },
+    );
+  }
+
+  String _evalTimePeriodLabel(TimePeriod selectedTimePeriod) {
+    switch (selectedTimePeriod) {
+      case TimePeriod.day:
+        return AppLocalizations.of(context)!.timePeriodDay;
+      case TimePeriod.week:
+        return AppLocalizations.of(context)!.timePeriodWeek;
+      case TimePeriod.month:
+        return AppLocalizations.of(context)!.timePeriodMonth;
+      case TimePeriod.year:
+        return AppLocalizations.of(context)!.timePeriodYear;
+      default:
+        return '';
+    }
+  }
+}

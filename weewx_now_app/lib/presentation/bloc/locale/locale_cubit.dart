@@ -15,8 +15,8 @@ class LocaleCubit extends Cubit<LocaleState> {
     setLocale(await localeRepository.getLocale());
   }
 
-  Locale? _locale;
-  Locale get currentLocale => _locale!;
+  late Locale _locale;
+  Locale get currentLocale => _locale;
 
   setLocale(Locale locale) async {
     _locale = locale;

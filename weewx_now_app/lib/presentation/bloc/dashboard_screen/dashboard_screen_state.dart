@@ -20,12 +20,14 @@ final class DashboardData extends DashboardScreenState {
   final WeeWxConfig config;
   final ImageBundle images;
   final WeatherData weather;
+  final TimePeriod selectedTimePeriod;
   DashboardData({
     required this.loading,
     required this.endpoint,
     required this.config,
     required this.images,
     required this.weather,
+    required this.selectedTimePeriod,
   });
 
   DashboardData copyWith({
@@ -34,6 +36,7 @@ final class DashboardData extends DashboardScreenState {
     WeeWxConfig? config,
     ImageBundle? images,
     WeatherData? weather,
+    TimePeriod? selectedTimePeriod,
   }) {
     return DashboardData(
       loading: loading ?? this.loading,
@@ -41,6 +44,7 @@ final class DashboardData extends DashboardScreenState {
       config: config ?? this.config,
       images: images ?? this.images,
       weather: weather ?? this.weather,
+      selectedTimePeriod: selectedTimePeriod ?? this.selectedTimePeriod,
     );
   }
 }

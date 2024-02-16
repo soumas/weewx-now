@@ -8,6 +8,9 @@ import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bl
 import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/dashboard_reload_button.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/endpoint_required_widget.dart';
+import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/headline_widget.dart';
+import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/images_widget.dart';
+import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/weather_widget.dart';
 import 'package:weewx_now/presentation/screens/my_stations_sceen/my_stations_screen.dart';
 import 'package:weewx_now/presentation/screens/settings_screen/settings_screen.dart';
 import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
@@ -34,18 +37,22 @@ class DashboardScreen extends StatelessWidget {
         child: WeeWxNowScaffold(
           appBar: PlatformAppBar(
             trailingActions: [
-              PlatformPopupMenu(options: [
-                PopupMenuOption(
-                  label: AppLocalizations.of(context)!.myStations,
-                  onTap: (p0) => context.pushNamed(MyStationsScreen.routeName),
-                ),
-                PopupMenuOption(
-                  label: AppLocalizations.of(context)!.settings,
-                  onTap: (p0) {
-                    context.pushNamed(SettingsScreen.routeName);
-                  },
-                ),
-              ], icon: const Icon(Icons.menu)),
+              const DashboardReloadButton(),
+              PlatformPopupMenu(
+                options: [
+                  PopupMenuOption(
+                    label: AppLocalizations.of(context)!.myStations,
+                    onTap: (p0) => context.pushNamed(MyStationsScreen.routeName),
+                  ),
+                  PopupMenuOption(
+                    label: AppLocalizations.of(context)!.settings,
+                    onTap: (p0) {
+                      context.pushNamed(SettingsScreen.routeName);
+                    },
+                  ),
+                ],
+                icon: const Icon(Icons.menu),
+              ),
             ],
           ),
           body: BlocListener<DashboardScreenBloc, DashboardScreenState>(
@@ -55,13 +62,11 @@ class DashboardScreen extends StatelessWidget {
             child: BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
               builder: (context, state) {
                 if (state is DashboardData) {
-                  return Column(
-                    children: [
-                      const DashboardReloadButton(),
-                      Text(
-                        state.config.station.location,
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
+                  return ListView(
+                    children: const [
+                      ImagesWidget(),
+                      HeadlineWidget(),
+                      WeatherWidget(),
                     ],
                   );
                 } else if (state is DashboardDataError) {

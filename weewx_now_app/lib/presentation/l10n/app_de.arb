@@ -35,5 +35,9 @@
     "dioErrorBadCertificate": "Ungültiges Zertifikat",
     "dioErrorBadResponse": "Serverantwort: {statusCode} {statusMessage}",
     "dioErrorConnectionError": "Der Verbindungsaufbau wurde abgebrochen.",
-    "dioErrorImpossible": "Verbindung nicht möglich. Bitte überprüfen Sie die Adresse und stellen Sie sicher, dass Ihr Gerät mit dem Internet verbunden ist."
+    "dioErrorImpossible": "Verbindung nicht möglich. Bitte überprüfen Sie die Adresse und stellen Sie sicher, dass Ihr Gerät mit dem Internet verbunden ist.",
+    "timePeriodDay": "Tag",
+    "timePeriodWeek": "Woche",
+    "timePeriodMonth": "Monat",
+    "timePeriodYear": "Jahr"
 }

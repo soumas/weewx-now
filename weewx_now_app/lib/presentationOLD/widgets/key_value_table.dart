@@ -25,11 +25,17 @@ class KeyValueTable extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Text(e.key),
+                  child: Text(
+                    e.key,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Text(e.value),
+                  child: Text(
+                    e.value,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
                 ),
               ],
             ),
