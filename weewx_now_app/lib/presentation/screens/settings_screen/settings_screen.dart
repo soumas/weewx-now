@@ -22,10 +22,23 @@ class SettingsScreen extends StatelessWidget {
           BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, state) {
               return PlatformListTile(
-                title: Text(AppLocalizations.of(context)!.darkTheme),
-                trailing: PlatformSwitch(
-                  value: context.read<ThemeCubit>().currentThemeMode == ThemeMode.dark,
-                  onChanged: (_) => context.read<ThemeCubit>().toggleThemeMode(),
+                title: Text(AppLocalizations.of(context)!.design),
+                trailing: PlatformPopupMenu(
+                  options: [
+                    PopupMenuOption(label: AppLocalizations.of(context)!.light, onTap: (_) => context.read<ThemeCubit>().setThemeMode(ThemeMode.light)),
+                    PopupMenuOption(label: AppLocalizations.of(context)!.dark, onTap: (_) => context.read<ThemeCubit>().setThemeMode(ThemeMode.dark)),
+                  ],
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(context.read<ThemeCubit>().currentThemeMode == null
+                          ? AppLocalizations.of(context)!.automatic
+                          : context.read<ThemeCubit>().currentThemeMode == ThemeMode.light
+                              ? AppLocalizations.of(context)!.light
+                              : AppLocalizations.of(context)!.dark),
+                      const Icon(Icons.arrow_drop_down),
+                    ],
+                  ),
                 ),
               );
             },
@@ -40,9 +53,15 @@ class SettingsScreen extends StatelessWidget {
                     PopupMenuOption(label: AppLocalizations.of(context)!.german, onTap: (_) => context.read<LocaleCubit>().setLocale(const Locale('de'))),
                     PopupMenuOption(label: AppLocalizations.of(context)!.english, onTap: (_) => context.read<LocaleCubit>().setLocale(const Locale('en'))),
                   ],
-                  icon: Text(context.read<LocaleCubit>().currentLocale.languageCode == 'de'
-                      ? AppLocalizations.of(context)!.german
-                      : AppLocalizations.of(context)!.english),
+                  icon: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(context.read<LocaleCubit>().currentLocale.languageCode == 'de'
+                          ? AppLocalizations.of(context)!.german
+                          : AppLocalizations.of(context)!.english),
+                      const Icon(Icons.arrow_drop_down),
+                    ],
+                  ),
                 ),
               );
             },

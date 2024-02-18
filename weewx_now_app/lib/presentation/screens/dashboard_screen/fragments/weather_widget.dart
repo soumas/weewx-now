@@ -5,6 +5,7 @@ import 'package:weewx_now/domain/entities/weather/time_period.dart';
 import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
 import 'package:weewx_now/presentationOLD/widgets/key_value_table.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'dart:math' as math;
 
 class WeatherWidget extends StatefulWidget {
   const WeatherWidget({super.key});
@@ -16,17 +17,146 @@ class WeatherWidget extends StatefulWidget {
 class _WeatherWidgetState extends State<WeatherWidget> {
   @override
   Widget build(BuildContext context) {
+    const windRoseSize = 70.0;
     return BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
       builder: (context, state) {
         if (state is DashboardData) {
           return Column(children: [
             PlatformListTile(
-              title: Text(
-                'Current Conditions',
-                style: Theme.of(context).textTheme.headlineSmall,
+              title: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            '16,8 °C',
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
+                          Text('Feels like: 13,7 °C'),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  Text('High'),
+                                  Text('18,4 °C'),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text('Low'),
+                                  Text('11,7 °C'),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Container(
+                                width: windRoseSize,
+                                height: windRoseSize,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.blue, width: 4),
+                                ),
+                              ),
+                              SizedBox(
+                                width: windRoseSize,
+                                height: windRoseSize,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'SW',
+                                      style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '${state.weather.current.windDirection.value.round()}${state.weather.current.windDirection.units}',
+                                      style: Theme.of(context).textTheme.labelSmall,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Transform.rotate(
+                                angle: state.weather.current.windDirection.value * math.pi / 180,
+                                child: Container(
+                                  width: windRoseSize,
+                                  height: windRoseSize,
+                                  child: Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Text(
+                                      '▼',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 11,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Column(
+                                children: [
+                                  Text('Speed'),
+                                  Text('1.3 km/h'),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text('Gust'),
+                                  Text('11,2 km/h'),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Text('12.11.2023, 15:36 Uhr'),
+                ],
               ),
             ),
-            const Divider(),
+            PlatformListTile(
+              title: Text(
+                'Zusammenfassung',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              trailing: PlatformPopupMenu(
+                icon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(_evalTimePeriodLabel(state.selectedTimePeriod)),
+                    const Icon(Icons.arrow_drop_down),
+                  ],
+                ),
+                options: [
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.day),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.day))),
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.week),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.week))),
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.month),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.month))),
+                  PopupMenuOption(
+                      label: _evalTimePeriodLabel(TimePeriod.year),
+                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.year))),
+                ],
+              ),
+            ),
             PlatformListTile(
               title: const KeyValueTable(
                 keyValuePairs: <String, String>{
@@ -47,36 +177,6 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                 },
               ),
             ),
-            PlatformListTile(
-              title: Text(
-                'History',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              trailing: PlatformPopupMenu(
-                icon: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(_evalTimePeriodLabel(state.selectedTimePeriod)),
-                    const Icon(Icons.chevron_right),
-                  ],
-                ),
-                options: [
-                  PopupMenuOption(
-                      label: _evalTimePeriodLabel(TimePeriod.day),
-                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.day))),
-                  PopupMenuOption(
-                      label: _evalTimePeriodLabel(TimePeriod.week),
-                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.week))),
-                  PopupMenuOption(
-                      label: _evalTimePeriodLabel(TimePeriod.month),
-                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.month))),
-                  PopupMenuOption(
-                      label: _evalTimePeriodLabel(TimePeriod.year),
-                      onTap: (_) => context.read<DashboardScreenBloc>().add(SelectTimePeriod(timePeriod: TimePeriod.year))),
-                ],
-              ),
-            ),
-            const Divider(),
             PlatformListTile(
               title: Column(children: [
                 //Image.network('${state.endpoint.url}/dayET.png'),
