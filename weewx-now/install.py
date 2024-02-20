@@ -12,7 +12,8 @@ VERSION = '0.1'
 def loader():
     return NowInstaller()
 
-class NowInstaller(ExtensionInstaller):
+class NowInstaller(ExtensionInstaller):  
+
     def __init__(self):
         super(NowInstaller, self).__init__(
             version="0.1",
@@ -29,28 +30,42 @@ class NowInstaller(ExtensionInstaller):
                         'Extras': {
                             'responsibleEntityName': 'REPLACE_ME_WITH_YOUR_OR_YOUR_ORGANIZATIONS_NAME',
                             'responsibleEntityUrl': 'REPLACE_ME_WITH_YOUR_OR_YOUR_ORGANIZATIONS_URL',
-                            'hideImageViewer': 'false',
+                            'hideImageViewer': 'false'
                         } 
                     }
                 }
             },
             files=[('bin/user', [
-                'bin/user/now.py'
-                ]),
-                   ('skins/now', [   
-                'skins/now/font/Kanit-Bold.ttf',
-                'skins/now/font/Kanit-Regular.ttf',
-                'skins/now/font/license.txt',
-                'skins/now/font/OFL.txt',
-                'skins/now/font/OpenSans-Bold.ttf',
-                'skins/now/font/OpenSans-Regular.ttf',
-                'skins/now/font/OpenSans.woff',
-                'skins/now/font/OpenSans.woff2',  
-                'skins/now/lang/de.conf',
-                'skins/now/lang/en.conf',     
-                'skins/now/index.html.tmpl',   
-                'skins/now/settings.json.tmpl',   
-                'skins/now/skin.conf', 
-                'skins/now/weather.json.tmpl'
-                ])]
+                        'bin/user/now.py'
+                        ]
+                    ),
+                   ('skins/now', [     
+                        'skins/now/index.html.tmpl',   
+                        'skins/now/settings.json.tmpl',   
+                        'skins/now/skin.conf', 
+                        'skins/now/weather.json.tmpl'
+                        ]
+                    ),
+                    ('skins/now/font', [  
+                        'skins/now/font/Kanit-Bold.ttf',
+                        'skins/now/font/Kanit-Regular.ttf',
+                        'skins/now/font/license.txt',
+                        'skins/now/font/OFL.txt',
+                        'skins/now/font/OpenSans-Bold.ttf',
+                        'skins/now/font/OpenSans-Regular.ttf',
+                        'skins/now/font/OpenSans.woff',
+                        'skins/now/font/OpenSans.woff2'
+                        ]                      
+                    ),
+                    ('skins/now/lang', [  
+                        'skins/now/lang/de.conf',
+                        'skins/now/lang/en.conf'
+                        ]
+                    ),
+                    ('skins/now/assets', [  
+                        'skins/now/assets/appstore-badge.png',
+                        'skins/now/assets/google-play-badge.png'
+                        ]
+                    )
+                ]
             )
