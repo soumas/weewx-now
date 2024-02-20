@@ -27,9 +27,9 @@ class NowInstaller(ExtensionInstaller):
                         'enable': 'true',
                         'HTML_ROOT': '/var/www/html/weewx/now',
                         'Extras': {
-                            'url': 'http://localhost/weewx/now/',
+                            'responsibleEntityName': 'REPLACE_ME_WITH_YOUR_OR_YOUR_ORGANIZATIONS_NAME',
+                            'responsibleEntityUrl': 'REPLACE_ME_WITH_YOUR_OR_YOUR_ORGANIZATIONS_URL',
                             'hideImageViewer': 'false',
-                            'password': ''
                         } 
                     }
                 }
