@@ -156,52 +156,52 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}barometer.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}barometer.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}tempdew.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}tempdew.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}tempfeel.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}tempfeel.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}hum.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}hum.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}wind.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}wind.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}winddir.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}winddir.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}windvec.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}windvec.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}UV.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}UV.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}tempin.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}tempin.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                   AspectRatio(
                     aspectRatio: 16 / 7,
                     child: Image.network(
-                        'https://meteo.fankyy.ch/WsSe2/${state.selectedTimePeriod.name}humin.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
+                        '${state.endpoint.url}/${state.selectedTimePeriod.name}humin.png?reload=${state.weather.current.generation.millisecondsSinceEpoch}'),
                   ),
                 ]),
               )
