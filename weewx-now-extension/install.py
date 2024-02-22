@@ -36,7 +36,9 @@ class NowInstaller(ExtensionInstaller):
                 }
             },
             files=[('bin/user', [
-                        'bin/user/now.py'
+                        'bin/user/now.py',
+                        'bin/user/now_image_index_generator.py',
+                        'bin/user/now_json_generator.py'
                         ]
                     ),
                    ('skins/now', [     
