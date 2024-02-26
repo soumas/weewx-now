@@ -1,49 +1,7 @@
 #from datetime import datetime
 #import json
 {    
-    "generation": "$datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f')",
-    "current":
-    {
-        "generation": "$current.dateTime.format("%Y-%m-%dT%H:%M:%S.000000")",
-        #if $current.outTemp.has_data
-        "temperature": {"value": $current.outTemp.raw, "units": "$current.outTemp.format(" ").lstrip()"},
-        #end if
-        #if $current.dewpoint.has_data
-        "dewpoint": {"value": $current.dewpoint.raw, "units": "$current.dewpoint.format(" ").lstrip()"},
-        #end if
-        #if $current.outHumidity.has_data
-        "humidity": {"value": $current.outHumidity.raw, "units": "$current.outHumidity.format(" ").lstrip()"},
-        #end if
-        #if $current.heatindex.has_data
-        "heatIndex": {"value": $current.heatindex.raw, "units": "$current.heatindex.format(" ").lstrip()"},
-        #end if
-        #if $current.barometer.has_data
-        "barometer": {"value": $current.barometer.raw, "units": "$current.barometer.format(" ").lstrip()"},
-        #end if
-        #if $current.windSpeed.has_data
-        "windSpeed": {"value": $current.windSpeed.raw, "units": "$current.windSpeed.format(" ").lstrip()"},
-        #end if
-        #if $current.windGust.has_data
-        "windGust": {"value": $current.windGust.raw, "units": "$current.windGust.format(" ").lstrip()"},
-        #end if
-        #if $current.windDir.has_data
-        "windDirection": {"value": $current.windDir.raw, "units": "$current.windDir.format(" ").lstrip()"},
-        #end if
-        #if $current.windchill.has_data
-        "windChill": {"value": $current.windchill.raw, "units": "$current.windchill.format(" ").lstrip()"},
-        #end if
-        #if $current.rainRate.has_data
-        "rainRate": {"value": $current.rainRate.raw, "units": "$current.rainRate.format(" ").lstrip()"},
-        #end if
-        #if $current.inTemp.has_data
-        "insideTemperature": {"value": $current.inTemp.raw, "units": "$current.inTemp.format(" ").lstrip()"},
-        #end if
-        #if $current.inHumidity.has_data
-        "insideHumidity": {"value": $current.inHumidity.raw, "units": "$current.inHumidity.format(" ").lstrip()"},
-        #end if
-        ## Last value can't end with a comma
-        "voidend": null
-    },
+    "generation": $round($datetime.now().timestamp()),
     "day":
     {
         #if $day.outTemp.has_data

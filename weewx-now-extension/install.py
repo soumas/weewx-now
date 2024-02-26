@@ -18,7 +18,7 @@ class NowInstaller(ExtensionInstaller):
         super(NowInstaller, self).__init__(
             version="0.1",
             name='now',
-            description='Backend of weewx now skin.',
+            description='Backend of weewx now app.',
             author="Thomas Juen",
             author_email="office@soumasoft.com",
             config={
@@ -38,14 +38,14 @@ class NowInstaller(ExtensionInstaller):
             files=[('bin/user', [
                         'bin/user/now.py',
                         'bin/user/now_image_index_generator.py',
-                        'bin/user/now_json_generator.py'
+                        'bin/user/now_weather_records_json_generator.py'
                         ]
                     ),
                    ('skins/now', [     
-                        'skins/now/index.html.tmpl',   
-                        'skins/now/settings.json.tmpl',   
                         'skins/now/skin.conf', 
-                        'skins/now/weather.json.tmpl'
+                        'skins/now/index.html.tmpl',   
+                        'skins/now/nowStationSettings.json.tmpl',   
+                        'skins/now/nowWeatherAgg.json.tmpl'
                         ]
                     ),
                     ('skins/now/font', [  
@@ -67,6 +67,10 @@ class NowInstaller(ExtensionInstaller):
                     ('skins/now/assets', [  
                         'skins/now/assets/appstore-badge.png',
                         'skins/now/assets/google-play-badge.png'
+                        ]
+                    ),
+                    ('skins/now/images', [  
+                        'skins/now/images/webcam1/weewx-now-logo.png'
                         ]
                     )
                 ]
