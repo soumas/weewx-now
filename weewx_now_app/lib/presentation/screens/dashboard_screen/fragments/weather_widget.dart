@@ -4,7 +4,7 @@ import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:weewx_now/domain/entities/weather/time_period.dart';
 import 'package:weewx_now/domain/entities/weather/value_agg_data.dart';
 import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
-import 'package:weewx_now/presentationOLD/widgets/key_value_table.dart';
+import 'package:weewx_now/presentation/widgets/key_value_table.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'dart:math' as math;
 
