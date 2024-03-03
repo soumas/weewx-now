@@ -1,18 +1,15 @@
 import 'dart:io';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:weewx_now/data/datasources/locale_data_source.dart';
 import 'package:weewx_now/domain/repositories/locale_repository.dart';
 import 'package:weewx_now/util/constants.dart';
 
 class LocaleRepositoryImpl extends LocaleRepository {
-  final LocaleDataSource dataSource;
-
-  LocaleRepositoryImpl({required this.dataSource});
+  LocaleRepositoryImpl();
 
   @override
   Future<Locale> getLocale() async {
-    String? persistedLocale = await dataSource.readLocale();
+    String? persistedLocale = (await SharedPreferences.getInstance()).getString(kSharedPrefKeyLocale);
     if (persistedLocale == null) {
       final sysLocale = _evalSysLocale();
       if (kSupportedLocales.contains(sysLocale)) {
@@ -28,9 +25,9 @@ class LocaleRepositoryImpl extends LocaleRepository {
   Future setLocale(Locale locale) async {
     final sysLocale = _evalSysLocale();
     if (sysLocale == locale.languageCode) {
-      return dataSource.writeLocale(null);
+      return (await SharedPreferences.getInstance()).remove(kSharedPrefKeyLocale);
     } else {
-      return dataSource.writeLocale(locale.languageCode);
+      return (await SharedPreferences.getInstance()).setString(kSharedPrefKeyLocale, locale.languageCode);
     }
   }
 

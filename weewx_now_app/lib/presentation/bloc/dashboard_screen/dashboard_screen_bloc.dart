@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
 import 'package:weewx_now/domain/entities/image/image_bundle.dart';
-import 'package:weewx_now/domain/entities/weather/time_period.dart';
-import 'package:weewx_now/domain/entities/weather/weather_data.dart';
+import 'package:weewx_now/domain/entities/weather_agg/time_period.dart';
+import 'package:weewx_now/domain/entities/weather_agg/weather_agg_bundle.dart';
 import 'package:weewx_now/domain/entities/wee_wx_config/wee_wx_config.dart';
 import 'package:weewx_now/domain/repositories/weewx_station_repository.dart';
 
@@ -25,7 +25,7 @@ class DashboardScreenBloc extends Bloc<DashboardScreenEvent, DashboardScreenStat
           emit(DashboardInitializing(endpoint: event.endpoint));
         }
         final config = await stationRepository.loadSettings(event.endpoint);
-        final weather = await stationRepository.loadWeather(event.endpoint);
+        final weather = await stationRepository.loadWeatherAgg(event.endpoint);
         final images = await stationRepository.loadImages(event.endpoint);
         emit(DashboardData(loading: false, endpoint: event.endpoint, config: config, images: images, weather: weather, selectedTimePeriod: TimePeriod.day));
       } catch (e) {

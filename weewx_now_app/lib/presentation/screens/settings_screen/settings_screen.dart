@@ -25,6 +25,7 @@ class SettingsScreen extends StatelessWidget {
                 title: Text(AppLocalizations.of(context)!.design),
                 trailing: PlatformPopupMenu(
                   options: [
+                    PopupMenuOption(label: AppLocalizations.of(context)!.automatic, onTap: (_) => context.read<ThemeCubit>().setThemeMode(ThemeMode.system)),
                     PopupMenuOption(label: AppLocalizations.of(context)!.light, onTap: (_) => context.read<ThemeCubit>().setThemeMode(ThemeMode.light)),
                     PopupMenuOption(label: AppLocalizations.of(context)!.dark, onTap: (_) => context.read<ThemeCubit>().setThemeMode(ThemeMode.dark)),
                   ],

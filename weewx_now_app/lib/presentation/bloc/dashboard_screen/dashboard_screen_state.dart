@@ -19,7 +19,7 @@ final class DashboardData extends DashboardScreenState {
   final WeewxEndpoint endpoint;
   final WeeWxConfig config;
   final ImageBundle images;
-  final WeatherData weather;
+  final WeatherAggBundle weather;
   final TimePeriod selectedTimePeriod;
   DashboardData({
     required this.loading,
@@ -35,7 +35,7 @@ final class DashboardData extends DashboardScreenState {
     WeewxEndpoint? endpoint,
     WeeWxConfig? config,
     ImageBundle? images,
-    WeatherData? weather,
+    WeatherAggBundle? weather,
     TimePeriod? selectedTimePeriod,
   }) {
     return DashboardData(
