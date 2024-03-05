@@ -25,9 +25,17 @@ class DashboardScreenBloc extends Bloc<DashboardScreenEvent, DashboardScreenStat
           emit(DashboardInitializing(endpoint: event.endpoint));
         }
         final settings = await stationRepository.loadSettings(event.endpoint);
-        final weather = await stationRepository.loadWeatherAgg(event.endpoint);
         final images = await stationRepository.loadImages(event.endpoint);
-        emit(DashboardData(loading: false, endpoint: event.endpoint, settings: settings, images: images, weather: weather, selectedTimePeriod: TimePeriod.day));
+        final weatherRecords = await stationRepository.loadWeatherRecords(event.endpoint);
+        final weatherAgg = await stationRepository.loadWeatherAgg(event.endpoint);
+        emit(DashboardData(
+          loading: false,
+          endpoint: event.endpoint,
+          settings: settings,
+          images: images,
+          weather: weatherAgg,
+          selectedTimePeriod: TimePeriod.day,
+        ));
       } catch (e) {
         emit(DashboardDataError(endpoint: event.endpoint, error: e.toString()));
       }
