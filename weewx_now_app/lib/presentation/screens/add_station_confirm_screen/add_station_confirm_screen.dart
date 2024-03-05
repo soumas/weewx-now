@@ -34,7 +34,7 @@ class _AddStationConfirmScreenState extends State<AddStationConfirmScreen> {
   @override
   void initState() {
     super.initState();
-    _name.text = widget.precheckResult.weeWxConfig.station.location;
+    _name.text = widget.precheckResult.settings.station.location;
   }
 
   @override
@@ -78,11 +78,11 @@ class _AddStationConfirmScreenState extends State<AddStationConfirmScreen> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.precheckResult.weeWxConfig.station.location),
+                      Text(widget.precheckResult.settings.station.location),
                       BrowserLink(
-                        text: '${widget.precheckResult.weeWxConfig.station.latitude};${widget.precheckResult.weeWxConfig.station.longitude}',
+                        text: '${widget.precheckResult.settings.station.latitude};${widget.precheckResult.settings.station.longitude}',
                         url:
-                            'https://www.openstreetmap.org/?mlat=${widget.precheckResult.weeWxConfig.station.latitude}&mlon=${widget.precheckResult.weeWxConfig.station.longitude}',
+                            'https://www.openstreetmap.org/?mlat=${widget.precheckResult.settings.station.latitude}&mlon=${widget.precheckResult.settings.station.longitude}',
                       ),
                     ],
                   ),
@@ -92,10 +92,10 @@ class _AddStationConfirmScreenState extends State<AddStationConfirmScreen> {
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.precheckResult.weeWxConfig.now.responsibleEntityName),
+                      Text(widget.precheckResult.settings.extras.responsibleEntityName),
                       BrowserLink(
-                        text: widget.precheckResult.weeWxConfig.now.responsibleEntityUrl,
-                        url: widget.precheckResult.weeWxConfig.now.responsibleEntityUrl,
+                        text: widget.precheckResult.settings.extras.responsibleEntityUrl,
+                        url: widget.precheckResult.settings.extras.responsibleEntityUrl,
                       ),
                     ],
                   ),

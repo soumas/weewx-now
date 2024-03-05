@@ -9,16 +9,16 @@
         "longitude": $station.stn_info.longitude_f,
         "altitudeMeters": $station.altitude.meter.raw,
         "lang": $json.dumps($lang),
-        "url": $json.dumps($station.station_url),
+        "stationUrl": $json.dumps($station.station_url),
         "hardware": $json.dumps($station.hardware),
         "uptimeOS": $json.dumps($station.os_uptime.long_form),
         "uptimeWeeWX": $json.dumps($station.uptime.long_form),
         "versionWeeWX": "$station.version"
     },
-    "weewxnow":
+    "extras":
     {
         "responsibleEntityName": $json.dumps($Extras.responsibleEntityName),
         "responsibleEntityUrl": $json.dumps($Extras.responsibleEntityUrl),
-        "hideImageViewer": false
+        "hideImageViewer": $Extras.hideImageViewer
     }
 }

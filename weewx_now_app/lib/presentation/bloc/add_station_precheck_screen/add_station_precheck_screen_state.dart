@@ -14,10 +14,10 @@ final class AddStationPrecheckRunning extends AddStationPrecheckScreenState {
 
 final class AddStationPrecheckSuccess extends AddStationPrecheckScreenState {
   final String endpointUrl;
-  final WeeWxConfig weeWxConfig;
+  final StationSettings settings;
   AddStationPrecheckSuccess({
     required this.endpointUrl,
-    required this.weeWxConfig,
+    required this.settings,
   });
 }
 

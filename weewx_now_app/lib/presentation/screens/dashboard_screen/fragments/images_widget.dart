@@ -16,7 +16,7 @@ class _ImagesWidgetState extends State<ImagesWidget> {
   Widget build(BuildContext context) {
     return BlocBuilder<DashboardScreenBloc, DashboardScreenState>(
       builder: (context, state) {
-        if (state is DashboardData && state.config.now.hideImageViewer != true) {
+        if (state is DashboardData && state.settings.extras.hideImageViewer != true) {
           return _imageViewer(state);
         }
         return const SizedBox();

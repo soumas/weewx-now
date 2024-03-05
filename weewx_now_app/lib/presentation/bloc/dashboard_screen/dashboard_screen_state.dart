@@ -17,14 +17,14 @@ final class DashboardInitializing extends DashboardScreenState {
 final class DashboardData extends DashboardScreenState {
   final bool loading;
   final Endpoint endpoint;
-  final WeeWxConfig config;
+  final StationSettings settings;
   final ImageBundle images;
   final WeatherAggBundle weather;
   final TimePeriod selectedTimePeriod;
   DashboardData({
     required this.loading,
     required this.endpoint,
-    required this.config,
+    required this.settings,
     required this.images,
     required this.weather,
     required this.selectedTimePeriod,
@@ -33,7 +33,7 @@ final class DashboardData extends DashboardScreenState {
   DashboardData copyWith({
     bool? loading,
     Endpoint? endpoint,
-    WeeWxConfig? config,
+    StationSettings? settings,
     ImageBundle? images,
     WeatherAggBundle? weather,
     TimePeriod? selectedTimePeriod,
@@ -41,7 +41,7 @@ final class DashboardData extends DashboardScreenState {
     return DashboardData(
       loading: loading ?? this.loading,
       endpoint: endpoint ?? this.endpoint,
-      config: config ?? this.config,
+      settings: settings ?? this.settings,
       images: images ?? this.images,
       weather: weather ?? this.weather,
       selectedTimePeriod: selectedTimePeriod ?? this.selectedTimePeriod,

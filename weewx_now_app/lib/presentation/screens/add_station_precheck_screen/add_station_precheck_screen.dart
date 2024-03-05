@@ -25,7 +25,7 @@ class AddStationPrecheckScreen extends StatefulWidget {
 }
 
 class _AddStationPrecheckScreenState extends State<AddStationPrecheckScreen> {
-  final _urlInputController = TextEditingController(text: 'https://soumasoft.com/static/weewx/now');
+  final _urlInputController = TextEditingController(text: 'http://10.0.2.2/weewx/now');
 
   @override
   void dispose() {
