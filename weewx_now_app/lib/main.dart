@@ -12,7 +12,7 @@ import 'package:weewx_now/presentation/widgets/precached_images.dart';
 import 'package:weewx_now/util/constants.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'presentation/bloc/weewx_endpoint/endpoint_cubit.dart';
 
 void main() async {
   //debugDefaultTargetPlatformOverride = TargetPlatform.iOS;

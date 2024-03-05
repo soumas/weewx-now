@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/entities/endpoint/endpoint.dart';
 import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentation/bloc/busy/busy_cubit.dart';
 import 'package:weewx_now/presentation/bloc/my_stations_screen/my_stations_screen_bloc.dart';
-import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now/presentation/bloc/weewx_endpoint/endpoint_cubit.dart';
 import 'package:weewx_now/presentation/screens/add_station_precheck_screen/add_station_precheck_screen.dart';
 import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -61,7 +61,7 @@ class MyStationsScreen extends StatelessWidget {
                       trailing: PlatformIconButton(
                         icon: Icon(PlatformIcons(context).delete),
                         onPressed: () {
-                          showPlatformDialog<WeewxEndpoint>(
+                          showPlatformDialog<Endpoint>(
                             context: context,
                             builder: (context) => PlatformAlertDialog(
                               title: Text(AppLocalizations.of(context)!.deleteStationDialogHeader),

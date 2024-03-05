@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
+import 'package:weewx_now/domain/entities/endpoint/endpoint.dart';
 import 'package:weewx_now/domain/entities/image/image_bundle.dart';
 import 'package:weewx_now/domain/entities/weather_agg/time_period.dart';
 import 'package:weewx_now/domain/entities/weather_agg/weather_agg_bundle.dart';

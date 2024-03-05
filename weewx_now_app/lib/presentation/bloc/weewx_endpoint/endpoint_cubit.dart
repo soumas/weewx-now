@@ -1,18 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'package:weewx_now/domain/entities/endpoint/weewx_endpoint.dart';
-import 'package:weewx_now/domain/repositories/weewx_endpoint_repository.dart';
+import 'package:weewx_now/domain/entities/endpoint/endpoint.dart';
+import 'package:weewx_now/domain/repositories/endpoint_repository.dart';
 
-part 'weewx_endpoint_state.dart';
+part 'endpoint_state.dart';
 
-class CurrentEndpointCubit extends Cubit<WeewxEndpointState> {
+class CurrentEndpointCubit extends Cubit<EndpointState> {
   CurrentEndpointCubit({
     required this.weewxEndpointRepository,
-  }) : super(WeewxEndpointInitial());
+  }) : super(EndpointInitial());
 
-  WeewxEndpoint? selectedEndpoint;
-  final WeewxEndpointRepository weewxEndpointRepository;
+  Endpoint? selectedEndpoint;
+  final EndpointRepository weewxEndpointRepository;
 
   Future init() async {
     final lastSelected = await weewxEndpointRepository.loadLastSelectedEndpoint();
@@ -28,9 +28,9 @@ class CurrentEndpointCubit extends Cubit<WeewxEndpointState> {
     }
   }
 
-  void selectEndpoint(WeewxEndpoint endpoint) async {
+  void selectEndpoint(Endpoint endpoint) async {
     await weewxEndpointRepository.saveLastSelectedEndpoint(endpoint);
     selectedEndpoint = endpoint;
-    emit(WeewxEndpointSelected());
+    emit(EndpointSelected());
   }
 }

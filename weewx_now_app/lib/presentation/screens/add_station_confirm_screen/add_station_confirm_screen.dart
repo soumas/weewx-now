@@ -5,7 +5,7 @@ import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentation/bloc/add_station_confirm_screen/add_station_confirm_screen_bloc.dart';
 import 'package:weewx_now/presentation/bloc/add_station_precheck_screen/add_station_precheck_screen_bloc.dart';
 import 'package:weewx_now/presentation/bloc/theme/theme_cubit.dart';
-import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now/presentation/bloc/weewx_endpoint/endpoint_cubit.dart';
 import 'package:weewx_now/presentation/widgets/weewx_now_scaffold.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

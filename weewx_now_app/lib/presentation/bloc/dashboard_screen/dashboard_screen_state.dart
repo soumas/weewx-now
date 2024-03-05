@@ -8,7 +8,7 @@ final class DashboardScreenInitial extends DashboardScreenState {}
 final class EndpointRequired extends DashboardScreenState {}
 
 final class DashboardInitializing extends DashboardScreenState {
-  final WeewxEndpoint endpoint;
+  final Endpoint endpoint;
   DashboardInitializing({
     required this.endpoint,
   });
@@ -16,7 +16,7 @@ final class DashboardInitializing extends DashboardScreenState {
 
 final class DashboardData extends DashboardScreenState {
   final bool loading;
-  final WeewxEndpoint endpoint;
+  final Endpoint endpoint;
   final WeeWxConfig config;
   final ImageBundle images;
   final WeatherAggBundle weather;
@@ -32,7 +32,7 @@ final class DashboardData extends DashboardScreenState {
 
   DashboardData copyWith({
     bool? loading,
-    WeewxEndpoint? endpoint,
+    Endpoint? endpoint,
     WeeWxConfig? config,
     ImageBundle? images,
     WeatherAggBundle? weather,
@@ -50,7 +50,7 @@ final class DashboardData extends DashboardScreenState {
 }
 
 final class DashboardDataError extends DashboardScreenState {
-  final WeewxEndpoint endpoint;
+  final Endpoint endpoint;
   final String error;
   DashboardDataError({
     required this.endpoint,

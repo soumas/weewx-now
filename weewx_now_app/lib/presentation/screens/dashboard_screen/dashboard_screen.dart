@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:weewx_now/injection.dart';
 import 'package:weewx_now/presentation/bloc/busy/busy_cubit.dart';
 import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
-import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now/presentation/bloc/weewx_endpoint/endpoint_cubit.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/dashboard_reload_button.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/endpoint_required_widget.dart';
 import 'package:weewx_now/presentation/screens/dashboard_screen/fragments/images_widget.dart';
@@ -24,9 +24,9 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl.get<DashboardScreenBloc>(),
-      child: BlocListener<CurrentEndpointCubit, WeewxEndpointState>(
+      child: BlocListener<CurrentEndpointCubit, EndpointState>(
         listener: (context, state) {
-          if (state is WeewxEndpointSelected) {
+          if (state is EndpointSelected) {
             context.read<DashboardScreenBloc>().add(LoadDashboardData(endpoint: context.read<CurrentEndpointCubit>().selectedEndpoint!));
           }
           if (state is NoSelectableEndpointFound) {

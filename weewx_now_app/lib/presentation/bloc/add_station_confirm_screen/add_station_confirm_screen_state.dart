@@ -6,7 +6,7 @@ sealed class AddStationConfirmScreenState {}
 final class AddStationConfirmScreenInitial extends AddStationConfirmScreenState {}
 
 final class AddStationConfirmed extends AddStationConfirmScreenState {
-  final WeewxEndpoint endpoint;
+  final Endpoint endpoint;
   AddStationConfirmed({
     required this.endpoint,
   });

@@ -4,7 +4,7 @@ part of 'dashboard_screen_bloc.dart';
 sealed class DashboardScreenEvent {}
 
 final class LoadDashboardData extends DashboardScreenEvent {
-  final WeewxEndpoint endpoint;
+  final Endpoint endpoint;
 
   LoadDashboardData({
     required this.endpoint,

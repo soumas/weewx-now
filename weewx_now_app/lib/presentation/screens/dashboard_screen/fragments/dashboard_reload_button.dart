@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:weewx_now/presentation/bloc/dashboard_screen/dashboard_screen_bloc.dart';
-import 'package:weewx_now/presentation/bloc/weewx_endpoint/weewx_endpoint_cubit.dart';
+import 'package:weewx_now/presentation/bloc/weewx_endpoint/endpoint_cubit.dart';
 
 class DashboardReloadButton extends StatefulWidget {
   const DashboardReloadButton({super.key});

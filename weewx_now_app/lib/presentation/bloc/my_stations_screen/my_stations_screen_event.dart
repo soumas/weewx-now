@@ -6,7 +6,7 @@ sealed class MyStationsScreenEvent {}
 final class LoadMyStations extends MyStationsScreenEvent {}
 
 final class DeleteStation extends MyStationsScreenEvent {
-  final WeewxEndpoint endpoint;
+  final Endpoint endpoint;
   final bool isSelected;
   DeleteStation({
     required this.endpoint,

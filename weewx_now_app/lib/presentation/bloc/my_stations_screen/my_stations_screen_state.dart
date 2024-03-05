@@ -8,13 +8,13 @@ final class MyStationsScreenInitial extends MyStationsScreenState {}
 final class MyStationsScreenLoading extends MyStationsScreenState {}
 
 final class MyStationsScreenLoaded extends MyStationsScreenState {
-  final List<WeewxEndpoint> endpoints;
+  final List<Endpoint> endpoints;
   MyStationsScreenLoaded({
     required this.endpoints,
   });
 
   MyStationsScreenLoaded copyWith({
-    List<WeewxEndpoint>? endpoints,
+    List<Endpoint>? endpoints,
   }) {
     return MyStationsScreenLoaded(
       endpoints: endpoints ?? this.endpoints,

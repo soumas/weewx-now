@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-class WeewxEndpoint {
+class Endpoint {
   final String name;
   final String url;
-  WeewxEndpoint({
+  Endpoint({
     required this.name,
     required this.url,
   });
@@ -12,7 +12,7 @@ class WeewxEndpoint {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is WeewxEndpoint && other.name == name && other.url == url;
+    return other is Endpoint && other.name == name && other.url == url;
   }
 
   @override
@@ -25,8 +25,8 @@ class WeewxEndpoint {
     };
   }
 
-  factory WeewxEndpoint.fromMap(Map<String, dynamic> map) {
-    return WeewxEndpoint(
+  factory Endpoint.fromMap(Map<String, dynamic> map) {
+    return Endpoint(
       name: map['name'] ?? '',
       url: map['url'] ?? '',
     );
@@ -34,13 +34,13 @@ class WeewxEndpoint {
 
   String toJson() => json.encode(toMap());
 
-  factory WeewxEndpoint.fromJson(String source) => WeewxEndpoint.fromMap(json.decode(source));
+  factory Endpoint.fromJson(String source) => Endpoint.fromMap(json.decode(source));
 
-  WeewxEndpoint copyWith({
+  Endpoint copyWith({
     String? name,
     String? url,
   }) {
-    return WeewxEndpoint(
+    return Endpoint(
       name: name ?? this.name,
       url: url ?? this.url,
     );
