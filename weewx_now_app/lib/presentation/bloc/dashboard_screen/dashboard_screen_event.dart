@@ -14,7 +14,7 @@ final class LoadDashboardData extends DashboardScreenEvent {
 final class EmitEndpointRequired extends DashboardScreenEvent {}
 
 class SelectTimePeriod extends DashboardScreenEvent {
-  final TimePeriod timePeriod;
+  final AggregationPeriod timePeriod;
   SelectTimePeriod({
     required this.timePeriod,
   });

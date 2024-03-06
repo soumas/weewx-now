@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:weewx_now/data/models/now_image_index_model.dart';
+import 'package:weewx_now/data/models/now_station_settings_model.dart';
+import 'package:weewx_now/data/models/now_weather_agg_model.dart';
+import 'package:weewx_now/data/models/now_weather_records_model.dart';
 import 'package:weewx_now/domain/entities/endpoint/endpoint.dart';
-import 'package:weewx_now/domain/entities/image/image_bundle.dart';
-import 'package:weewx_now/domain/entities/station_settings/station_settings.dart';
-import 'package:weewx_now/domain/entities/weather_agg/time_period.dart';
-import 'package:weewx_now/domain/entities/weather_agg/weather_agg_bundle.dart';
+import 'package:weewx_now/domain/entities/weather_data/aggregations/aggregation_period.dart';
 import 'package:weewx_now/domain/repositories/weewx_station_repository.dart';
 
 part 'dashboard_screen_event.dart';
@@ -33,8 +34,9 @@ class DashboardScreenBloc extends Bloc<DashboardScreenEvent, DashboardScreenStat
           endpoint: event.endpoint,
           settings: settings,
           images: images,
-          weather: weatherAgg,
-          selectedTimePeriod: TimePeriod.day,
+          weatherAgg: weatherAgg,
+          weatherRecords: weatherRecords,
+          selectedTimePeriod: AggregationPeriod.day,
         ));
       } catch (e) {
         emit(DashboardDataError(endpoint: event.endpoint, error: e.toString()));

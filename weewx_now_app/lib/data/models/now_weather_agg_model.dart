@@ -1,6 +1,81 @@
 import 'dart:convert';
 
-import 'package:weewx_now/domain/entities/weather_agg/agg_data_entry.dart';
+class NowWeatherAggModel {
+  final int generation;
+  final AggDataSet day;
+  final AggDataSet week;
+  final AggDataSet month;
+  final AggDataSet year;
+  NowWeatherAggModel({
+    required this.generation,
+    required this.day,
+    required this.week,
+    required this.month,
+    required this.year,
+  });
+
+  NowWeatherAggModel copyWith({
+    int? generation,
+    AggDataSet? day,
+    AggDataSet? week,
+    AggDataSet? month,
+    AggDataSet? year,
+  }) {
+    return NowWeatherAggModel(
+      generation: generation ?? this.generation,
+      day: day ?? this.day,
+      week: week ?? this.week,
+      month: month ?? this.month,
+      year: year ?? this.year,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'generation': generation,
+      'day': day.toMap(),
+      'week': week.toMap(),
+      'month': month.toMap(),
+      'year': year.toMap(),
+    };
+  }
+
+  factory NowWeatherAggModel.fromMap(Map<String, dynamic> map) {
+    return NowWeatherAggModel(
+      generation: map['generation']?.toInt() ?? 0,
+      day: AggDataSet.fromMap(map['day']),
+      week: AggDataSet.fromMap(map['week']),
+      month: AggDataSet.fromMap(map['month']),
+      year: AggDataSet.fromMap(map['year']),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory NowWeatherAggModel.fromJson(String source) => NowWeatherAggModel.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'WeatherAggBundle(generation: $generation, day: $day, week: $week, month: $month, year: $year)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is NowWeatherAggModel &&
+        other.generation == generation &&
+        other.day == day &&
+        other.week == week &&
+        other.month == month &&
+        other.year == year;
+  }
+
+  @override
+  int get hashCode {
+    return generation.hashCode ^ day.hashCode ^ week.hashCode ^ month.hashCode ^ year.hashCode;
+  }
+}
 
 class AggDataSet {
   final AggDataEntry maxTemperature;
@@ -169,4 +244,60 @@ class AggDataSet {
   String toString() {
     return 'WeatherAggregation(maxTemperature: $maxTemperature, minTemperature: $minTemperature, maxDewpoint: $maxDewpoint, minDewpoint: $minDewpoint, maxHumidity: $maxHumidity, minHumidity: $minHumidity, maxBarometer: $maxBarometer, minBarometer: $minBarometer, maxWindSpeed: $maxWindSpeed, maxWindGust: $maxWindGust, maxRainRate: $maxRainRate, rainTotal: $rainTotal, maxInsideTemperature: $maxInsideTemperature, minInsideTemperature: $minInsideTemperature, maxInsideHumidity: $maxInsideHumidity, minInsideHumidity: $minInsideHumidity)';
   }
+}
+
+class AggDataEntry {
+  final String at;
+  final double value;
+  final String units;
+  AggDataEntry({
+    required this.at,
+    required this.value,
+    required this.units,
+  });
+
+  AggDataEntry copyWith({
+    String? at,
+    double? value,
+    String? units,
+  }) {
+    return AggDataEntry(
+      at: at ?? this.at,
+      value: value ?? this.value,
+      units: units ?? this.units,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'at': at,
+      'value': value,
+      'units': units,
+    };
+  }
+
+  factory AggDataEntry.fromMap(Map<String, dynamic> map) {
+    return AggDataEntry(
+      at: map['at'] ?? '',
+      value: map['value']?.toDouble() ?? 0.0,
+      units: map['units'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory AggDataEntry.fromJson(String source) => AggDataEntry.fromMap(json.decode(source));
+
+  @override
+  String toString() => 'AggDataEntry(at: $at, value: $value, units: $units)';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is AggDataEntry && other.at == at && other.value == value && other.units == units;
+  }
+
+  @override
+  int get hashCode => at.hashCode ^ value.hashCode ^ units.hashCode;
 }

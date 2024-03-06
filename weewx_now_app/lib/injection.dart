@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:weewx_now/repositories/locale_repository_impl.dart';
-import 'package:weewx_now/repositories/theme_repository_impl.dart';
-import 'package:weewx_now/repositories/endpoint_repository_impl.dart';
-import 'package:weewx_now/repositories/weewx_station_repository_impl.dart';
+import 'package:weewx_now/data/repositories/locale_repository_impl.dart';
+import 'package:weewx_now/data/repositories/theme_repository_impl.dart';
+import 'package:weewx_now/data/repositories/endpoint_repository_impl.dart';
+import 'package:weewx_now/data/repositories/weewx_station_repository_impl.dart';
 import 'package:weewx_now/domain/repositories/locale_repository.dart';
 import 'package:weewx_now/domain/repositories/theme_repository.dart';
 import 'package:weewx_now/domain/repositories/endpoint_repository.dart';

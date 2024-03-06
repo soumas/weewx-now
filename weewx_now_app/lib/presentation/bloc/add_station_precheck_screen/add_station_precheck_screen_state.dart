@@ -14,7 +14,7 @@ final class AddStationPrecheckRunning extends AddStationPrecheckScreenState {
 
 final class AddStationPrecheckSuccess extends AddStationPrecheckScreenState {
   final String endpointUrl;
-  final StationSettings settings;
+  final NowStationSettingsModel settings;
   AddStationPrecheckSuccess({
     required this.endpointUrl,
     required this.settings,

@@ -14,36 +14,40 @@ final class DashboardInitializing extends DashboardScreenState {
   });
 }
 
-final class DashboardData extends DashboardScreenState {
+class DashboardData extends DashboardScreenState {
   final bool loading;
   final Endpoint endpoint;
-  final StationSettings settings;
-  final ImageBundle images;
-  final WeatherAggBundle weather;
-  final TimePeriod selectedTimePeriod;
+  final NowStationSettingsModel settings;
+  final NowImageIndexModel images;
+  final NowWeatherRecordsModel weatherRecords;
+  final NowWeatherAggModel weatherAgg;
+  final AggregationPeriod selectedTimePeriod;
   DashboardData({
     required this.loading,
     required this.endpoint,
     required this.settings,
     required this.images,
-    required this.weather,
+    required this.weatherRecords,
+    required this.weatherAgg,
     required this.selectedTimePeriod,
   });
 
   DashboardData copyWith({
     bool? loading,
     Endpoint? endpoint,
-    StationSettings? settings,
-    ImageBundle? images,
-    WeatherAggBundle? weather,
-    TimePeriod? selectedTimePeriod,
+    NowStationSettingsModel? settings,
+    NowImageIndexModel? images,
+    NowWeatherRecordsModel? weatherRecords,
+    NowWeatherAggModel? weatherAgg,
+    AggregationPeriod? selectedTimePeriod,
   }) {
     return DashboardData(
       loading: loading ?? this.loading,
       endpoint: endpoint ?? this.endpoint,
       settings: settings ?? this.settings,
       images: images ?? this.images,
-      weather: weather ?? this.weather,
+      weatherRecords: weatherRecords ?? this.weatherRecords,
+      weatherAgg: weatherAgg ?? this.weatherAgg,
       selectedTimePeriod: selectedTimePeriod ?? this.selectedTimePeriod,
     );
   }

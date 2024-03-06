@@ -93,7 +93,7 @@ class _ImagesWidgetState extends State<ImagesWidget> {
             ),
           ],
         ),
-        if (data.images.map.length > 1)
+        if (data.images.images.length > 1)
           Align(
             alignment: Alignment.topRight,
             child: DropdownMenu(
@@ -101,7 +101,7 @@ class _ImagesWidgetState extends State<ImagesWidget> {
               enableFilter: false,
               enableSearch: true,
               requestFocusOnTap: false,
-              dropdownMenuEntries: data.images.map.entries.map<DropdownMenuEntry<String>>((e) => DropdownMenuEntry(value: e.key.id, label: e.key.id)).toList(),
+              dropdownMenuEntries: data.images.images.map<DropdownMenuEntry<String>>((e) => DropdownMenuEntry(value: e.category, label: e.category)).toList(),
             ),
           ),
         Align(
