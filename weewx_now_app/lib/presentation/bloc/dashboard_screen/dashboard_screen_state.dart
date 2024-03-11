@@ -14,13 +14,13 @@ final class DashboardInitializing extends DashboardScreenState {
   });
 }
 
-class DashboardData extends DashboardScreenState {
+final class DashboardData extends DashboardScreenState {
   final bool loading;
   final Endpoint endpoint;
   final NowStationSettingsModel settings;
-  final NowImageIndexModel images;
-  final NowWeatherRecordsModel weatherRecords;
-  final NowWeatherAggModel weatherAgg;
+  final ImagesSet images;
+  final RecordsSet weatherRecords;
+  final Aggregations weatherAgg;
   final AggregationPeriod selectedTimePeriod;
   DashboardData({
     required this.loading,
@@ -36,9 +36,9 @@ class DashboardData extends DashboardScreenState {
     bool? loading,
     Endpoint? endpoint,
     NowStationSettingsModel? settings,
-    NowImageIndexModel? images,
-    NowWeatherRecordsModel? weatherRecords,
-    NowWeatherAggModel? weatherAgg,
+    ImagesSet? images,
+    RecordsSet? weatherRecords,
+    Aggregations? weatherAgg,
     AggregationPeriod? selectedTimePeriod,
   }) {
     return DashboardData(

@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:weewx_now/data/models/now_image_index_model.dart';
 import 'package:weewx_now/data/models/now_station_settings_model.dart';
-import 'package:weewx_now/data/models/now_weather_agg_model.dart';
-import 'package:weewx_now/data/models/now_weather_records_model.dart';
 import 'package:weewx_now/domain/entities/endpoint/endpoint.dart';
 import 'package:weewx_now/domain/entities/weather_data/aggregations/aggregation_period.dart';
+import 'package:weewx_now/domain/entities/weather_data/aggregations/aggregations.dart';
+import 'package:weewx_now/domain/entities/weather_data/images/images_set.dart';
+import 'package:weewx_now/domain/entities/weather_data/records/records_set.dart';
 import 'package:weewx_now/domain/repositories/weewx_station_repository.dart';
 
 part 'dashboard_screen_event.dart';
@@ -26,16 +26,14 @@ class DashboardScreenBloc extends Bloc<DashboardScreenEvent, DashboardScreenStat
           emit(DashboardInitializing(endpoint: event.endpoint));
         }
         final settings = await stationRepository.loadSettings(event.endpoint);
-        final images = await stationRepository.loadImages(event.endpoint);
-        final weatherRecords = await stationRepository.loadWeatherRecords(event.endpoint);
-        final weatherAgg = await stationRepository.loadWeatherAgg(event.endpoint);
+        final weather = await stationRepository.loadWeatherData(event.endpoint);
         emit(DashboardData(
           loading: false,
           endpoint: event.endpoint,
           settings: settings,
-          images: images,
-          weatherAgg: weatherAgg,
-          weatherRecords: weatherRecords,
+          images: weather.images,
+          weatherAgg: weather.aggregations,
+          weatherRecords: weather.records,
           selectedTimePeriod: AggregationPeriod.day,
         ));
       } catch (e) {
