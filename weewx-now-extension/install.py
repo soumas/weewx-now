@@ -41,11 +41,12 @@ class NowInstaller(ExtensionInstaller):
                         'bin/user/now_weather_records_json_generator.py'
                         ]
                     ),
-                   ('skins/now', [     
-                        'skins/now/skin.conf', 
+                   ('skins/now', [                                                     
                         'skins/now/index.html.tmpl',   
+                        'skins/now/index_app.html.tmpl',
                         'skins/now/nowStationSettings.json.tmpl',   
-                        'skins/now/nowWeatherAgg.json.tmpl'
+                        'skins/now/nowWeatherAgg.json.tmpl',
+                        'skins/now/skin.conf'
                         ]
                     ),
                     ('skins/now/font', [  
@@ -66,7 +67,8 @@ class NowInstaller(ExtensionInstaller):
                     ),
                     ('skins/now/assets', [  
                         'skins/now/assets/appstore-badge.png',
-                        'skins/now/assets/google-play-badge.png'
+                        'skins/now/assets/google-play-badge.png',
+                        'skins/now/assets/icon.svg'
                         ]
                     ),
                     ('skins/now/images', [  

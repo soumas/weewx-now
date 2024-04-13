@@ -1,54 +1,229 @@
 <!doctype html>
-<html lang="de-DE">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>$station.location</title>
-    <style>
-        body {
-            font-family: helvetica, sans-serif;
-            color: #3a3f52;
-            background-color: #f6f8f9;
-        }
-        h1, h2 {
-            padding-top: 40px;
-        }
-        .content {
-            margin: auto;
-            max-width: 800px;
-            text-align: center;
-        }
-        .appimg {
-            width: 200px;
-            padding-right: 10px;
-        }
-        .qrurlcontainer a {
-            font-size: 20px;
-        }
-    </style>
-  </head>
+<html lang="de">
 
-  <body>
-    <div class="container">
-        <div class="content">
-          <h1><b>$station.location</b></h1>
-          <h2>1. Install WeeWX now App on your mobile device</h2>
-          <img class="appimg" src="./assets/google-play-badge.png" alt="get it on google play" />
-          <img class="appimg" src="./assets/appstore-badge.png" alt="download on the app store" />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-          <h2>2. Add station WeeWX now App by QR code or link</h2>
-          <div class="qrimgcontainer"><img id="qrimg" src="" alt="QR Code" /></div>
-          <div class="qrurlcontainer"><div id="qrurl"></div></div>
-          <div style="clear:both"></div>
-        </div>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>$station.location - WeeWX now</title>
+  <style>
+    body {
+      color: #343a40;
+    }
+
+    h1 {
+      padding: 20px 0px;
+    }
+
+    .datatable {
+      width: 100%;
+    }
+
+    .datatable td {
+      border-bottom: 1px solid #dee2e6;
+      padding: 2px 0px;
+    }
+
+    .datatable .label {
+      width: 160px !important;
+      padding-right: 16px;
+    }
+
+    .datatable .value {
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h1>$station.location</h1>
     </div>
-  </body>
-  <script>
-  	document.getElementById("qrimg").src = "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data="+document.location;
-  	document.getElementById("qrurl").innerHTML = '<a href="#" onclick="copyUrl();return false;">'+document.location+'</a><br/>(click to copy link)';
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <img src="http://wetter.msgu.at/Content/images/webcam/webcam_0_24041019442600.jpg" alt="Title"
+          style="width:100%;" />
+      </div>
+      <div class="col-lg-4">
+        <h2>Aktuell</h2>
+        <table class="datatable">
+          <tr>
+            <td class="label">Datum:</td>
+            <td>10.04.2024, 20:25 Uhr</td>
+          </tr>
+          <tr>
+            <td style="padding-top: 30px;" colspan="2"><strong>Au&szlig;en</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Windstärke:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Böenstärke:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Windrichtung:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Temperatur:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Niederschlag:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Luftfeuchtigkeit:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Taupunkt:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Wolkenhöhe:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td style="padding-top: 30px;" colspan="2"><strong>Innen</strong></td>
+          </tr>
+          <tr>
+            <td class="label">Luftfeuchtigkeit:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Druck:</td>
+            <td>NWN</td>
+          </tr>
+          <tr>
+            <td class="label">Temperatur:</td>
+            <td>NWN</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h2>Verlauf</h2>
+    </div>
+    <div class="row">
+      <div class="col-xxl-4 col-lg-6 col-sm-12">
+        <h3>Windstärke</h3>
+        <div>
+          <canvas id="windChart"></canvas>
+        </div>
+      </div>
+      <div class="col-xxl-4 col-lg-6 col-sm-12">
+        <h3>Windrichtung</h3>
+        <div>
+          <canvas id="winddirChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xxl-4 col-lg-6 col-sm-12">
+        <h3>Temperatur, Luftdruck</h3>
+        <div>
+          <canvas id="tempPressureChart"></canvas>
+        </div>
+      </div>
+      <div class="col-xxl-4 col-lg-6 col-sm-12">
+        <h3>Niederschlag</h3>
+        <div>
+          <canvas id="rainrateChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    function copyUrl() {
-        navigator.clipboard.writeText(document.location);        
-    }     
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>  
+    new Chart(document.getElementById('windChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }); 
+    new Chart(document.getElementById('winddirChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }); 
+    new Chart(document.getElementById('tempPressureChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }); 
+    new Chart(document.getElementById('rainrateChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
   </script>
+</body>
+
 </html>

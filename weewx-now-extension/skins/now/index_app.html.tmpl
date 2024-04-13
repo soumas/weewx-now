@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de-DE">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>$station.location</title>
+    <style>
+        body {
+            font-family: helvetica, sans-serif;
+            color: #3a3f52;
+            background-color: #f6f8f9;
+        }
+        h1, h2 {
+            padding-top: 40px;
+        }
+        .content {
+            margin: auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        .appimg {
+            width: 200px;
+            padding-right: 10px;
+        }
+        .qrurlcontainer a {
+            font-size: 20px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="content">
+          <h1><b>$station.location</b></h1>
+          <h2>1. Install WeeWX now App on your mobile device</h2>
+          <img class="appimg" src="./assets/google-play-badge.png" alt="get it on google play" />
+          <img class="appimg" src="./assets/appstore-badge.png" alt="download on the app store" />
+
+          <h2>2. Add station WeeWX now App by QR code or link</h2>
+          <div class="qrimgcontainer"><img id="qrimg" src="" alt="QR Code" /></div>
+          <div class="qrurlcontainer"><div id="qrurl"></div></div>
+          <div style="clear:both"></div>
+        </div>
+    </div>
+  </body>
+  <script>
+  	document.getElementById("qrimg").src = "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data="+document.location;
+  	document.getElementById("qrurl").innerHTML = '<a href="#" onclick="copyUrl();return false;">'+document.location+'</a><br/>(click to copy link)';
+
+    function copyUrl() {
+        navigator.clipboard.writeText(document.location);        
+    }     
+  </script>
+</html>
