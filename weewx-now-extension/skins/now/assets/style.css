@@ -1,0 +1,55 @@
+body {
+    color: #343a40;
+}
+
+h1 {
+    padding-top: 20px;
+}
+
+h1,
+h2,
+h3 {
+    padding-bottom: 20px;
+}
+
+.datatable {
+    width: 100%;
+}
+
+.datatable td {
+    border-bottom: 1px solid #dee2e6;
+    padding: 2px 0px;
+}
+
+.datatable .label {
+    width: 160px !important;
+    padding-right: 16px;
+}
+
+.datatable .value {
+    font-weight: bold;
+}
+
+.img-container {
+    position: relative;
+}
+
+.img-container .img-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    color: white;
+}
+
+.img-overlay-right {
+    width: min-content;
+    float: right;
+    display: inline;
+}
+
+.img-overlay-left {
+    width: min-content;
+    left: 0;
+    display: inline;
+}

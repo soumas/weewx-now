@@ -1,0 +1,59 @@
+<div>
+  <h2>Aktuelle Werte</h2>
+  <table class="datatable">
+    <tr>
+      <td class="label">Zeitpunkt:</td>
+      <td>$current.dateTime.format("%d.%m.%Y @ %H:%M")</td>
+    </tr>
+    <tr>
+      <td style="padding-top: 30px;" colspan="2"><strong>Au&szlig;en</strong></td>
+    </tr>
+    <tr>
+      <td class="label">Windstärke:</td>
+      <td>$current.windSpeed</td>
+    </tr>
+    <tr>
+      <td class="label">Böenstärke:</td>
+      <td>$current.windGust</td>
+    </tr>
+    <tr>
+      <td class="label">Windrichtung:</td>
+      <td>$current.windDir.ordinal_compass ($current.windDir)</td>
+    </tr>
+    <tr>
+      <td class="label">Temperatur:</td>
+      <td>$current.outTemp</td>
+    </tr>
+    <tr>
+      <td class="label">Niederschlag:</td>
+      <td>$current.rainRate</td>
+    </tr>
+    <tr>
+      <td class="label">Luftfeuchtigkeit:</td>
+      <td>$current.outHumidity</td>
+    </tr>
+    <tr>
+      <td class="label">Luftdruck</td>
+      <td>$current.barometer</td>
+    </tr>
+    <tr>
+      <td class="label">Taupunkt:</td>
+      <td>$current.dewpoint</td>
+    </tr>
+    <tr>
+      <td style="padding-top: 30px;" colspan="2"><strong>Innen</strong></td>
+    </tr>
+    <tr>
+      <td class="label">Luftfeuchtigkeit:</td>
+      <td>$current.inHumidity</td>
+    </tr>
+    <tr>
+      <td class="label">Druck:</td>
+      <td>NWN</td>
+    </tr>
+    <tr>
+      <td class="label">Temperatur:</td>
+      <td>$current.inTemp</td>
+    </tr>
+  </table>
+</div>

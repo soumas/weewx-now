@@ -44,6 +44,8 @@ class NowInstaller(ExtensionInstaller):
                    ('skins/now', [                                                     
                         'skins/now/index.html.tmpl',   
                         'skins/now/index_app.html.tmpl',
+                        'skins/now/index_current.html.tmpl',
+                        'skins/now/index_images.html',
                         'skins/now/nowStationSettings.json.tmpl',   
                         'skins/now/nowWeatherAgg.json.tmpl',
                         'skins/now/skin.conf'
@@ -68,7 +70,9 @@ class NowInstaller(ExtensionInstaller):
                     ('skins/now/assets', [  
                         'skins/now/assets/appstore-badge.png',
                         'skins/now/assets/google-play-badge.png',
-                        'skins/now/assets/icon.svg'
+                        'skins/now/assets/icon.svg',
+                        'skins/now/assets/style.css',
+                        'skins/now/assets/script.js'
                         ]
                     ),
                     ('skins/now/images', [  
