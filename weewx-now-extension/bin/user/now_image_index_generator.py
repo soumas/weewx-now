@@ -55,7 +55,7 @@ class NowImageIndexGenerator(weewx.reportengine.ReportGenerator):
                         for file in os.scandir(category_dir):
                             if file.is_file():
                                 if pathlib.Path(file.name).suffix.lower() in supported_ext:
-                                    images_json_lst.append('{"type":"image","category":%s,"data":%s,"date":%s}' % (json.dumps(category_name), json.dumps(file.name), json.dumps(round(datetime.fromtimestamp(os.path.getctime(file.path)).timestamp()))))
+                                    images_json_lst.append('{"type":"image","category":%s,"data":%s,"date":%s}' % (json.dumps(category_name), json.dumps(file.name), json.dumps(round(datetime.fromtimestamp(os.path.getmtime(file.path)).timestamp()))))
                                     statCntImages += 1
                                     self.debug('Image added "%s" (category "%s")' % (file.path, category_name))
                                 else:
@@ -67,7 +67,7 @@ class NowImageIndexGenerator(weewx.reportengine.ReportGenerator):
             else:
                 self.debug('Subdirectory %s not found. No Images will be available in weewx web app' % images_dir)
                         
-            jsonContent = '{"generation":%d,"images":[%s]}' % (round(datetime.now().timestamp()), ','.join(images_json_lst))
+            jsonContent = '{"images":[%s]}' % (','.join(images_json_lst))
             
             # write json to output file
             targetfile = os.path.join(root_dir, 'nowImageIndex.json')

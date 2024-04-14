@@ -38,21 +38,15 @@ class NowWeatherRecordsJSONGenerator(weewx.reportengine.ReportGenerator):
 
         self.resultObj = {}
 
-    def gen_data(self):        
-
-        # set generation timestamp
-        self.resultObj['generation'] = round(time.time())
-
+    def gen_data(self): 
+        
         # current weather data
         self.resultObj['current'] = self.gen_weather_current()
 
         # short term historical records (2, 4 and 8 hours back)
-        self.resultObj['shortTerm'] = {}        
-        shortTermHistoryColumn = ['windSpeed', 'windGust', 'windDir', 'outTemp', 'barometer', 'rainRate']
-        for column in shortTermHistoryColumn:
-            log.info(column)
-            self.resultObj['shortTerm'][column] = self.gen_weather_shortterm(column)
-        
+        for hours in [2,4,8]:
+            self.resultObj['last'+str(hours)+'hours'] = self.gen_weather_lasthours(hours)
+
         try:
             data_filename = os.path.join(
                     self.config_dict['WEEWX_ROOT'],
@@ -104,40 +98,39 @@ class NowWeatherRecordsJSONGenerator(weewx.reportengine.ReportGenerator):
                     
         return dataset
 
-
-    def gen_weather_shortterm(self, column):
-        try:
-            label = self.get_label(column)
-            target_unit = self.get_target_unit(column)
-            traget_unit_label = self.get_unit_label(target_unit)
-            traget_unit_format = self.get_unit_format(target_unit)                
-        except:
-            log.info("NowWeatherRecordsJSONGenerator: *** Could not find target unit of measure for column '%s' ***" % column)
-            return 0, None
-        
+    def gen_weather_lasthours(self, hours):
+        columns = ['windSpeed', 'windGust', 'windDir', 'outTemp', 'barometer', 'rainRate']
         dataset = {}
-        dataset['label'] = label
-        dataset['unitlabel'] = traget_unit_label
-        dataset['unitformat'] = traget_unit_format
+        for column in columns:
+            try:
+                label = self.get_label(column)
+                target_unit = self.get_target_unit(column)
+                traget_unit_label = self.get_unit_label(target_unit)
+                traget_unit_format = self.get_unit_format(target_unit)                
+            except:
+                log.info("NowWeatherRecordsJSONGenerator: *** Could not find target unit of measure for column '%s' ***" % column)
+                return 0, None            
+            dataset[column] = {}
+            dataset[column]['label'] = label
+            dataset[column]['unitlabel'] = traget_unit_label
+            dataset[column]['unitformat'] = traget_unit_format
 
-        for hours in [2,4,8]:
             db_manager = self.db_binder.get_manager()
             history_list = []
-            time_list = []
-
-            batch_records = db_manager.genBatchRecords(self.lastGoodStamp - hours * 60 * 60, self.lastGoodStamp)
+            time_list = []            
+            
+            batch_records = db_manager.genBatchRecords(self.lastGoodStamp - hours * 60 * 60, self.lastGoodStamp)#
             for rec in batch_records:
-
                 try:
                     db_value_tuple = weewx.units.as_value_tuple(rec, column)
                 except:
                     log.debug("NowWeatherRecordsJSONGenerator: Ignoring data for column '%s', is this column in the database table?" % (column))
                     return 0, None
-
+                
                 if target_unit == "":
                     history_value = rec[column]
                 else:
-                    history_value = weewx.units.convert(db_value_tuple, target_unit)[0]
+                    history_value = weewx.units.convert(db_value_tuple, target_unit)[0]  
 
                 try:
                     if history_value is None:
@@ -146,10 +139,10 @@ class NowWeatherRecordsJSONGenerator(weewx.reportengine.ReportGenerator):
                         history_list.append(round(float(history_value), 2))
                     time_list.append(rec['dateTime'])
                 except:
-                    log.debug("NowWeatherRecordsJSONGenerator: Cannot decode reading of '%s' for column '%s'" % (history_value, column))        
-            dataset['last'+str(hours)+'hours'] = list(zip(time_list, history_list))
+                    log.debug("NowWeatherRecordsJSONGenerator: Cannot decode reading of '%s' for column '%s'" % (history_value, column))  
+            dataset[column]['data'] = list(zip(time_list, history_list))  
         return dataset
-
+        
     def get_label(self, column_name):
         try:
             return self.skin_dict['Texts'][column_name]

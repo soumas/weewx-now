@@ -23,39 +23,113 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <div class="include-html" path="index_images.html"></div>
+        <section class="splide" aria-label="WeeWX now Images">
+          <div class="splide__track">
+            <ul class="splide__list">
+            </ul>
+          </div>
+        </section>
       </div>
       <div class="col-lg-4">
-        <div class="include-html" path="index_current.html"></div>
+        <div>
+          <h2>Aktuelle Werte</h2>
+          <table class="datatable">
+            <tr>
+              <td class="label">Zeitpunkt:</td>
+              <td>$current.dateTime.format("%d.%m.%Y @ %H:%M")</td>
+            </tr>
+            <tr>
+              <td style="padding-top: 30px;" colspan="2"><strong>Au&szlig;en</strong></td>
+            </tr>
+            <tr>
+              <td class="label">Windstärke:</td>
+              <td>$current.windSpeed</td>
+            </tr>
+            <tr>
+              <td class="label">Böenstärke:</td>
+              <td>$current.windGust</td>
+            </tr>
+            <tr>
+              <td class="label">Windrichtung:</td>
+              <td>$current.windDir.ordinal_compass ($current.windDir)</td>
+            </tr>
+            <tr>
+              <td class="label">Temperatur:</td>
+              <td>$current.outTemp</td>
+            </tr>
+            <tr>
+              <td class="label">Niederschlag:</td>
+              <td>$current.rainRate</td>
+            </tr>
+            <tr>
+              <td class="label">Luftfeuchtigkeit:</td>
+              <td>$current.outHumidity</td>
+            </tr>
+            <tr>
+              <td class="label">Luftdruck</td>
+              <td>$current.barometer</td>
+            </tr>
+            <tr>
+              <td class="label">Taupunkt:</td>
+              <td>$current.dewpoint</td>
+            </tr>
+            <tr>
+              <td style="padding-top: 30px;" colspan="2"><strong>Innen</strong></td>
+            </tr>
+            <tr>
+              <td class="label">Luftfeuchtigkeit:</td>
+              <td>$current.inHumidity</td>
+            </tr>
+            <tr>
+              <td class="label">Druck:</td>
+              <td>NWN</td>
+            </tr>
+            <tr>
+              <td class="label">Temperatur:</td>
+              <td>$current.inTemp</td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
   </div>
   <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2>Verlauf
-          <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-primary active">2 Stunden</button>
-            <button type="button" class="btn btn-primary">4 Stunden</button>
-            <button type="button" class="btn btn-primary">8 Stunden</button>
-          </div>
+    <div class="row" style="padding-top:40px;">    
+      <div class="col-lg-8">
+        <h2>Diagramme 
+          <div class="btn-group" role="group" aria-label="Zeitraum" style="float:right;">
+            <button type="button" class="btn btn-primary" onClick="setChartHours(2)">2 Stunden</button>
+            <button type="button" class="btn btn-primary" onClick="setChartHours(4)">4 Stunden</button>
+            <button type="button" class="btn btn-primary" onClick="setChartHours(8)">8 Stunden</button>
+          </div>  
         </h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-xxl-4 col-md-6 col-sm-12">
+      <div class="col-12 charttitle">
+        <h3>Wind</h3>
+      </div>
+      <div class="col-lg-5">
         <canvas id="chart_windspeed"></canvas>
       </div>      
-      <div class="col-xxl-4 col-md-6 col-sm-12">
+      <div class="col-lg-3 winddircontainer" >
         <canvas id="chart_winddir"></canvas>
       </div>
     </div>
     <div class="row">
-      <div class="col-xxl-4 col-md-6 col-sm-12">
+      <div class="col-12 charttitle">
+        <h3>Temperatur &amp; Luftdruck</h3>
+      </div>
+      <div class="col-lg-8">
         <canvas id="chart_temp_pressure"></canvas>
       </div>
-      <div class="col-xxl-4 col-md-6 col-sm-12">
-        <canvas id="chart_rainrate"></canvas>
+    </div>
+    <div class="row">
+      <div class="col-12 charttitle">
+        <h3>Niederschlag</h3>
+      </div>
+      <div class="col-lg-8">
+        <canvas id="chart_rain"></canvas>
       </div>
     </div>
   </div>
@@ -65,174 +139,65 @@
     crossorigin="anonymous"></script>
   <script src=" https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js "></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="assets/script.js"></script>
+  <script src="js/weewx-now.js"></script>
+  <script src="js/chart-windspeed.js"></script>
+  <script src="js/chart-winddir.js"></script>
+  <script src="js/chart-temp-pressure.js"></script>
+  <script src="js/chart-rain.js"></script>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      includeHTML();
-      buildCharts();
+    document.addEventListener('DOMContentLoaded', async function () {
+      initImages();
+      initChartData();      
     });
-    async function buildCharts() {
-      var chartData = await loadJsonObj('nowWeatherRecords.json');
-      
-      console.info(chartData);
 
-      /////////////// windspeed
-      new Chart(document.getElementById('chart_windspeed'), {
-            type: "bar",
-            options: {
-                scales: {
-                    x: {
-                        stacked: true
-                    },
-                    y: {
-                        stacked: true,
-                        ticks: {
-                            beginAtZero: true,
-                            min: 0,
-                            suggestedMax: 30
-                        }
-                    }
-                },
-                plugins: {
-                  legend: { display: false },
-                  title: {
-                    display: true,
-                    text: 'Windstärke / Böenstärke',
-                    align: 'center'
-                  }
-                }                
-            },
-            data: {
-                labels: chartData.shortTerm.windSpeed.last8hours.map(kv => new Date(kv[0]*1000).toLocaleTimeString([], {timeStyle: 'short'})),
-                datasets: [
-                    { backgroundColor: "rgba(29,95,170,1)", label: "Windstärke (km/h)", data: chartData.shortTerm.windSpeed.last8hours.map(kv => kv[1]) },
-                    { backgroundColor: "rgba(197,47,73,0.8)", label: "Böenstärke (km/h)", data: chartData.shortTerm.windGust.last8hours.map(kv => kv[1]) }
-                ]
-            },
-      });
-      
-
-      ///////////////////// winddirection
-      var directionLabel = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-      var directionSums = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-      chartData.shortTerm.windDir.last8hours.map(kv => kv[1]).forEach((val) => {
-        directionSums[Math.floor(val / (360 / 16))]++;
-      });
-
-      new Chart(document.getElementById('chart_winddir'), {
-        type: 'radar',
-        options: {      
-            plugins: {
-              legend: { display: false },
-              title: {
-                  display: true,
-                  text: 'Windrichtung',
-                  align: 'center'
-              },                       
-            },
-            scales: {
-              r: {
-                pointLabels: {
-                  display: false
-                },
-                ticks: {
-                  display: false
-                },
-              }
-            },
-            elements: {
-              line: {
-                borderWidth: 3
-              }
-            }            
-        },
-        data: {
-            labels: directionLabel,
-            datasets: [{
-                borderColor: 'rgba(197,47,73,0.8)',
-                backgroundColor: 'rgba(197,47,73,0.8)',
-                data: directionSums,
-                label: "Windrichtung",
-                fill: true
-            }]
-        }
-      });
-      
-      ///////////////////// temp press
-      new Chart(document.getElementById('chart_temp_pressure'), {
-            type: "line",
-            options: {
-                scales: {
-                    yTemperature: {
-                      position: 'left',
-                      type: 'linear',
-                      display: true,
-                      suggestedMin: -20,
-                      suggestedMax: 40
-                    },
-                    yPressure: {
-                      position: 'right',
-                      type: 'linear',
-                      display: true,
-                      suggestedMin: 920,
-                      suggestedMax: 980
-                    }
-                },
-                plugins: {
-                  legend: { display: false },
-                  title: {
-                    display: true,
-                    text: 'Temperatur / Luftdruck',
-                    align: 'center'
-                  }
-                }                
-            },
-            data: {
-                labels: chartData.shortTerm.outTemp.last2hours.map(kv => new Date(kv[0]*1000).toLocaleTimeString([], {timeStyle: 'short'})),
-                datasets: [
-                    { yAxisID: 'yTemperature', borderColor: 'rgba(197,47,73,0.8)', backgroundColor: 'rgba(197,47,73,0.8)', label: 'Temperatur (°C)', data: chartData.shortTerm.outTemp.last8hours.map(kv => kv[1]) },
-                    { yAxisID: 'yPressure', borderColor: 'rgba(29,95,170,1)', backgroundColor: 'rgba(29,95,170,1)', label: 'Luftdruck (hPa)', data: chartData.shortTerm.barometer.last8hours.map(kv => kv[1]) }
-                ]
-            },
-      });   
-
-      ///////////////////// rain
-      new Chart(document.getElementById('chart_rainrate'), {
-        type: 'line',
-        options: {
-          scales: {
-            y: {
-                      suggestedMin: 0,
-                      suggestedMax: 30,
-                      type: 'linear',
-                      display: true,
-                      position: 'left'
-                  }
-              },
-                plugins: {
-                  legend: { display: false },
-                  title: {
-                    display: true,
-                    text: 'Niederschlag',
-                    align: 'center'
-                  }
-                }   
-        },
-        data: {
-          labels: chartData.shortTerm.rainRate.last8hours.map(kv => new Date(kv[0]*1000).toLocaleTimeString([], {timeStyle: 'short'})),
-          datasets: [
-              { fill: true, borderColor: 'rgba(29,95,170,1)', backgroundColor: 'rgba(29,95,170,1)', label: 'Niederschlag (mm/h)', data: chartData.shortTerm.rainRate.last8hours.map(kv => kv[1]) }
-          ]
-      }            
-      });       
+    async function initChartData() {
+      document.chartData = await loadJsonObj('nowWeatherRecords.json');
+      setChartHours(2);
     }
 
-    async function afterIncludeHTML() {
-      // init slider(s)
-      new Splide('.splide').mount();
+    async function initImages() {
+      
+
+      const imageData = await loadJsonObj('nowImageIndex.json');
+
+      const maxImageCount = 20;
+
+      const splide = new Splide('.splide', {
+        direction: 'rtl'}).mount();
+
+      imageData.images.sort(compareDate);
+      for(i = 0; i < 30; i++) {
+        var tmplHtml = document.getElementById('slide-template').innerHTML;
+        tmplHtml = tmplHtml.replace('%img%', 'images/webcam/' + imageData.images[i].data);
+        tmplHtml = tmplHtml.replace('%timestamp%', new Date(imageData.images[i].date * 1000).toLocaleString());
+        splide.add(tmplHtml,0);
+      }
     }
+
+    function compareDate(a,b) {
+      if ( a.date < b.date ){
+        return -1;
+      }
+      if ( a.date > b.date ){
+        return 1;
+      }
+      return 0;
+    }
+
   </script>
+
+  <template id="slide-template">
+    <li class="splide__slide">
+      <div class="img-container">
+        <div class="img-overlay">
+          <div class="img-overlay-left">%timestamp%</div>                      
+          <div class="img-overlay-right"></div>
+        </div>
+        <img src="%img%" width="100%"/>
+      </div>
+    </li>
+  </template>
 
 </body>
 
