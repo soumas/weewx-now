@@ -47,7 +47,8 @@ class NowInstaller(ExtensionInstaller):
                         'skins/now/index_images.html',
                         'skins/now/nowStationSettings.json.tmpl',   
                         'skins/now/nowWeatherAgg.json.tmpl',
-                        'skins/now/skin.conf'
+                        'skins/now/skin.conf',
+                        'skins/now/webcam.html.tmpl'
                         ]
                     ),
                     ('skins/now/font', [  
@@ -81,9 +82,6 @@ class NowInstaller(ExtensionInstaller):
                         'skins/now/js/chart-rain.js'
                         ]
                     ),
-                    ('skins/now/images', [  
-                        'skins/now/images/webcam1/weewx-now-logo.png'
-                        ]
-                    )
+                    ('skins/now/images', [])
                 ]
             )
