@@ -37,37 +37,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', async function () {
-      initImages();    
+      initImages(5);    
     });
-
-    async function initImages() {
-
-      const imageData = await loadJsonObj('nowImageIndex.json');
-
-      const maxImageCount = 20;
-
-      const splide = new Splide('.splide', {
-        direction: 'rtl'}).mount();
-
-      imageData.images.sort(compareDate);
-      for(i = 0; i < 30; i++) {
-        var tmplHtml = document.getElementById('slide-template').innerHTML;
-        tmplHtml = tmplHtml.replace('%img%', 'images/webcam/' + imageData.images[i].data);
-        tmplHtml = tmplHtml.replace('%timestamp%', new Date(imageData.images[i].date * 1000).toLocaleString());
-        splide.add(tmplHtml,0);
-      }
-    }
-
-    function compareDate(a,b) {
-      if ( a.date < b.date ){
-        return -1;
-      }
-      if ( a.date > b.date ){
-        return 1;
-      }
-      return 0;
-    }
-
   </script>
 
   <template id="slide-template">

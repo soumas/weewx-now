@@ -139,7 +139,7 @@
     crossorigin="anonymous"></script>
   <script src=" https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js "></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="js/weewx-now.js"></script>
+  <script src="js/weewx-now.js?v=1"></script>
   <script src="js/chart-windspeed.js"></script>
   <script src="js/chart-winddir.js"></script>
   <script src="js/chart-temp-pressure.js"></script>
@@ -147,42 +147,13 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', async function () {
-      initImages();
+      initImages(30);
       initChartData();      
     });
 
     async function initChartData() {
       document.chartData = await loadJsonObj('nowWeatherRecords.json');
       setChartHours(2);
-    }
-
-    async function initImages() {
-      
-
-      const imageData = await loadJsonObj('nowImageIndex.json');
-
-      const maxImageCount = 20;
-
-      const splide = new Splide('.splide', {
-        direction: 'rtl'}).mount();
-
-      imageData.images.sort(compareDate);
-      for(i = 0; i < 30; i++) {
-        var tmplHtml = document.getElementById('slide-template').innerHTML;
-        tmplHtml = tmplHtml.replace('%img%', 'images/webcam/' + imageData.images[i].data);
-        tmplHtml = tmplHtml.replace('%timestamp%', new Date(imageData.images[i].date * 1000).toLocaleString());
-        splide.add(tmplHtml,0);
-      }
-    }
-
-    function compareDate(a,b) {
-      if ( a.date < b.date ){
-        return -1;
-      }
-      if ( a.date > b.date ){
-        return 1;
-      }
-      return 0;
     }
 
   </script>
